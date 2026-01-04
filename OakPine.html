@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oak Pine Community Hub</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <style>
+        /* =========================================
+           GLOBAL THEME & VARIABLES
+           ========================================= */
+        :root {
+            --bg-dark: #1b261b;       /* Deep Forest */
+            --bg-card: #283628;       /* Lighter Leaf */
+            --text-main: #f1f8f1;     /* Soft White */
+            --text-muted: #a8c5a8;    /* Sage */
+            --accent: #5cb85c;        /* Fresh Green */
+            --accent-gold: #d4af37;   /* Gold-ish */
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-head); margin-bottom: 1rem; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* =========================================
+           HEADER & SEARCH BAR
+           ========================================= */
+        header {
+            background: rgba(27, 38, 27, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+        
+        nav ul { display: flex; gap: 20px; align-items: center; }
+        nav a:hover { color: var(--accent-gold); }
+
+        /* --- SEARCH BAR CSS (Adapted from your snippet) --- */
+        .search-wrapper {
+            /* Wrapper to position the search bar in the header */
+            margin-left: 20px;
+        }
+
+        .search-bar {
+            --size: 45px; 
+            --clr-primary: var(--accent-gold); 
+            border: 2px solid var(--clr-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            height: var(--size);
+            width: var(--size); 
+            padding: 3px;
+            position: relative;
+            transition: width 300ms ease-in-out;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .search-bar__input {
+            flex-grow: 1;
+            font-size: 1rem;
+            padding: 0 0.5em;
+            border: 0;
+            background-color: transparent;
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: calc(100% - var(--size));
+            color: #fff; 
+        }
+
+        .search-bar__input:focus { outline: 0; }
+
+        .search-bar__submit {
+            font-size: 1rem;
+            cursor: pointer;
+            border: 0;
+            border-radius: 50%;
+            width: calc(var(--size) - 8px);
+            height: calc(var(--size) - 8px);
+            background-color: transparent;
+            color: var(--accent-gold);
+            margin-left: 0;
+            transition: background-color 150ms ease-in-out;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Hover/Focus State */
+        .search-bar:focus-within { width: 250px; background: rgba(0,0,0,0.3); }
+        .search-bar:focus-within .search-bar__submit { background-color: var(--clr-primary); color: white; margin-left: auto; }
+        .search-bar:focus-within .search-bar__input { opacity: 1; cursor: text; position: relative; }
+
+        /* =========================================
+          HERO CAROUSEL 
+           ========================================= */
+        .hero-section {
+            width: 100%;
+            height: 65vh; 
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .slider {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+        }
+
+        .slider-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider-content figure {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            margin: 0;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .slider-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform-origin: center;
+            transition: transform 0.8s, opacity 0.8s;
+            transform: scale(1.2);
+            opacity: 0;
+            filter: brightness(0.6);
+        }
+
+        .slider-content figure.show img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .slider-navigation {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            top: 50%; width: 95%; left: 2.5%;
+            transform: translateY(-50%);
+            pointer-events: none; /* Click through empty space */
+            z-index: 10;
+        }
+
+        .slider-navigation button {
+            pointer-events: auto;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.4);
+            color: #fff;
+            transition: 0.3s;
+        }
+        .slider-navigation button:hover { background: var(--accent); border-color: var(--accent); }
+
+        .hero-text-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 5; text-align: center; width: 80%;
+        }
+        .hero-text-overlay h1 { font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
+        .hero-text-overlay p { font-size: 1.2rem; color: #ddd; }
+
+        /* =========================================
+            CONTENT GRIDS (Resources, etc.)
+           ========================================= */
+        .section-pad { padding: 60px 0; }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card h3 { color: var(--accent-gold); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .card ul li { margin-bottom: 8px; color: var(--text-muted); font-size: 0.95rem; }
+        .card i { color: var(--accent); }
+
+        /* =========================================
+           CALENDAR THING
+           ========================================= */
+        .cal-section { background: rgba(0,0,0,0.2); }
+        
+        .cal-modal-container {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%;
+        }
+
+        .cal-modal {
+            background: var(--bg-card);
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Flattened Flatpickr Styles */
+        .flatpickr-calendar { background: transparent; border: 0; box-shadow: none; width: 100% !important; }
+        .flatpickr-months .flatpickr-month { color: #fff; fill: #fff; }
+        .flatpickr-current-month { font-size: 1.2rem; }
+        .flatpickr-current-month .numInputWrapper { display: none; } /* Hide Year Input for cleaner look */
+        
+        .flatpickr-weekday { color: var(--accent-gold) !important; font-weight: 700; }
+        
+        .flatpickr-day {
+            color: #fff; border: none; background: transparent;
+            font-weight: 500; font-size: 1rem; height: 40px; line-height: 40px;
+        }
+        .flatpickr-day.today { border-color: var(--accent-gold); }
+        .flatpickr-day:hover, .flatpickr-day.selected { background: var(--accent) !important; border-color: var(--accent) !important; }
+        
+        /* Event List below Calendar */
+        .calendar-events {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+            margin-top: 30px; min-height: 50px;
+        }
+        .event-item {
+            background: rgba(255,255,255,0.05); padding: 15px 20px; border-radius: 8px;
+            text-align: left; border-left: 3px solid var(--accent);
+        }
+        .event-item .date { color: var(--accent-gold); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+        .event-item .loc { font-size: 1.1rem; font-weight: 600; }
+
+        /* =========================================
+           EXTRA SECTIONS (Highlights, Form, Partners)
+           ========================================= */
+        /* Highlights & Shelter Split */
+        .split-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        @media(max-width: 768px) { .split-grid { grid-template-columns: 1fr; } }
+
+        .highlight-box {
+            background: linear-gradient(145deg, var(--bg-card), #1e2b1e);
+            padding: 20px; border-radius: 8px; margin-bottom: 20px;
+            border-left: 5px solid var(--accent-gold);
+        }
+
+        .sponsor-badges { display: flex; gap: 10px; margin-top: 10px; }
+        .badge { font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; color: #fff; font-weight: bold; }
+        .badge.petsmart { background: #c8102e; }
+        .badge.petco { background: #005699; }
+
+        /* Form */
+        .resource-form {
+            background: var(--bg-card); padding: 40px; border-radius: 10px;
+            max-width: 700px; margin: 0 auto;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--accent-gold); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px; background: rgba(0,0,0,0.2);
+            border: 1px solid #444; color: #fff; border-radius: 6px; font-family: inherit;
+        }
+        .btn-submit {
+            background: var(--accent); color: #fff; border: none; padding: 12px 30px;
+            border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1rem;
+        }
+        .btn-submit:hover { background: #4cae4c; }
+
+        /* Partners */
+        .partners-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; text-align: center; }
+        .partner { color: #888; font-weight: 700; font-size: 1.2rem; transition: 0.3s; }
+        .partner:hover { color: var(--accent); }
+
+        /* Footer */
+        footer { background: #111; padding: 40px 0; margin-top: 60px; border-top: 1px solid #333; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .footer-col h4 { color: var(--accent-gold); }
+        .footer-col a { display: block; margin-bottom: 5px; color: #888; }
+        .footer-col a:hover { color: #fff; }
+
+        /* Accessibility Button */
+        .a11y-toggle {
+            position: fixed; bottom: 20px; right: 20px;
+            background: #fff; color: #000; padding: 10px 15px;
+            border-radius: 30px; cursor: pointer; font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-tree"></i> Oak Pine Hub
+        </div>
+        <div style="display: flex; align-items: center;">
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+            <div class="search-wrapper">
+                <div class="search-bar">
+                    <input type="text" class="search-bar__input" placeholder="Find help, events..." aria-label="search">
+                    <button class="search-bar__submit">
+                        <i class="fas fa-search" aria-label="submit search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="slider">
+            <div class="hero-text-overlay">
+                <h1>Oak Pine Community Hub</h1>
+                <p>Made for neighbors, driven by neighbors.</p>
+            </div>
+            <div class="slider-content">
+                <figure class="show">
+                    <img src="https://images.unsplash.com/photo-1448375240586-dfd8f3793306?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Forest Community">
+                </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Recycling">
+                </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Friends">
+                </figure>
+            </div>
+            <div class="slider-navigation">
+                <button id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container section-pad" id="resources">
+        <h2 style="text-align: center; color: var(--accent);">Things To Do & Find Help</h2>
+        
+        <div class="grid-4">
+            <div class="card">
+                <h3><i class="fa-solid fa-hands-holding-circle"></i> Find Help</h3>
+                <ul>
+                    <li>Food & Basic Needs</li>
+                    <li>Health & Mental Health</li>
+                    <li>Housing & Shelter</li>
+                    <li>Transportation Help</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-utensils"></i> Food Assistance</h3>
+                <ul>
+                    <li>Food Pantries</li>
+                    <li>Free Meals & Senior Nutrition</li>
+                    <li>SNAP / Benefits Help</li>
+                    <li>Mobile Food Programs</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-house-chimney"></i> Housing Support</h3>
+                <ul>
+                    <li>Emergency Shelters</li>
+                    <li>Temporary Housing</li>
+                    <li>Rental Assistance</li>
+                    <li>Utility Help</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-circle-info"></i> Get Support</h3>
+                <ul>
+                    <li>How to Use This Hub</li>
+                    <li>Eligibility & Requirements</li>
+                    <li>Contact a Case Worker</li>
+                    <li>FAQ Page</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-pad cal-section" id="events">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 30px;">Event Calendar</h2>
+            <div class="cal-modal-container">
+                <div class="cal-modal">
+                    <div id="calendar">
+                        <div class="placeholder"></div>
+                        <div class="calendar-events">
+                            <div class="event-item">
+                                <div class="loc">Select a highlighted date to see details.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container section-pad">
+        <div class="split-grid">
+            <div>
+                <h2>Community Highlights</h2>
+                <div class="highlight-box">
+                    <h3><i class="fa-solid fa-graduation-cap"></i> Seven Lakes Graduation</h3>
+                    <p>Congratulations to the Class of 2026! Join the parade at Main St. this Saturday.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3><i class="fa-solid fa-bus"></i> New Transit Route</h3>
+                    <p>The Oak Pine circular route now stops at the library every 30 minutes.</p>
+                </div>
+            </div>
+            <div>
+                <h2>Animal Shelter</h2>
+                <div class="card" style="height: 100%;">
+                    <h3><i class="fa-solid fa-paw"></i> Furry Friends</h3>
+                    <p>Looking for a new companion? Adoption fees are waived this month.</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Proudly Sponsored By:</p>
+                    <div class="sponsor-badges">
+                        <span class="badge petsmart">PetSmart</span>
+                        <span class="badge petco">Petco</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container section-pad" style="background: rgba(255,255,255,0.02); border-radius: 20px;">
+        <h2 style="text-align: center;">Submit a New Resource</h2>
+        <form class="resource-form">
+            <div class="form-group">
+                <label>Resource Name</label>
+                <input type="text" placeholder="E.g., Weekend Food Drive">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select>
+                    <option>Food Assistance</option>
+                    <option>Housing</option>
+                    <option>Events</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Description & Requirements</label>
+                <textarea rows="4"></textarea>
+            </div>
+            <button type="button" class="btn-submit">Submit to Hub</button>
+        </form>
+    </div>
+
+    <div class="container section-pad" id="about">
+        <h2 style="text-align: center; color: var(--accent-gold);">Our Partners</h2>
+        <div class="partners-row">
+            <div class="partner">Oak Pine Vision Center</div>
+            <div class="partner">ClearPath Eye Care</div>
+            <div class="partner">Community Sight Clinic</div>
+            <div class="partner">Evergreen Vision Services</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>About</h4>
+                <p style="font-size: 0.9rem; color: #888; max-width: 300px;">
+                    Oak Pine Hub is a community-driven project built using HTML5 & CSS3 (Variables & Grid)
+                    <br>Sources: Unsplash, FontAwesome.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#">FAQ Page</a>
+                <a href="#">Accessibility Options</a>
+                <a href="#">Contact Support</a>
+            </div>
+            <div class="footer-col">
+                <h4>Events</h4>
+                <a href="#">Workshops</a>
+                <a href="#">Job Training</a>
+                <a href="#">Youth Programs</a>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 20px; color: #555; font-size: 0.8rem;">
+            &copy; 2026 Oak Pine Community Hub
+        </div>
+    </footer>
+
+    <button class="a11y-toggle" onclick="toggleHighContrast()">
+        <i class="fa-solid fa-eye"></i> Contrast
+    </button>
+
+    <script>
+        // 1. CAROUSEL LOGIC
+        document.addEventListener("DOMContentLoaded", () => {
+            const sliders = document.querySelectorAll(".slider-content figure");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                sliders.forEach((slide, i) => {
+                    slide.classList.remove("show");
+                    if (i === index) slide.classList.add("show");
+                });
+            }
+
+            nextBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % sliders.length;
+                showSlide(currentIndex);
+            });
+
+            prevBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + sliders.length) % sliders.length;
+                showSlide(currentIndex);
+            });
+
+            // Auto-advance
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % sliders.length;
+                showSlide(currentIndex);
+            }, 5000);
+        });
+
+        // 2. CALENDAR LOGIC (Fixed for Functionality)
+        $(document).ready(function() {
+            // Helper to format JS Date to YYYY-MM-DD
+            function formatDate(date) {
+                let d = date.getDate();
+                let m = date.getMonth() + 1;
+                let y = date.getFullYear();
+                return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+            }
+
+            // Create Dynamic Events relative to tday so the user always sees them
+            let today = new Date();
+            let date1 = new Date(); date1.setDate(today.getDate() + 2); // 2 days from now
+            let date2 = new Date(); date2.setDate(today.getDate() + 5); // 5 days from now
+            let date3 = new Date(); date3.setDate(today.getDate() + 14); // 2 weeks from now
+
+            var eventDates = {};
+            eventDates[formatDate(date1)] = ['Community Meeting', 'Senior Nutrition Lunch'];
+            eventDates[formatDate(date2)] = ['Seven Lakes Graduation', 'Youth Workshop'];
+            eventDates[formatDate(date3)] = ['Job Training', 'Housing Support Group'];
+
+            // Initialize Flatpickr
+            var fp = flatpickr('#calendar .placeholder', {
+                inline: true,
+                minDate: 'today',
+                showMonths: 1, // Default for mobile
+                enable: Object.keys(eventDates), // Only enable dates with events
+                onChange: function(selectedDates, dateStr, instance) {
+                    let html = '';
+                    if(eventDates[dateStr]) {
+                        eventDates[dateStr].forEach(evt => {
+                            html += `<div class="event-item">
+                                <div class="date">${instance.formatDate(selectedDates[0], 'F j, Y')}</div>
+                                <div class="loc">${evt}</div>
+                            </div>`;
+                        });
+                    }
+                    $('.calendar-events').html(html);
+                }
+            });
+
+            // Resize Logic for Responsive Calendar
+            $(window).resize(function() {
+                if($(window).width() > 992) {
+                    fp.set('showMonths', 3);
+                } else if($(window).width() > 768) {
+                    fp.set('showMonths', 2);
+                } else {
+                    fp.set('showMonths', 1);
+                }
+            }).resize(); // Trigger on load
+        });
+
+        // 3. ACCESSIBILITY TOGGLE
+        function toggleHighContrast() {
+            const root = document.documentElement;
+            const currentBg = getComputedStyle(root).getPropertyValue('--bg-dark').trim();
+            
+            if (currentBg === '#1b261b') {
+                // Switch to High Contrast Black/White
+                root.style.setProperty('--bg-dark', '#000000');
+                root.style.setProperty('--bg-card', '#111111');
+                root.style.setProperty('--text-main', '#ffffff');
+                root.style.setProperty('--text-muted', '#ffff00');
+                root.style.setProperty('--accent', '#00ff00');
+                root.style.setProperty('--accent-gold', '#ffffff');
+            } else {
+                // Revert to Dark Nature Theme
+                root.style.setProperty('--bg-dark', '#1b261b');
+                root.style.setProperty('--bg-card', '#283628');
+                root.style.setProperty('--text-main', '#f1f8f1');
+                root.style.setProperty('--text-muted', '#a8c5a8');
+                root.style.setProperty('--accent', '#5cb85c');
+                root.style.setProperty('--accent-gold', '#d4af37');
+            }
+        }
+    </script>
+</body>
+</html>

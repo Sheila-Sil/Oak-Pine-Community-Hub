@@ -13,7 +13,7 @@
 
     <style>
         /* =========================================
-           1. GLOBAL VARIABLES & THEME (Dark Nature)
+           GLOBAL VARIABLES & THEME (Dark Nature)
            ========================================= */
         :root {
             --bg-dark: #1b261b;       /* Deep Forest */
@@ -57,7 +57,7 @@
         }
 
         /* =========================================
-           2. HEADER & NAVIGATION
+           HEADER & NAVIGATION
            ========================================= */
         header {
             background: rgba(27, 38, 27, 0.95);
@@ -128,8 +128,8 @@
         .search-bar:focus-within .search-bar__input { opacity: 1; cursor: text; position: relative; }
 
         /* =========================================
-           3. HERO CAROUSEL (Integrated Code)
-           ========================================= */
+           HERO CAROUSEL
+           ======================================== */
         .hero-section {
             width: 100%;
             height: 70vh; 
@@ -211,7 +211,7 @@
         .hero-text-overlay p { font-size: 1.2rem; color: #ddd; margin-top: 10px; }
 
         /* =========================================
-           4. RESOURCES GRID (Things To Do)
+           RESOURCES GRID (Things To Do)
            ========================================= */
         .grid-4 {
             display: grid;
@@ -233,7 +233,7 @@
         .card i { color: var(--accent); }
 
         /* =========================================
-           5. EVENT CALENDAR (Integrated Code)
+           EVENT CALENDAR (Integrated Code)
            ========================================= */
         .cal-section { background: rgba(0,0,0,0.2); }
         
@@ -282,7 +282,7 @@
         .event-item .loc { font-size: 1.1rem; font-weight: 600; }
 
         /* =========================================
-           6. HIGHLIGHTS, SHELTER & FORM
+           HIGHLIGHTS, SHELTER & FORM
            ========================================= */
         .split-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
         @media(max-width: 768px) { .split-grid { grid-template-columns: 1fr; } }
@@ -381,7 +381,7 @@
         <div class="slider">
             <div class="hero-text-overlay">
                 <h1>Oak Pine Community Hub</h1>
-                <p>Smooth, Welcoming, Professional. <br>Connecting neighbors with nature and needs.</p>
+              <p>Connecting neighbors, Powered by neighbors.</p>
             </div>
             <div class="slider-content">
                 <figure class="show">
@@ -573,7 +573,7 @@
     </div>
 
     <script>
-        // 1. CAROUSEL LOGIC
+        // CAROUSEL LOGIC
         document.addEventListener("DOMContentLoaded", () => {
             const DIRECTION = { PREV: "prev", NEXT: "next" };
             let currentIndex = 0;
@@ -614,7 +614,7 @@
             initCarousel();
         });
 
-        // 2. CALENDAR LOGIC (jQuery + Flatpickr)
+        // CALENDAR LOGIC
         $(document).ready(function() {
             var eventDates = {};
             // Generate some dummy dates

@@ -334,7 +334,7 @@
 
         /* Accessibility Button */
         .a11y-toggle {
-            position: fixed; bottom: 30px; right: 30px;
+            position: fixed; bottom: 30px; right: 2400px;
             background: var(--accent-gold); color: #000; width: 50px; height: 50px;
             border-radius: 50%; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 2000; border: none; font-size: 1.2rem;
@@ -743,5 +743,12 @@
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="5Je1bhv0DIE-m-dC7U2Th";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+ <section id="cd-google-map">
+	<div id="google-container"></div>
+	<div id="cd-zoom-in"></div>
+	<div id="cd-zoom-out"></div>
+	<address>Community Center </address> 
+</section>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 </body>
 </html>

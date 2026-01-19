@@ -334,11 +334,25 @@
 
         /* Accessibility Button */
         .a11y-toggle {
-            position: fixed; bottom: 30px; right: 2400px;
-            background: var(--accent-gold); color: #000; width: 50px; height: 50px;
-            border-radius: 50%; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 2000; border: none; font-size: 1.2rem;
-        }
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--accent-gold);
+    color: #000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 2000;
+    border: none;
+    font-size: 1.2rem;
+}
+
         .a11y-toggle:hover { transform: scale(1.1); }
 
         /* Not Found Modal */
@@ -348,7 +362,19 @@
         }
         .modal-content { background: var(--bg-card); padding: 40px; border-radius: 10px; text-align: center; max-width: 400px; border: 1px solid var(--accent); }
         .close-modal { margin-top: 20px; padding: 10px 20px; background: var(--text-muted); border: none; cursor: pointer; border-radius: 5px; color: #000; font-weight: bold; }
+        .sub-link {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            transition: 0.25s ease;
+        }
 
+            .sub-link:hover {
+            color: var(--text-main);
+            background: rgba(92, 184, 92, 0.18); /* green glow */
+            transform: translateX(6px);
+        }
     </style>
 </head>
 <body>
@@ -391,8 +417,18 @@
                     <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Community Gathering">
                 </figure>
                 <figure>
-                    <img src="https://images.unsplash.com/photo-1596524430615-b46476dd9963?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Helping Hands">
+                    <img src="https://plus.unsplash.com/premium_photo-1663011298856-06af00ebc3b2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Learning">
                 </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1758599667717-27c61bcdd14b?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trash">
+                </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1628717341663-0007b0ee2597?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="food">
+                </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1555069855-e580a9adbf43?q=80&w=1283&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community Meeting">
+                </figure>
+                
             </div>
             <div class="slider-navigation">
                 <button id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
@@ -408,39 +444,39 @@
             <div class="card" id="food">
                 <h3><i class="fa-solid fa-utensils"></i> Food Assistance</h3>
                 <ul>
-                    <li>Food Pantries</li>
-                    <li>Free Meals</li>
-                    <li>Senior Nutrition</li>
-                    <li>SNAP / Benefits Help</li>
-                    <li>Mobile Food Programs</li>
+                    <li><a class="sub-link" href="food-pantries.html">Food Pantries</a></li>
+                    <li><a class="sub-link" href="free-meals.html">Free Meals</a></li>
+                    <li><a class="sub-link" href="senior-nutrition.html">Senior Nutrition</a></li>
+                    <li><a class="sub-link" href="snap-benefits.html">SNAP / Benefits Help</a></li>
+                    <li><a class="sub-link" href="mobile-food-programs.html">Mobile Food Programs</a></li>
                 </ul>
             </div>
             <div class="card" id="housing">
                 <h3><i class="fa-solid fa-house-chimney"></i> Housing Support</h3>
                 <ul>
-                    <li>Emergency Shelters</li>
-                    <li>Temporary Housing</li>
-                    <li>Rental Assistance</li>
-                    <li>Utility Help</li>
-                    <li>Housing Counseling</li>
+                    <li><a class="sub-link" href="emergency-shelters.html">Emergency Shelters</a></li>
+                    <li><a class="sub-link" href="temporary-housing.html">Temporary Housing</a></li>
+                    <li><a class="sub-link" href="rental-assistance.html">Rental Assistance</a></li>
+                    <li><a class="sub-link" href="utility-help.html">Utility Help</a></li>
+                    <li><a class="sub-link" href="housing-counseling.html">Housing Counseling</a></li>
                 </ul>
             </div>
             <div class="card" id="health">
                 <h3><i class="fa-solid fa-heart-pulse"></i> Health & Wellness</h3>
                 <ul>
-                    <li>Mental Health Clinics</li>
-                    <li>Support Groups</li>
-                    <li>Addiction Recovery</li>
-                    <li>Basic Health Screenings</li>
+                    <li><a class="sub-link" href="mental-health-clinics.html">Mental Health Clinics</a></li>
+                    <li><a class="sub-link" href="support-groups.html">Support Groups</a></li>
+                    <li><a class="sub-link" href="addiction-recovery.html">Addiction Recovery</a></li>
+                    <li><a class="sub-link" href="basic-health-screenings.html">Basic Health Screenings</a></li>
                 </ul>
             </div>
             <div class="card" id="support">
                 <h3><i class="fa-solid fa-circle-info"></i> Get Support</h3>
                 <ul>
-                    <li>How to Use This Hub</li>
-                    <li>Eligibility & Requirements</li>
-                    <li>Contact a Case Worker</li>
-                    <li>FAQ Page</li>
+                    <li><a class="sub-link" href="how-to-use-this-hub.html">How to Use This Hub</a></li>
+                    <li><a class="sub-link" href="eligibility-&-requirements.html">Eligibility & Requirements</a></li>
+                    <li><a class="sub-link" href="contact-case-worker.html">Contact a Case Worker</a></li>
+                    <li><a class="sub-link" href="FAQ.html">FAQ Page</a></li>
                 </ul>
             </div>
         </div>

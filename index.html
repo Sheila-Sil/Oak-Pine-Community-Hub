@@ -412,21 +412,14 @@
             <div class="slider-content">
                 <figure class="show">
                     <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Forest Light">
+                 <figure class="show">
+                    <img src="https://images.unsplash.com/photo-1461088945293-0c17689e48ac?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbW11bml0eXxlbnwwfHwwfHx8MA%3D%3D" alt="Community Gathering">
                 </figure>
                 <figure>
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Community Gathering">
+                    <img src="https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNpbmd8ZW58MHx8MHx8fDA%3D" alt="Learning">
                 </figure>
                 <figure>
-                    <img src="https://plus.unsplash.com/premium_photo-1663011298856-06af00ebc3b2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Learning">
-                </figure>
-                <figure>
-                    <img src="https://images.unsplash.com/photo-1758599667717-27c61bcdd14b?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trash">
-                </figure>
-                <figure>
-                    <img src="https://images.unsplash.com/photo-1628717341663-0007b0ee2597?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="food">
-                </figure>
-                <figure>
-                    <img src="https://images.unsplash.com/photo-1555069855-e580a9adbf43?q=80&w=1283&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community Meeting">
+                    <img src="https://plus.unsplash.com/premium_photo-1680185462024-449a2abaec28?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWVyaWFsJTIwbmVpZ2hib3Job29kfGVufDB8fDB8fHww" alt="Community Meeting">
                 </figure>
                 
             </div>
@@ -778,6 +771,50 @@
     </script>
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="5Je1bhv0DIE-m-dC7U2Th";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+ <!-- Submission Popup -->
+<div id="submitPopup" class="popup-overlay">
+  <div class="popup-box">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <h2>Request Submitted</h2>
+    <p>Your request has been successfully submitted. We’ll get back to you soon.</p>
+    <button class="popup-btn" onclick="closePopup()">Close</button>
+  </div>
+</div>
+<!-- Popup -->
+<div id="submitPopup" class="popup-overlay">
+  <div class="popup-box">
+    <span class="popup-close" id="popupClose">&times;</span>
+    <h2>Request Submitted</h2>
+    <p>Your request has been submitted successfully.</p>
+    <button class="popup-btn" id="popupButton">Close</button>
+  </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("submitPopup");
+  const submitBtn = document.querySelector(".btn-submit");
+
+  if (!popup || !submitBtn) {
+    console.error("Popup or submit button missing");
+    return;
+  }
+
+  submitBtn.addEventListener("click", function () {
+    popup.classList.add("show");
+  });
+
+  popup.addEventListener("click", function (e) {
+    // close if clicking X, button, or background
+    if (
+      e.target.classList.contains("popup-close") ||
+      e.target.classList.contains("popup-btn") ||
+      e.target === popup
+    ) {
+      popup.classList.remove("show");
+    }
+  });
+});
 </script>
 </body>
 </html>

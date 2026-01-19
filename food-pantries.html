@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Pantries | Oak Pine Hub</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg-dark:#1b261b;
+      --bg-card:#283628;
+      --bg-lighter:#354a35;
+      --text-main:#f1f8f1;
+      --text-muted:#a8c5a8;
+      --accent:#5cb85c;
+      --accent-gold:#d4af37;
+    }
+
+    body{
+      margin:0;
+      background:var(--bg-dark);
+      color:var(--text-main);
+      font-family: Arial, sans-serif;
+    }
+
+    header{
+      background: rgba(27, 38, 27, 0.95);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      font-weight: 800;
+      color: var(--accent);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .container{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 18px;
+    }
+
+    .back-link{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color: var(--accent-gold);
+      text-decoration:none;
+      font-weight:700;
+      margin-bottom: 14px;
+    }
+    .back-link:hover{ color: var(--accent); }
+
+    h1{ margin: 0 0 8px; color: var(--accent); }
+    p{ margin: 0 0 18px; color: var(--text-muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .pantry-card{
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .pantry-card:hover{
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      background: linear-gradient(145deg, var(--bg-card), #1e2b1e);
+    }
+
+    .pantry-name{
+      color: var(--accent-gold);
+      font-weight: 800;
+      margin: 0 0 8px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .meta{
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* ---------- MODAL ---------- */
+    .modal-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.78);
+      z-index: 5000;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+    }
+    .modal-overlay.show{ display:flex; }
+
+    .modal-box{
+      width: 100%;
+      max-width: 980px;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      overflow:hidden;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.55);
+    }
+
+    .modal-header{
+      padding: 14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.15);
+    }
+
+    .modal-title{
+      margin:0;
+      color: var(--accent-gold);
+      font-weight: 900;
+      font-size: 1.1rem;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .modal-close{
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-main);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      cursor:pointer;
+    }
+    .modal-close:hover{ border-color: var(--accent); }
+
+    .modal-body{
+      display:grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media(max-width: 900px){
+      .modal-body{ grid-template-columns: 1fr; }
+    }
+
+    .details{
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .details .line{
+      color: var(--text-muted);
+      margin: 10px 0;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      line-height: 1.4;
+    }
+    .details i{ color: var(--accent); margin-top: 2px; }
+
+    .map-wrap{
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .map-wrap iframe{
+      width:100%;
+      height: 420px;
+      border:0;
+      display:block;
+    }
+
+    .open-maps{
+      margin-top: 12px;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-main);
+      background: rgba(0,0,0,0.15);
+      text-decoration:none;
+      font-weight: 700;
+    }
+    .open-maps:hover{
+      border-color: var(--accent);
+      background: rgba(92,184,92,0.15);
+    }
+    .section-title{
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+
+/* Impact cards /
+.impact-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.impact-card{
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.impact-card:hover{
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.impact-icon{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border: 2px solid rgba(212,175,55,0.6);
+  color: var(--accent-gold);
+  background: rgba(0,0,0,0.2);
+  font-size: 1.4rem;
+}
+
+.impact-number{
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.impact-text{
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/ Testimonials */
+.testimonial-card{
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+}
+
+.testimonial-left img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.9);
+}
+
+.testimonial-right{
+  padding: 22px;
+}
+
+.testimonial-quote{
+  color: var(--text-main);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 14px;
+  opacity: 0.95;
+}
+
+.testimonial-name{
+  font-weight: 900;
+  color: var(--accent-gold);
+}
+
+.testimonial-role{
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+@media(max-width: 850px){
+  .testimonial-card{
+    grid-template-columns: 1fr;
+  }
+  .testimonial-left img{
+    height: 240px;
+  }
+}
+/* --- Impact section fixes --- */
+#impact .impact-grid{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 18px;
+}
+
+#impact .impact-card{
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 14px !important;
+  padding: 22px !important;
+  text-align: center !important;
+  transition: 0.25s ease;
+}
+
+#impact .impact-card:hover{
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+#impact .impact-icon{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border: 2px solid rgba(212,175,55,0.6);
+  color: var(--accent-gold);
+  background: rgba(0,0,0,0.2);
+  font-size: 1.4rem;
+}
+
+#impact .impact-number{
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+#impact .impact-text{
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"><i class="fa-solid fa-tree"></i> Oak Pine Hub</div>
+  </header>
+
+  <div class="container">
+    <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+    <h1>Local Food Pantries</h1>
+    <p>Click a pantry to view details and see it on the map.</p>
+
+    <div class="grid">
+      <!-- Pantry 1 -->
+      <div class="pantry-card"
+           data-name="Oak Pine Community Pantry"
+           data-address="123 Oak Pine Dr"
+           data-hours="Saturdays 10:00 AM – 1:00 PM"
+           data-notes="Bring ID and proof of address if available."
+           data-query="123 Oak Pine Dr">
+        <div class="pantry-name"><i class="fa-solid fa-box-open"></i> Oak Pine Community Pantry</div>
+        <div class="meta">123 Oak Pine Dr<br>Pickup: Saturdays 10AM–1PM</div>
+      </div>
+
+      <!-- Pantry 2 -->
+      <div class="pantry-card"
+           data-name="Mobile Pantry Program"
+           data-address="Rotating locations (see map)"
+           data-hours="Wednesdays 5:00 PM – 7:00 PM"
+           data-notes="Locations rotate weekly. Check announcements."
+           data-query="food pantry near me">
+        <div class="pantry-name"><i class="fa-solid fa-truck"></i> Mobile Pantry Program</div>
+        <div class="meta">Multiple locations<br>Wednesdays 5PM–7PM</div>
+      </div>
+
+      <!-- Pantry 3 -->
+      <div class="pantry-card"
+           data-name="Partner Pantry"
+           data-address="456 Pine Ln"
+           data-hours="Tuesdays 3:00 PM – 6:00 PM"
+           data-notes="Walk-ins welcome. Limited supplies near closing."
+           data-query="456 Pine Ln">
+        <div class="pantry-name"><i class="fa-solid fa-hand-holding-heart"></i> Partner Pantry</div>
+        <div class="meta">456 Pine Ln<br>Tuesdays 3PM–6PM</div>
+      </div>
+    </div>
+    <section class="section-pad" id="impact">
+  <div class="container">
+    <h2 class="section-title">Our Food & Clothing Impact</h2>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-icon"><i class="fa-solid fa-box"></i></div>
+        <div class="impact-number">11,482</div>
+        <div class="impact-text">
+          Nutritious food packages provided to households facing hunger and food insecurity
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon"><i class="fa-solid fa-carrot"></i></div>
+        <div class="impact-number">6,417</div>
+        <div class="impact-text">
+          Pounds of fresh fruits and vegetables harvested for clients from the community garden
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon"><i class="fa-solid fa-shirt"></i></div>
+        <div class="impact-number">2,779</div>
+        <div class="impact-text">
+          Households provided with gently used clothing
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="testimonials">
+  <div class="container">
+    <h2 class="section-title">Testimonials</h2>
+
+    <div class="testimonial-card">
+      <div class="testimonial-left">
+        <img
+          src="https://images.unsplash.com/photo-1640581827579-71d2bd4954a5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Client"
+        />
+      </div>
+
+      <div class="testimonial-right">
+        <p class="testimonial-quote">
+          “Everyone here is very welcoming and very kind. I came back because I needed food and it was such a good experience the first time.”
+        </p>
+        <div class="testimonial-name">Nora</div>
+        <div class="testimonial-role">Food & Clothing Client</div>
+      </div>
+    </div>
+  </div>
+</section>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="pantryModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">
+          <i class="fa-solid fa-location-dot"></i> Pantry Details
+        </h3>
+        <button class="modal-close" id="modalClose" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="details">
+          <div class="line"><i class="fa-solid fa-signature"></i> <div><b id="dName"></b></div></div>
+          <div class="line"><i class="fa-solid fa-map-pin"></i> <div id="dAddress"></div></div>
+          <div class="line"><i class="fa-solid fa-clock"></i> <div id="dHours"></div></div>
+          <div class="line"><i class="fa-solid fa-circle-info"></i> <div id="dNotes"></div></div>
+
+          <a class="open-maps" id="openMapsLink" target="_blank" rel="noopener">
+            <i class="fa-brands fa-google"></i> Open in Google Maps
+          </a>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            id="mapFrame"
+            title="Google Maps"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=food%20pantry%20near%20me&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("pantryModal");
+    const modalClose = document.getElementById("modalClose");
+    const mapFrame = document.getElementById("mapFrame");
+
+    const dName = document.getElementById("dName");
+    const dAddress = document.getElementById("dAddress");
+    const dHours = document.getElementById("dHours");
+    const dNotes = document.getElementById("dNotes");
+    const openMapsLink = document.getElementById("openMapsLink");
+
+    function openModalWith(data){
+      dName.textContent = data.name;
+      dAddress.textContent = data.address;
+      dHours.textContent = data.hours;
+      dNotes.textContent = data.notes;
+
+      const q = encodeURIComponent(data.query);
+      mapFrame.src = `https://www.google.com/maps?q=${q}&output=embed`;
+      openMapsLink.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal(){
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    document.querySelectorAll(".pantry-card").forEach(card => {
+      card.addEventListener("click", () => {
+        openModalWith({
+          name: card.dataset.name,
+          address: card.dataset.address,
+          hours: card.dataset.hours,
+          notes: card.dataset.notes,
+          query: card.dataset.query
+        });
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    // click outside the modal box closes it
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // esc closes it
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("show")) closeModal();
+    });
+  </script>
+</body>
+</html>

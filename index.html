@@ -28,8 +28,6 @@
             --font-body: 'Poppins', sans-serif;
         }
 
-        * { box-sizing: border-box; }
-
         body {
             margin: 0;
             padding: 0;
@@ -421,7 +419,7 @@
                 <figure>
                     <img src="https://plus.unsplash.com/premium_photo-1680185462024-449a2abaec28?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWVyaWFsJTIwbmVpZ2hib3Job29kfGVufDB8fDB8fHww" alt="Community Meeting">
                 </figure>
-                
+
             </div>
             <div class="slider-navigation">
                 <button id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
@@ -582,7 +580,7 @@
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <a href="#">Contact Case Worker</a>
+                <a href="contact-case-worker.html">Contact a Case Worker </a>
                 <a href="#">Report Issue</a>
                 <a href="#">Accessibility Statement</a>
             </div>
@@ -764,7 +762,7 @@
             notFoundModal.style.display = 'none';
         }
 
-        // 4. ACCESSIBILITY TOGGLE
+        // ACCESSIBILITY TOGGLE
         function toggleContrast() {
             document.body.classList.toggle('high-contrast');
         }
@@ -772,49 +770,35 @@
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="5Je1bhv0DIE-m-dC7U2Th";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
- <!-- Submission Popup -->
-<div id="submitPopup" class="popup-overlay">
-  <div class="popup-box">
-    <span class="popup-close" onclick="closePopup()">&times;</span>
-    <h2>Request Submitted</h2>
-    <p>Your request has been successfully submitted. We’ll get back to you soon.</p>
-    <button class="popup-btn" onclick="closePopup()">Close</button>
-  </div>
-</div>
-<!-- Popup -->
-<div id="submitPopup" class="popup-overlay">
-  <div class="popup-box">
-    <span class="popup-close" id="popupClose">&times;</span>
-    <h2>Request Submitted</h2>
-    <p>Your request has been submitted successfully.</p>
-    <button class="popup-btn" id="popupButton">Close</button>
-  </div>
+<!-- Success Modal -->
+<div id="successModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:4000; align-items:center; justify-content:center;">
+    <div style="background:#fff; color:#000; padding:30px 40px; border-radius:10px; max-width:400px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+        <h3>Request Submitted!</h3>
+        <p>Your request has been successfully submitted.</p>
+        <button id="closeSuccessModal" style="margin-top:20px; padding:10px 20px; background:#5cb85c; color:#fff; border:none; border-radius:5px; cursor:pointer;">Close</button>
+    </div>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const popup = document.getElementById("submitPopup");
-  const submitBtn = document.querySelector(".btn-submit");
+    // Show success popup 
+    const submitBtn = document.querySelector('.btn-submit');
+    const successModal = document.getElementById('successModal');
+    const closeBtn = document.getElementById('closeSuccessModal');
 
-  if (!popup || !submitBtn) {
-    console.error("Popup or submit button missing");
-    return;
-  }
+    submitBtn.addEventListener('click', () => {
+        successModal.style.display = 'flex';
+    });
 
-  submitBtn.addEventListener("click", function () {
-    popup.classList.add("show");
-  });
+    closeBtn.addEventListener('click', () => {
+        successModal.style.display = 'none';
+    });
 
-  popup.addEventListener("click", function (e) {
-    // close if clicking X, button, or background
-    if (
-      e.target.classList.contains("popup-close") ||
-      e.target.classList.contains("popup-btn") ||
-      e.target === popup
-    ) {
-      popup.classList.remove("show");
-    }
-  });
-});
+    // close modal when clicking outside the box
+    successModal.addEventListener('click', (e) => {
+        if(e.target === successModal) {
+            successModal.style.display = 'none';
+        }
+    });
 </script>
+
 </body>
 </html>

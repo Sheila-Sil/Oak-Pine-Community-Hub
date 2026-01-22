@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Meals | Oak Pine Community Hub</title>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@300;400;600&display=swap">
+
+
+  <style>
+    :root{
+      --bg-dark:#1b261b;
+      --bg-card:#283628;
+      --bg-lighter:#354a35;
+      --text-main:#f1f8f1;
+      --text-muted:#a8c5a8;
+      --accent:#5cb85c;
+      --accent-gold:#d4af37;
+      --error:#ee6352;
+      --font-head:'Montserrat',sans-serif;
+      --font-body:'Poppins',sans-serif;
+    }
+
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      padding:0;
+      background:var(--bg-dark);
+      color:var(--text-main);
+      font-family:var(--font-body);
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+
+    h1,h2,h3,h4{font-family:var(--font-head); margin:0 0 1rem 0;}
+    a{color:inherit; text-decoration:none; transition:.25s;}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px;}
+    .section-pad{padding:70px 0;}
+
+
+    /* Header */
+    header{
+      background: rgba(27,38,27,.95);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid #333;
+      box-shadow:0 4px 12px rgba(0,0,0,.3);
+    }
+    .logo{
+      font-size:1.5rem;
+      font-weight:700;
+      color:var(--accent);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    nav ul{display:flex; gap:20px; align-items:center; margin:0; padding:0; list-style:none;}
+    nav a{font-weight:500; font-size:.9rem; letter-spacing:.5px;}
+    nav a:hover{color:var(--accent-gold);}
+
+
+    /* hero */
+    .page-hero{
+      background: linear-gradient(145deg, rgba(40,54,40,.95), rgba(27,38,27,.95));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-inner{
+      padding: 50px 0;
+      display:flex;
+      gap:28px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .hero-left{flex: 1 1 520px;}
+    .hero-right{flex: 0 1 360px;}
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(212,175,55,.12);
+      border: 1px solid rgba(212,175,55,.25);
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .4px;
+      margin-bottom: 14px;
+    }
+    .hero-title{
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-desc{
+      color: #d7e6d7;
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+
+    .quick-tips{
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px 18px;
+    }
+    .quick-tips h3{color:var(--accent-gold); font-size:1.05rem; margin-bottom:10px;}
+    .tip{
+      display:flex;
+      gap:10px;
+      margin-bottom:10px;
+      color: var(--text-muted);
+      font-size: .95rem;
+      line-height: 1.45;
+    }
+    .tip i{color: var(--accent); margin-top: 2px;}
+    .tip:last-child{margin-bottom:0;}
+
+
+    /* control bar :3 */
+    .controls{
+      margin-top: 25px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+    }
+    .search{
+      flex: 1 1 320px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 10px 14px;
+    }
+    .search i{color: var(--accent-gold);}
+    .search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      color:#fff;
+      font-family:var(--font-body);
+      font-size: .95rem;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(92,184,92,.14);
+      border: 1px solid rgba(92,184,92,.22);
+      color: var(--text-main);
+      cursor:pointer;
+      font-weight:700;
+      font-size:.9rem;
+      transition:.2s;
+      user-select:none;
+    }
+    .pill i{color:var(--accent);}
+    .pill:hover{transform: translateY(-1px); border-color: rgba(92,184,92,.45);}
+
+
+    /* card grid :P */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .card{
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+      transition: transform .25s, border-color .25s;
+      min-height: 220px;
+
+
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+    .card:hover{transform: translateY(-4px); border-color: rgba(92,184,92,.55);}
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .card h3{
+      font-size: 1.15rem;
+      color: var(--accent-gold);
+      margin:0;
+      line-height:1.25;
+    }
+    .badge{
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.25);
+      background: rgba(212,175,55,.10);
+      color: var(--accent-gold);
+      white-space:nowrap;
+    }
+    .meta{
+      display:grid;
+      gap:8px;
+      margin: 12px 0 10px;
+      color: var(--text-muted);
+      font-size: .95rem;
+    }
+    .meta-row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      line-height: 1.35;
+    }
+    .meta-row i{color: var(--accent); margin-top: 2px; min-width: 18px;}
+
+
+    /* attempt to make the descriptions align UGH */
+    .notes{
+      color: #d1dfd1;
+      font-size: .92rem;
+      line-height:1.55;
+      margin-bottom: 14px;
+
+
+
+      display:-webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow:hidden;
+      min-height: calc(1.55em * 3);
+    }
+
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:auto;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.20);
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: .9rem;
+      cursor:pointer;
+      transition:.2s;
+      user-select:none;
+    }
+    .btn i{color: var(--accent-gold);}
+    .btn:hover{border-color: rgba(212,175,55,.45); transform: translateY(-1px);}
+    .btn.primary{
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn.primary i{color:#0b1a0b;}
+    .btn.primary:hover{background:#4cae4c; border-color:#4cae4c;}
+
+
+    /* save button */
+    .btn[data-action="save"] i{
+      color: transparent;              
+      -webkit-text-stroke: 1.8px var(--accent-gold); 
+      text-stroke: 1.8px var(--accent-gold);
+    }
+    .btn.saved{
+      border-color: rgba(212,175,55,.55);
+    }
+    .btn.saved i{
+      color: var(--accent-gold);       
+      -webkit-text-stroke: 0px transparent;
+      text-stroke: 0px transparent;
+    }
+
+
+    /* info bar */
+    .info-bar{
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .info-bar strong{color: var(--text-main);}
+
+
+    /* footer */
+    footer{
+      background:#111;
+      padding: 50px 0;
+      border-top:1px solid #333;
+      margin-top: 40px;
+    }
+    .footer-content{
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:40px;
+    }
+    .footer-col{flex:1; min-width: 220px;}
+    .footer-col h4{color: var(--accent-gold); margin-top:0;}
+    .footer-col a{display:block; margin-bottom: 10px; color:#888; font-size:.9rem;}
+    .footer-col a:hover{color:#fff;}
+
+
+    /* toast */
+    .toast{
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 5000;
+      background: rgba(40,54,40,.98);
+      border: 1px solid rgba(92,184,92,.45);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      border-radius: 12px;
+      padding: 12px 14px;
+      min-width: 260px;
+      display:none;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .toast i{color: var(--accent); margin-top: 2px;}
+    .toast .t-title{font-weight: 900; color: var(--text-main); margin-bottom: 2px;}
+    .toast .t-msg{color: var(--text-muted); font-size: .92rem; line-height: 1.35;}
+
+
+    @media (max-width: 620px){
+      header{padding: 1rem 1rem;}
+      nav ul{gap: 14px;}
+      .hero-title{font-size: 2rem;}
+    }
+  </style>
+</head>
+<body>
+
+
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-tree"></i> Oak Pine Hub
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#shelter">Shelter</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <section class="page-hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <div class="hero-kicker"><i class="fa-solid fa-utensils"></i> Food Assistance</div>
+        <h1 class="hero-title">Free Meals</h1>
+        <p class="hero-desc">
+          Find places serving prepared meals you can eat right away. Use the search to quickly filter options.
+        </p>
+
+
+        <div class="controls">
+          <div class="search" role="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="mealSearch" type="text" placeholder="Search by name, day, or keyword (breakfast, dinner, youth)..." />
+          </div>
+
+
+          <div class="pill" id="btnShowAll"><i class="fa-solid fa-list"></i> Show All</div>
+          <div class="pill" id="btnShowSaved"><i class="fa-regular fa-bookmark"></i> Show Saved</div>
+        </div>
+
+
+        <div class="info-bar">
+          <strong>Tip:</strong> If you need groceries to take home, use <strong>Food Pantries</strong>. If you need a meal today,
+          use <strong>Free Meals</strong>.
+        </div>
+      </div>
+
+
+      <div class="hero-right">
+        <div class="quick-tips">
+          <h3>Before you go</h3>
+          <div class="tip"><i class="fa-solid fa-clock"></i><span>Hours can change, so call ahead when possible.</span></div>
+          <div class="tip"><i class="fa-solid fa-id-card"></i><span>Most meal programs don’t require paperwork.</span></div>
+          <div class="tip"><i class="fa-solid fa-person-walking"></i><span>Some locations are walk-up only; some are drive-thru.</span></div>
+          <div class="tip"><i class="fa-solid fa-wheat-awn"></i><span>Ask about dietary options (vegetarian, halal, allergies).</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <main class="container section-pad">
+    <h2 style="color: var(--accent); text-align:center; margin-bottom: 26px;">Meal Locations</h2>
+
+
+    <div class="grid" id="mealGrid">
+
+
+      <article class="card meal-card" data-tags="community center dinner weeknight hot meal family"
+        data-name="Oak Pine Community Center Dinner"
+        data-address="100 Main St, Oak Pine">
+        <div class="card-top">
+          <h3>Oak Pine Community Center Dinner</h3>
+          <span class="badge">Dinner</span>
+        </div>
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Days:</strong> Mon–Thu</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 5:30 PM – 7:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 100 Main St, Oak Pine</span></div>
+        </div>
+        <p class="notes">Hot meal served indoors. Family-friendly. Limited seating, but take-out containers available.</p>
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <article class="card meal-card" data-tags="breakfast morning church coffee weekday kids"
+        data-name="St. Evergreen Breakfast & Coffee"
+        data-address="22 Pine Ave, Oak Pine">
+        <div class="card-top">
+          <h3>St. Evergreen Breakfast & Coffee</h3>
+          <span class="badge">Breakfast</span>
+        </div>
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Days:</strong> Tue & Fri</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 8:00 AM – 10:00 AM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 22 Pine Ave, Oak Pine</span></div>
+        </div>
+        <p class="notes">Breakfast plates + coffee/juice. Small kids welcome. Vegetarian option most days.</p>
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <article class="card meal-card" data-tags="youth teen after school snack weekday"
+        data-name="Youth Hub After-School Meals"
+        data-address="18 Cedar Rd, Oak Pine">
+        <div class="card-top">
+          <h3>Youth Hub After-School Meals</h3>
+          <span class="badge">Youth</span>
+        </div>
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Days:</strong> Mon–Fri (school days)</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 3:30 PM – 5:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 18 Cedar Rd, Oak Pine</span></div>
+        </div>
+        <p class="notes">Meals/snacks for students. Check-in required for youth program registration (no income paperwork).</p>
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <article class="card meal-card" data-tags="weekend lunch saturday mobile food meal"
+        data-name="Mobile Meal Truck (Weekend Lunch)"
+        data-address="North Park Lot, Oak Pine">
+        <div class="card-top">
+          <h3>Mobile Meal Truck (Weekend Lunch)</h3>
+          <span class="badge">Lunch</span>
+        </div>
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Days:</strong> Sat</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 12:00 PM – 2:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> North Park Lot (by entrance)</span></div>
+        </div>
+        <p class="notes">Drive-thru style meal pickup. First come, first served while supplies last.</p>
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <article class="card meal-card" data-tags="sunday dinner community meal all welcome"
+        data-name="Oak Pine Sunday Community Meal"
+        data-address="9 Maple St, Oak Pine">
+        <div class="card-top">
+          <h3>Oak Pine Sunday Community Meal</h3>
+          <span class="badge">Dinner</span>
+        </div>
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Days:</strong> Sun</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 4:30 PM – 6:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 9 Maple St, Oak Pine</span></div>
+        </div>
+        <p class="notes">All are welcome. Indoor seating + take-out boxes. Ask volunteers for allergy info.</p>
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <article class="card meal-card" data-tags="weekday lunch senior nutrition community"
+        data-name="Senior Nutrition Lunch (55+)"
+        data-address="44 Garden Way, Oak Pine">
+        <div class="card-top">
+          <h3>Senior Nutrition Lunch (55+)</h3>
+          <span class="badge">Senior</span>
+        </div>
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Days:</strong> Mon–Fri</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 11:30 AM – 1:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 44 Garden Way, Oak Pine</span></div>
+        </div>
+        <p class="notes">Lunch for seniors (55+). Registration may be required, but no income verification.</p>
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+    </div>
+  </main>
+
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>Oak Pine Community Hub</h4>
+        <p style="color:#666; font-size:.9rem; line-height:1.5;">
+          Created using HTML5, CSS3, JavaScript.
+        </p>
+      </div>
+
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html#resources">Food & Basic Needs</a>
+        <a href="food-pantries.html">Food Pantries</a>
+        <a href="free-meals.html">Free Meals</a>
+        <a href="index.html#events">Upcoming Events</a>
+      </div>
+
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact-case-worker.html">Contact a Case Worker</a>
+        <a href="index.html#about">About the Hub</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <div>
+      <div class="t-title" id="toastTitle">Saved</div>
+      <div class="t-msg" id="toastMsg">This resource was saved successfully.</div>
+    </div>
+  </div>
+
+
+  <script>
+    // ===== SEARCH FILTER =====
+    const input = document.getElementById('mealSearch');
+    const cards = Array.from(document.querySelectorAll('.meal-card'));
+
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+        const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+        const visible = !q || tags.includes(q) || title.includes(q);
+        card.style.display = visible ? '' : 'none';
+      });
+    });
+
+
+    // ===== TOAST =====
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMsg = document.getElementById('toastMsg');
+    let toastTimer = null;
+
+
+    function showToast(title, msg){
+      toastTitle.textContent = title;
+      toastMsg.textContent = msg;
+      toast.style.display = 'flex';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.style.display = 'none', 2600);
+    }
+
+
+    document.getElementById('btnShowAll').addEventListener('click', () => {
+      input.value = '';
+      cards.forEach(c => c.style.display = '');
+      showToast('Showing all', 'All meal locations are visible.');
+    });
+
+
+    // ===== DIRECTIONS =====
+    function openGoogleMapsDirections(destinationAddress){
+      // If we have the user's location, open Google Maps directions from current location
+      const encodedDest = encodeURIComponent(destinationAddress);
+
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const origin = `${pos.coords.latitude},${pos.coords.longitude}`;
+            const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodedDest}&travelmode=driving`;
+            window.open(url, '_blank', 'noopener');
+          },
+          () => {
+            // Fallback: let Google Maps use "My Location"
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${encodedDest}`;
+            window.open(url, '_blank', 'noopener');
+          },
+          { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+        );
+      } else {
+        const url = `https://www.google.com/maps/dir/?api=1&destination=${encodedDest}`;
+        window.open(url, '_blank', 'noopener');
+      }
+    }
+
+
+    // ===== SHOW SAVED =====
+document.getElementById('btnShowSaved').addEventListener('click', () => {
+  const saved = new Set(loadSaved());
+
+  if (saved.size === 0) {
+    showToast('No saved meals', 'Save a meal location first, then use Show Saved.');
+    return;
+  }
+
+  // clear search so user doesnt think it's broken
+  input.value = '';
+
+  cards.forEach(card => {
+    const id = getCardId(card);
+    card.style.display = saved.has(id) ? '' : 'none';
+  });
+
+  showToast('Saved only', 'Showing only your saved meal locations.');
+});
+
+
+    // ===== SAVE TOGGLE (REAL UI) =====
+    const STORAGE_KEY = 'oakpine_saved_meals_v1';
+
+
+    function loadSaved(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+      catch { return []; }
+    }
+    function storeSaved(arr){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    }
+
+
+    function getCardId(card){
+      // stable id from name+address
+      return (card.dataset.name + '|' + card.dataset.address).toLowerCase();
+    }
+
+
+    function applySavedState(){
+      const saved = new Set(loadSaved());
+      cards.forEach(card => {
+        const id = getCardId(card);
+        const saveBtn = card.querySelector('button[data-action="save"]');
+        const label = saveBtn?.querySelector('.label');
+        if(!saveBtn || !label) return;
+
+
+        if(saved.has(id)){
+          saveBtn.classList.add('saved');
+          label.textContent = 'Saved';
+        } else {
+          saveBtn.classList.remove('saved');
+          label.textContent = 'Save';
+        }
+      });
+    }
+
+
+    applySavedState();
+
+
+    // ===== GLOBAL CLICK HANDLER =====
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if(!btn) return;
+
+
+      const card = btn.closest('.meal-card');
+      const action = btn.getAttribute('data-action');
+
+
+      if(action === 'directions'){
+        const addr = card?.dataset.address || card?.querySelector('.meta-row:last-child span')?.textContent || '';
+        if(!addr){
+          showToast('Missing address', 'This location does not have an address set.');
+          return;
+        }
+        openGoogleMapsDirections(addr.replace('Location:', '').trim());
+      }
+
+
+      if(action === 'save'){
+        const id = getCardId(card);
+        const savedArr = loadSaved();
+        const savedSet = new Set(savedArr);
+
+
+        if(savedSet.has(id)){
+          savedSet.delete(id);
+          showToast('Removed', 'This meal option was removed from saved.');
+        } else {
+          savedSet.add(id);
+          showToast('Saved', 'This meal option was saved successfully.');
+        }
+
+
+        storeSaved(Array.from(savedSet));
+        applySavedState();
+      }
+    });
+  </script>
+</body>
+</html>

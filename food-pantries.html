@@ -219,7 +219,7 @@
   margin-bottom: 28px;
 }
 
-/* Impact cards /
+/* Impact cards */
 .impact-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -267,56 +267,6 @@
   line-height: 1.5;
 }
 
-/ Testimonials */
-.testimonial-card{
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 0;
-}
-
-.testimonial-left img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.9);
-}
-
-.testimonial-right{
-  padding: 22px;
-}
-
-.testimonial-quote{
-  color: var(--text-main);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin: 0 0 14px;
-  opacity: 0.95;
-}
-
-.testimonial-name{
-  font-weight: 900;
-  color: var(--accent-gold);
-}
-
-.testimonial-role{
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-top: 4px;
-}
-
-@media(max-width: 850px){
-  .testimonial-card{
-    grid-template-columns: 1fr;
-  }
-  .testimonial-left img{
-    height: 240px;
-  }
-}
 /* --- Impact section fixes --- */
 #impact .impact-grid{
   display: grid !important;
@@ -365,6 +315,190 @@
   font-size: 0.95rem;
   line-height: 1.5;
 }
+/* ===== Testimonials ===== */
+#testimonials{
+  background: rgba(0,0,0,0.08);
+}
+
+.t-head{
+  text-align: center;
+  margin-bottom: 24px;
+}
+.t-kicker{
+  color: var(--accent);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.t-title{
+  margin: 8px 0 6px;
+  font-size: 2.4rem;
+}
+.t-underline{
+  width: 80px;
+  height: 4px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+/* Slider shell */
+.t-slider{
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 12px;
+  align-items: center;
+}
+
+.t-viewport{
+  overflow: hidden;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.t-track{
+  display: flex;
+  gap: 18px;
+  padding: 10px 0;
+  transition: transform 450ms ease;
+  will-change: transform;
+}
+
+/* Cards: 3 visible */
+.t-card{
+  position: relative;
+  flex: 0 0 calc((100% - 36px) / 3);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 26px 22px 22px;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.t-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* Teal corner that expands */
+.t-corner{
+  position: absolute;
+  top: -90px;
+  left: -90px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: #1aa6a6; /* teal */
+  opacity: 0.95;
+  transform: translate(0,0) scale(1);
+  transition: transform 520ms ease;
+  z-index: 0;
+}
+
+.t-card:hover .t-corner{
+  transform: translate(40px, 40px) scale(7);
+}
+
+/* Keep content above teal */
+.t-quote, .t-cardTitle, .t-text, .t-person{
+  position: relative;
+  z-index: 1;
+}
+
+.t-quote{
+  font-size: 2.6rem;
+  font-weight: 900;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.t-cardTitle{
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.t-text{
+  margin: 0 0 18px;
+  line-height: 1.6;
+  color: rgba(241,248,241,0.85);
+}
+
+/* Avatar row */
+.t-person{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.t-avatar{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.35);
+}
+
+.t-name{
+  font-weight: 900;
+}
+.t-role{
+  font-size: 0.9rem;
+  color: rgba(241,248,241,0.75);
+}
+
+/* Nav buttons */
+.t-nav{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.22);
+  color: var(--text-main);
+  display: grid;
+  place-items: center;
+  transition: 200ms ease;
+}
+.t-nav:hover{
+  border-color: #1aa6a6;
+  background: rgba(26,166,166,0.18);
+}
+
+/* Dots */
+.t-dots{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.t-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.25);
+  border: 0;
+  cursor: pointer;
+  transition: 220ms ease;
+}
+.t-dot.active{
+  width: 28px;
+  background: var(--accent-gold);
+}
+.t-card { box-sizing: border-box; }
+/* Responsive */
+@media(max-width: 950px){
+  .t-card{ flex-basis: calc((100% - 18px) / 2); }
+}
+@media(max-width: 650px){
+  .t-slider{ grid-template-columns: 40px 1fr 40px; }
+  .t-card{ flex-basis: 100%; }
+}
+
   </style>
 </head>
 
@@ -447,27 +581,106 @@
 
 <section class="section-pad" id="testimonials">
   <div class="container">
-    <h2 class="section-title">Testimonials</h2>
-
-    <div class="testimonial-card">
-      <div class="testimonial-left">
-        <img
-          src="https://images.unsplash.com/photo-1640581827579-71d2bd4954a5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Client"
-        />
-      </div>
-
-      <div class="testimonial-right">
-        <p class="testimonial-quote">
-          “Everyone here is very welcoming and very kind. I came back because I needed food and it was such a good experience the first time.”
-        </p>
-        <div class="testimonial-name">Nora</div>
-        <div class="testimonial-role">Food & Clothing Client</div>
-      </div>
+    <div class="t-head">
+      <div class="t-kicker">Testimonials</div>
+      <h2 class="t-title">What our community says</h2>
+      <div class="t-underline"></div>
     </div>
+
+    <div class="t-slider">
+      <button class="t-nav t-prev" type="button" aria-label="Previous">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="t-viewport" id="tViewport">
+        <div class="t-track" id="tTrack">
+          <!-- Card 1 -->
+          <article class="t-card">
+            <span class="t-corner" aria-hidden="true"></span>
+            <div class="t-quote">“</div>
+
+            <h3 class="t-cardTitle">Love the simplicity</h3>
+            <p class="t-text">
+              I found food help fast, and the steps were clear. It made a stressful situation feel manageable.
+            </p>
+
+            <div class="t-person">
+              <img class="t-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Client">
+              <div>
+                <div class="t-name">Allan Collins</div>
+                <div class="t-role">Resident</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="t-card">
+            <span class="t-corner" aria-hidden="true"></span>
+            <div class="t-quote">“</div>
+
+            <h3 class="t-cardTitle">Excellent support</h3>
+            <p class="t-text">
+              The map popups saved me time. I could compare locations and go straight there without guessing.
+            </p>
+
+            <div class="t-person">
+              <img class="t-avatar" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80" alt="Client">
+              <div>
+                <div class="t-name">Tanya Grant</div>
+                <div class="t-role">Food Program Client</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="t-card">
+            <span class="t-corner" aria-hidden="true"></span>
+            <div class="t-quote">“</div>
+
+            <h3 class="t-cardTitle">Efficient and reliable</h3>
+            <p class="t-text">
+              Everything was organized and up to date. I showed up during the hours listed and it was open.
+            </p>
+
+            <div class="t-person">
+              <img class="t-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Client">
+              <div>
+                <div class="t-name">Clay Washington</div>
+                <div class="t-role">Community Member</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="t-card">
+            <span class="t-corner" aria-hidden="true"></span>
+            <div class="t-quote">“</div>
+
+            <h3 class="t-cardTitle">Really helpful</h3>
+            <p class="t-text">
+              The hub made it easy to find free meals and the schedule. The directions button was clutch.
+            </p>
+
+            <div class="t-person">
+              <img class="t-avatar" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=80" alt="Client">
+              <div>
+                <div class="t-name">Nora</div>
+                <div class="t-role">Food & Clothing Client</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <button class="t-nav t-next" type="button" aria-label="Next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="t-dots" id="tDots"></div>
   </div>
 </section>
-  </div>
+
 
   <!-- MODAL -->
   <div class="modal-overlay" id="pantryModal" aria-hidden="true">
@@ -559,5 +772,99 @@
       if (e.key === "Escape" && modal.classList.contains("show")) closeModal();
     });
   </script>
+  <script>
+(() => {
+  const track = document.getElementById("tTrack");
+  const dotsWrap = document.getElementById("tDots");
+  const prevBtn = document.querySelector(".t-prev");
+  const nextBtn = document.querySelector(".t-next");
+  const viewport = document.getElementById("tViewport");
+  if (!track || !dotsWrap || !prevBtn || !nextBtn || !viewport) return;
+
+
+  const cards = Array.from(track.children);
+  let index = 0;
+  let timer = null;
+  let paused = false;
+
+
+  function perView(){
+    const w = window.innerWidth;
+    if (w <= 650) return 1;
+    if (w <= 950) return 2;
+    return 3;
+  }
+
+
+  function maxIndex(){
+    return Math.max(0, cards.length - perView());
+  }
+
+
+  function step(){
+    const first = cards[0];
+    const second = cards[1];
+    if(!first || !second) return 0;
+    return second.getBoundingClientRect().left - first.getBoundingClientRect().left;
+  }
+
+
+  function renderDots(){
+    dotsWrap.innerHTML = "";
+    for (let i = 0; i <= maxIndex(); i++){
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "t-dot" + (i === index ? " active" : "");
+      b.addEventListener("click", () => { index = i; update(); });
+      dotsWrap.appendChild(b);
+    }
+  }
+
+
+  function update(){
+    if (index > maxIndex()) index = maxIndex();
+    if (index < 0) index = 0;
+    track.style.transform = `translateX(${-index * step()}px)`;
+    renderDots();
+  }
+
+
+  function next(){
+    index++;
+    if (index > maxIndex()) index = 0;
+    update();
+  }
+
+
+  function prev(){
+    index--;
+    if (index < 0) index = maxIndex();
+    update();
+  }
+
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+
+  viewport.addEventListener("mouseenter", () => paused = true);
+  viewport.addEventListener("mouseleave", () => paused = false);
+
+
+  function start(){
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => { if (!paused) next(); }, 5000);
+  }
+
+
+  window.addEventListener("resize", update);
+
+
+  update();
+  start();
+})();
+</script>
+
+
 </body>
 </html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact a Case Worker | Oak Pine Hub</title>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap">
+
+
+  <style>
+    :root{
+      --bg-dark:#1b261b;
+      --bg-card:#283628;
+      --bg-lighter:#354a35;
+      --text-main:#f1f8f1;
+      --text-muted:#a8c5a8;
+      --accent:#5cb85c;
+      --accent-gold:#d4af37;
+      --teal:#22b8b5;
+      --danger:#ee6352;
+
+
+      --font-head:'Montserrat', sans-serif;
+      --font-body:'Poppins', sans-serif;
+    }
+
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x:hidden;
+    }
+
+
+    header{
+      background: rgba(27, 38, 27, 0.95);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+
+    .logo{
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family: var(--font-head);
+    }
+
+
+    .container{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 18px 70px;
+    }
+
+
+    .back-link{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color: var(--accent-gold);
+      text-decoration:none;
+      font-weight:800;
+      margin: 10px 0 20px;
+      font-family: var(--font-head);
+    }
+    .back-link:hover{ color: var(--accent); }
+
+
+    /* ===== Contact layout ===== */
+    .contact-shell{
+      position: relative;
+      background: linear-gradient(145deg, rgba(40,54,40,0.92), rgba(27,38,27,0.92));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.55);
+      min-height: 520px;
+    }
+
+
+    /* circles */
+    .contact-shell::before,
+    .contact-shell::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(92,184,92,0.35), rgba(92,184,92,0.08));
+      filter: blur(0px);
+      z-index: 0;
+      pointer-events:none;
+    }
+    .contact-shell::before{
+      width: 420px; height: 420px;
+      left: -220px; top: -220px;
+    }
+    .contact-shell::after{
+      width: 300px; height: 300px;
+      right: -170px; bottom: -170px;
+      background: radial-gradient(circle at 30% 30%, rgba(212,175,55,0.20), rgba(212,175,55,0.06));
+    }
+
+
+    .contact-grid{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 1.4fr;
+      gap: 0;
+      min-height: 520px;
+    }
+
+
+    
+    .contact-info{
+      padding: 34px 30px;
+      background: linear-gradient(160deg, rgba(34,184,181,0.28), rgba(40,54,40,0.0));
+      border-right: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    /* Teal wedge vibe */
+    .contact-info .wedge{
+      position:absolute;
+      top: -140px;
+      left: -140px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(34,184,181,0.55);
+      box-shadow: 0 0 0 999px rgba(34,184,181,0.0);
+      z-index: 0;
+      opacity: 0.75;
+    }
+
+
+    .contact-info .content{
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .kicker{
+      color: var(--accent);
+      font-family: var(--font-head);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+
+    .title{
+      margin: 0 0 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+
+
+    .sub{
+      color: var(--text-muted);
+      margin: 0 0 18px;
+      line-height: 1.6;
+      max-width: 44ch;
+    }
+
+
+    .info-list{
+      margin: 18px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+
+    .info-item{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      color: rgba(241,248,241,0.92);
+    }
+    .info-item i{
+      width: 20px;
+      margin-top: 3px;
+      color: var(--accent-gold);
+    }
+    .info-item small{
+      display:block;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+
+    .social-row{
+      display:flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .social{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: var(--text-main);
+      transition: 200ms ease;
+    }
+    .social:hover{
+      border-color: var(--accent);
+      background: rgba(92,184,92,0.14);
+      transform: translateY(-2px);
+    }
+
+
+    /* Right form panel like first pic */
+    .contact-form{
+      padding: 34px 30px;
+      position: relative;
+    }
+
+
+    .form-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+
+    .form-head h2{
+      margin: 0;
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: var(--accent-gold);
+    }
+
+
+    .badge{
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.18);
+      color: rgba(241,248,241,0.85);
+      white-space: nowrap;
+    }
+
+
+    form{
+      display:grid;
+      gap: 14px;
+    }
+
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+
+    label{
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display:block;
+      margin-bottom: 6px;
+    }
+
+
+    .field{
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      outline: none;
+      width: 100%;
+      transition: 200ms ease;
+    }
+
+
+    .field:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(92,184,92,0.12);
+    }
+
+
+    textarea.field{
+      min-height: 140px;
+      resize: vertical;
+    }
+
+
+    .actions{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content:flex-end;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+
+    .btn{
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 900;
+      font-family: var(--font-head);
+      letter-spacing: 0.3px;
+      transition: 200ms ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+
+    .btn-primary{
+      background: var(--accent);
+      color: #102010;
+    }
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+
+    .btn-ghost{
+      background: rgba(0,0,0,0.18);
+      color: var(--text-main);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    .btn-ghost:hover{
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+
+    .hint{
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+
+    .toast{
+      display:none;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.22);
+      color: rgba(241,248,241,0.92);
+    }
+    .toast.show{ display:block; }
+    .toast i{ color: var(--accent-gold); margin-right: 8px; }
+
+
+    @media(max-width: 900px){
+      .contact-grid{ grid-template-columns: 1fr; }
+      .contact-info{ border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .row{ grid-template-columns: 1fr; }
+    }
+    .social-row a{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    }
+  </style>
+</head>
+
+
+<body>
+  <header>
+    <div class="logo"><i class="fa-solid fa-tree"></i> Oak Pine Hub</div>
+  </header>
+
+
+  <div class="container">
+    <a class="back-link" href="index.html">
+      <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+
+
+    <div class="contact-shell">
+      <div class="contact-grid">
+        <!-- LEFT: Info -->
+        <aside class="contact-info">
+          <div class="wedge" aria-hidden="true"></div>
+
+
+          <div class="content">
+            <div class="kicker">Let’s get in touch!</div>
+            <h1 class="title">Contact a Case Worker</h1>
+            <p class="sub">
+              Use this form to request help navigating resources. A case worker can respond with next steps and nearby options.
+            </p>
+
+
+            <ul class="info-list">
+              <li class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  Oak Pine Community Center
+                  <small>123 Community Way, Oak Pine</small>
+                </div>
+              </li>
+
+
+              <li class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                  help@oakpinehub.org
+                  <small>(demo email for judges)</small>
+                </div>
+              </li>
+
+
+              <li class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                  (000) 000-0000
+                  <small>(demo phone for judges)</small>
+                </div>
+              </li>
+
+
+              <li class="info-item">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                  Mon–Fri, 9 AM – 5 PM
+                  <small>Responses within 1–2 business days</small>
+                </div>
+              </li>
+            </ul>
+
+
+            <div class="hint" style="margin-top:16px;">
+              Connect with us:
+            </div>
+
+
+            <div class="social-row" aria-label="Social links">
+              <a class="social" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a class="social" href="https://nextdoor.com/" target="_blank" rel="noopener" aria-label="Nextdoor">
+                <i class="fa-solid fa-house"></i>
+              </a>
+              <a class="social" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a class="social" href="https://twitter.com/" target="_blank" rel="noopener" aria-label="X / Twitter">
+                <i class="fa-brands fa-twitter"></i>
+              </a>    
+            </div>
+          </div>
+        </aside>
+
+
+        <!-- RIGHT: Form -->
+        <section class="contact-form">
+          <div class="form-head">
+            <h2>Send a message</h2>
+            <div class="badge"><i class="fa-solid fa-shield-heart"></i> Private & respectful</div>
+          </div>
+
+
+          <form id="caseWorkerForm">
+            <div class="row">
+              <div>
+                <label for="firstName">First name</label>
+                <input class="field" id="firstName" name="firstName" type="text" placeholder="First name" required />
+              </div>
+
+
+              <div>
+                <label for="lastName">Last name</label>
+                <input class="field" id="lastName" name="lastName" type="text" placeholder="Last name" required />
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div>
+                <label for="email">Email</label>
+                <input class="field" id="email" name="email" type="email" placeholder="name@example.com" required />
+              </div>
+
+
+              <div>
+                <label for="phone">Phone (optional)</label>
+                <input class="field" id="phone" name="phone" type="tel" placeholder="(123) 456-7890" />
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div>
+                <label for="topic">Topic</label>
+                <select class="field" id="topic" name="topic" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Food assistance</option>
+                  <option>Housing / rent help</option>
+                  <option>Utilities</option>
+                  <option>Mental health / counseling</option>
+                  <option>Benefits (SNAP, etc.)</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+
+              <div>
+                <label for="urgency">Urgency</label>
+                <select class="field" id="urgency" name="urgency" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Not urgent</option>
+                  <option>Soon (this week)</option>
+                  <option>Urgent (today / tomorrow)</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div>
+              <label for="message">Message</label>
+              <textarea class="field" id="message" name="message" placeholder="Tell us what you need help with, your general area, and any time constraints." required></textarea>
+            </div>
+
+
+            <div class="actions">
+              <button class="btn btn-ghost" type="reset">
+                <i class="fa-solid fa-rotate-left"></i> Clear
+              </button>
+              <button class="btn btn-primary" type="submit">
+                <i class="fa-solid fa-paper-plane"></i> Send
+              </button>
+            </div>
+
+            <div class="toast" id="toast" role="status" aria-live="polite">
+              <i class="fa-solid fa-circle-check"></i>
+              Message “sent” (demo). A case worker will respond soon.
+            </div>
+      
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    
+    const form = document.getElementById("caseWorkerForm");
+    const toast = document.getElementById("toast");
+
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+
+     
+      if (!form.checkValidity()) return;
+
+
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3500);
+
+
+      form.reset();
+    });
+  </script>
+  <script>
+    const phoneInput = document.getElementById("phone");
+
+    phoneInput.addEventListener("input", () => {
+      phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+    });
+  </script>
+</body>
+
+</html>

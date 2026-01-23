@@ -1,0 +1,189 @@
+:root {
+    --bg-dark: #1b261b;
+    --bg-card: #283628;
+    --text-main: #f1f8f1;
+    --text-muted: #a8c5a8;
+    --accent: #5cb85c;
+    --accent-gold: #d4af37;
+    --font-head: 'Montserrat', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-pad { padding: 100px 0; }
+
+/* Header (Match Index) */
+header {
+    background: rgba(27, 38, 27, 0.95);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+nav ul { display: flex; gap: 20px; list-style: none; }
+nav a { text-decoration: none; color: var(--text-main); font-weight: 500; transition: 0.3s; }
+nav a:hover, nav a.active { color: var(--accent-gold); }
+
+/* About Hero */
+.about-hero {
+    height: 50vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?fm=jpg&q=60&w=3000');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.about-hero h1 { font-size: 4rem; font-family: var(--font-head); margin: 0; }
+.about-hero p { font-size: 1.5rem; color: var(--accent-gold); }
+
+/* Mission Section */
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.mission-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Values Section */
+.values-section { background: rgba(0,0,0,0.2); }
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.value-card {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.value-card i {
+    font-size: 3rem;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+}
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+@media (max-width: 768px) {
+    .mission-grid { grid-template-columns: 1fr; }
+    .about-hero h1 { font-size: 2.5rem; }
+}
+/* --- Flip Counter Variables --- */
+:root {
+    --digitHeight: 80px;
+    --speed: 0.5s;
+    --counterBg: #283628; /* Matches --bg-card */
+}
+
+.numCounter {
+    display: inline-block;
+    height: var(--digitHeight);
+    line-height: var(--digitHeight);
+    font-weight: bold;
+    font-size: calc(var(--digitHeight) / 1.5);
+    overflow: hidden;
+    padding: 0.4em;
+    border-radius: 16px;
+    background: linear-gradient(330deg, #354a35, #1b261b);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.numCounter > div {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+.numCounter > div > b {
+    display: inline-block;
+    width: calc(var(--digitHeight) / 1.4);
+    height: 100%;
+    margin: 0 0.1em;
+    border-radius: 8px;
+    text-align: center;
+    background: linear-gradient(-30deg, #5cb85c, #2e5c2e);
+    color: white;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.numCounter > div > b::before {
+    content: ' 0 1 2 3 4 5 6 7 8 9 ';
+    display: block;
+    word-break: break-all;
+    transition: var(--speed) cubic-bezier(.75, .15, .6, 1.15);
+}
+
+/* Loop for digit positioning */
+.numCounter > div > b[data-value="1"]::before { margin-top: calc(var(--digitHeight) * -1); }
+.numCounter > div > b[data-value="2"]::before { margin-top: calc(var(--digitHeight) * -2); }
+.numCounter > div > b[data-value="3"]::before { margin-top: calc(var(--digitHeight) * -3); }
+.numCounter > div > b[data-value="4"]::before { margin-top: calc(var(--digitHeight) * -4); }
+.numCounter > div > b[data-value="5"]::before { margin-top: calc(var(--digitHeight) * -5); }
+.numCounter > div > b[data-value="6"]::before { margin-top: calc(var(--digitHeight) * -6); }
+.numCounter > div > b[data-value="7"]::before { margin-top: calc(var(--digitHeight) * -7); }
+.numCounter > div > b[data-value="8"]::before { margin-top: calc(var(--digitHeight) * -8); }
+.numCounter > div > b[data-value="9"]::before { margin-top: calc(var(--digitHeight) * -9); }
+
+.numCounter > div > b.blur {
+    opacity: 0.8;
+    filter: blur(1px);
+}
+
+/* Comma formatting */
+.numCounter > div:nth-last-child(3n):not(:first-child)::before {
+    content: ",";
+    display: inline;
+    font-size: 1.1em;
+    opacity: 0.6;
+    color: white;
+    margin-right: 2px;
+}

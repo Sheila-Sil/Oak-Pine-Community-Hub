@@ -10,10 +10,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
     <style>
         /* =========================================
-           GLOBAL VARIABLES & THEME (Dark Nature)
+           GLOBAL VARIABLES & THEME
            ========================================= */
         :root {
             --bg-dark: #1b261b;       /* Deep Forest */
@@ -373,6 +378,126 @@
             background: rgba(92, 184, 92, 0.18); /* green glow */
             transform: translateX(6px);
         }
+      /* =====================================
+   MOBILE RESPONSIVE STUFF
+===================================== */
+
+@media (max-width: 768px) {
+
+  /* Hero section */
+  .hero-section {
+    height: 55vh;
+  }
+
+  .hero-text-overlay h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-text-overlay p {
+    font-size: 1rem;
+  }
+
+  /* Calendar modal */
+  .cal-modal {
+    padding: 20px;
+  }
+
+  /* Footer stacks vertically */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Container padding */
+  .container {
+    padding: 0 14px;
+  }
+
+  /* Search bar width */
+  .search-bar:focus-within {
+    width: 180px;
+  }
+
+  /* Forms */
+  .resource-form {
+    padding: 24px;
+  }
+
+  /* Slider buttons */
+  .slider-navigation button {
+    width: 42px;
+    height: 42px;
+  }
+}
+/* ================================
+   HAMBURGER — MOBILE ONLY
+================================ */
+
+/* DEFAULT (DESKTOP) */
+.hamburger {
+  display: none; /* hidden on desktop */
+}
+
+/* DESKTOP NAV */
+nav ul {
+  display: flex;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+
+  /* show hamburger */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+  }
+
+  .hamburger span {
+    width: 26px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  /* hide nav by default */
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    padding: 12px 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+
+  /* open menu */
+  nav ul.show {
+    display: flex;
+  }
+
+  /* smaller menu items */
+  nav ul li {
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+  }
+}
     </style>
 </head>
 <body>
@@ -387,7 +512,6 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#events">Events</a></li>
                     <li><a href="resources.html">Resources</a></li>
-                    <li><a href="#shelter">Shelter</a></li>
                 </ul>
             </nav>
             <div class="search-wrapper">
@@ -696,7 +820,7 @@
             });
         });
 
-        // 3. SEARCH BAR LOGIC
+        // SEARCH BAR LOGIC
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         const notFoundModal = document.getElementById('notFoundModal');
@@ -796,6 +920,14 @@
             successModal.style.display = 'none';
         }
     });
+</script>
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.querySelector("nav ul");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+  });
 </script>
 
 </body>

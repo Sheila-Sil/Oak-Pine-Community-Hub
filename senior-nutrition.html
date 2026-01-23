@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senior Box Program | Oak Pine Community Hub</title>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@300;400;600&display=swap">
+
+
+  <style>
+    :root{
+      --bg-dark:#1b261b;
+      --bg-card:#283628;
+      --bg-lighter:#354a35;
+      --text-main:#f1f8f1;
+      --text-muted:#a8c5a8;
+      --accent:#5cb85c;
+      --accent-gold:#d4af37;
+      --error:#ee6352;
+      --font-head:'Montserrat',sans-serif;
+      --font-body:'Poppins',sans-serif;
+    }
+
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      padding:0;
+      background:var(--bg-dark);
+      color:var(--text-main);
+      font-family:var(--font-body);
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+
+    h1,h2,h3,h4{font-family:var(--font-head); margin:0 0 1rem 0;}
+    p{margin:0 0 1rem 0;}
+    a{color:inherit; text-decoration:none; transition:.25s;}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px;}
+    .section-pad{padding:70px 0;}
+
+
+    /* Header */
+    header{
+      background: rgba(27,38,27,.95);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid #333;
+      box-shadow:0 4px 12px rgba(0,0,0,.3);
+    }
+    .logo{
+      font-size:1.5rem;
+      font-weight:700;
+      color:var(--accent);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    nav ul{display:flex; gap:20px; align-items:center; margin:0; padding:0; list-style:none;}
+    nav a{font-weight:500; font-size:.9rem; letter-spacing:.5px;}
+    nav a:hover{color:var(--accent-gold);}
+
+
+    /* Hero */
+    .page-hero{
+      background: radial-gradient(1200px 500px at 15% 20%, rgba(212,175,55,.18), transparent 60%),
+                  linear-gradient(145deg, rgba(40,54,40,.95), rgba(27,38,27,.95));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-inner{
+      padding: 54px 0;
+      display:flex;
+      gap:28px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+    .hero-left{flex: 1 1 560px;}
+    .hero-right{flex: 0 1 360px;}
+
+
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(212,175,55,.12);
+      border: 1px solid rgba(212,175,55,.25);
+      color: var(--accent-gold);
+      font-weight: 800;
+      font-size: .85rem;
+      letter-spacing: .4px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .hero-title{
+      font-size: 2.55rem;
+      line-height: 1.05;
+      margin-bottom: 10px;
+      letter-spacing: .2px;
+    }
+    .hero-desc{
+      color: #d7e6d7;
+      max-width: 62ch;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+
+    
+    .highlight-rail{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top: 14px;
+    }
+    .highlight{
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 14px 14px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .highlight .icon{
+      width:40px; height:40px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(92,184,92,.14);
+      border: 1px solid rgba(92,184,92,.22);
+      flex:0 0 auto;
+    }
+    .highlight .icon i{color: var(--accent); font-size: 1.05rem;}
+    .highlight .t{font-weight:900; color: var(--text-main); margin-bottom:2px;}
+    .highlight .d{color: var(--text-muted); font-size:.92rem; line-height:1.4;}
+
+
+    /* Controls */
+    .controls{
+      margin-top: 22px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+    }
+    .search{
+      flex: 1 1 320px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 10px 14px;
+    }
+    .search i{color: var(--accent-gold);}
+    .search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      color:#fff;
+      font-family:var(--font-body);
+      font-size: .95rem;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(92,184,92,.14);
+      border: 1px solid rgba(92,184,92,.22);
+      color: var(--text-main);
+      cursor:pointer;
+      font-weight:800;
+      font-size:.9rem;
+      transition:.2s;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .pill i{color:var(--accent);}
+    .pill:hover{transform: translateY(-1px); border-color: rgba(92,184,92,.45);}
+
+
+    /* Stats strip */
+    .stats{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:10px;
+    }
+    .stat{
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 12px 12px;
+    }
+    .stat .k{
+      color: var(--accent-gold);
+      font-weight: 900;
+      font-size: .85rem;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:6px;
+    }
+    .stat .v{
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+    .stat .s{
+      color: var(--text-muted);
+      font-size: .9rem;
+      line-height: 1.35;
+      margin-top: 6px;
+    }
+
+
+    /* Main section */
+    .section-title{
+      color: var(--accent);
+      text-align:center;
+      margin-bottom: 22px;
+    }
+
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+
+    .card{
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+      transition: transform .25s, border-color .25s;
+
+
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      min-height: 260px;
+    }
+    .card:hover{transform: translateY(-4px); border-color: rgba(92,184,92,.55);}
+
+
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .card h3{
+      font-size: 1.18rem;
+      color: var(--accent-gold);
+      margin:0;
+      line-height:1.25;
+    }
+    .badge{
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.25);
+      background: rgba(212,175,55,.10);
+      color: var(--accent-gold);
+      white-space:nowrap;
+    }
+
+
+    .meta{
+      display:grid;
+      gap:8px;
+      margin: 12px 0 10px;
+      color: var(--text-muted);
+      font-size: .95rem;
+    }
+    .meta-row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      line-height: 1.35;
+    }
+    .meta-row i{color: var(--accent); margin-top: 2px; min-width: 18px;}
+
+
+    .notes{
+      color: #d1dfd1;
+      font-size: .92rem;
+      line-height:1.55;
+      margin-bottom: 14px;
+
+
+      display:-webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow:hidden;
+      min-height: calc(1.55em * 3);
+    }
+
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:auto;
+    }
+
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.20);
+      color: var(--text-main);
+      font-weight: 900;
+      font-size: .9rem;
+      cursor:pointer;
+      transition:.2s;
+      user-select:none;
+      text-decoration:none;
+    }
+    .btn i{color: var(--accent-gold);}
+    .btn:hover{border-color: rgba(212,175,55,.45); transform: translateY(-1px);}
+
+
+    .btn.primary{
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      width: 100%;
+    }
+    .btn.primary i{color:#0b1a0b;}
+    .btn.primary:hover{background:#4cae4c; border-color:#4cae4c;}
+
+
+    .btn.secondary{
+      flex:1;
+      min-width: 140px;
+    }
+
+
+    /* Saved bookmark style */
+    .btn[data-action="save"] i{
+      color: transparent;
+      -webkit-text-stroke: 1.8px var(--accent-gold);
+      text-stroke: 1.8px var(--accent-gold);
+    }
+    .btn.saved{
+      border-color: rgba(212,175,55,.55);
+    }
+    .btn.saved i{
+      color: var(--accent-gold);
+      -webkit-text-stroke: 0px transparent;
+      text-stroke: 0px transparent;
+    }
+
+
+    .inside-wrap{
+      margin-top: 26px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 18px 18px;
+    }
+    .inside-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom: 14px;
+    }
+    .inside-head h3{margin:0; color: var(--accent-gold); font-size:1.1rem;}
+    .inside-tag{
+      font-size:.8rem;
+      font-weight:900;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(92,184,92,.25);
+      background: rgba(92,184,92,.10);
+      color: var(--accent);
+      white-space:nowrap;
+    }
+    .inside-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:12px;
+    }
+    .inside-item{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(40,54,40,.55);
+      padding: 12px 12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .inside-item i{color: var(--accent); margin-top: 2px; min-width: 18px;}
+    .inside-item .t{font-weight: 900; margin-bottom:2px;}
+    .inside-item .d{color: var(--text-muted); font-size:.9rem; line-height:1.35;}
+
+
+    /* Footer */
+    footer{
+      background:#111;
+      padding: 50px 0;
+      border-top:1px solid #333;
+      margin-top: 40px;
+    }
+    .footer-content{
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:40px;
+    }
+    .footer-col{flex:1; min-width: 220px;}
+    .footer-col h4{color: var(--accent-gold); margin-top:0;}
+    .footer-col a{display:block; margin-bottom: 10px; color:#888; font-size:.9rem;}
+    .footer-col a:hover{color:#fff;}
+
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 5000;
+      background: rgba(40,54,40,.98);
+      border: 1px solid rgba(92,184,92,.45);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      border-radius: 12px;
+      padding: 12px 14px;
+      min-width: 260px;
+      display:none;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .toast i{color: var(--accent); margin-top: 2px;}
+    .toast .t-title{font-weight: 900; color: var(--text-main); margin-bottom: 2px;}
+    .toast .t-msg{color: var(--text-muted); font-size: .92rem; line-height: 1.35;}
+
+
+    @media (max-width: 820px){
+      .stats{grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px){
+      header{padding: 1rem 1rem;}
+      nav ul{gap: 14px;}
+      .hero-title{font-size: 2rem;}
+    }
+  </style>
+</head>
+<body>
+
+
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-tree"></i> Oak Pine Hub
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#shelter">Shelter</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <section class="page-hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <div class="hero-kicker"><i class="fa-solid fa-box-open"></i> Senior Support</div>
+        <h1 class="hero-title">Senior Box Program</h1>
+        <p class="hero-desc">
+          A monthly box of shelf-stable groceries designed for seniors—easy to store, easy to cook, and dependable support.
+          Use this page to find pickup locations and open Google Maps directions.
+        </p>
+
+
+        <div class="controls">
+          <div class="search" role="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="seniorSearch" type="text" placeholder="Search by location name, day, or keyword (pickup, monthly, box)..." />
+          </div>
+
+
+          <div class="pill" id="btnShowAll"><i class="fa-solid fa-list"></i> Show All</div>
+          <div class="pill" id="btnFindPickup"><i class="fa-solid fa-location-dot"></i> Find Pickup Near Me</div>
+        </div>
+
+
+        <!-- stats strip -->
+        <div class="stats">
+          <div class="stat">
+            <div class="k"><i class="fa-solid fa-calendar-check"></i> Schedule</div>
+            <div class="v">Monthly pickups</div>
+            <div class="s">Most sites offer a consistent pickup window.</div>
+          </div>
+          <div class="stat">
+            <div class="k"><i class="fa-solid fa-boxes-stacked"></i> Box type</div>
+            <div class="v">Shelf-stable groceries</div>
+            <div class="s">Pantry basics meant to last.</div>
+          </div>
+          <div class="stat">
+            <div class="k"><i class="fa-solid fa-route"></i> Directions</div>
+            <div class="v">Google Maps ready</div>
+            <div class="s">One click opens turn-by-turn routes.</div>
+          </div>
+        </div>
+
+
+        <!-- highlights rail -->
+        <div class="highlight-rail">
+          <div class="highlight">
+            <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+            <div>
+              <div class="t">Fast pickup flow</div>
+              <div class="d">Clear instructions + easy directions so seniors aren’t stuck guessing.</div>
+            </div>
+          </div>
+          <div class="highlight">
+            <div class="icon"><i class="fa-solid fa-kitchen-set"></i></div>
+            <div>
+              <div class="t">Cooking-friendly</div>
+              <div class="d">Boxes focus on “real meals” staples (not random snacks).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="hero-right">
+        <div class="quick-tips">
+          <h3>Quick checklist</h3>
+          <div class="tip"><i class="fa-solid fa-clock"></i><span>Arrive during the posted pickup window.</span></div>
+          <div class="tip"><i class="fa-solid fa-car"></i><span>Some sites are drive-thru; some are walk-up.</span></div>
+          <div class="tip"><i class="fa-solid fa-phone"></i><span>If you’re unsure, contact a case worker first.</span></div>
+          <div class="tip"><i class="fa-solid fa-location-dot"></i><span>Directions buttons open Google Maps.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <main class="container section-pad">
+    <h2 class="section-title">Pickup Locations</h2>
+
+
+    <div class="grid" id="seniorGrid">
+
+
+      <!-- Card 1 -->
+      <article class="card senior-card"
+        data-tags="monthly pickup community center box groceries"
+        data-name="Oak Pine Community Center - Senior Box Pickup"
+        data-address="100 Main St, Oak Pine">
+        <div class="card-top">
+          <h3>Oak Pine Community Center</h3>
+          <span class="badge">Pickup</span>
+        </div>
+
+
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Pickup:</strong> First Monday</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 10:00 AM – 12:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 100 Main St, Oak Pine</span></div>
+        </div>
+
+
+        <p class="notes">Drive-thru pickup with volunteers. Quick line, easy signage, and a short walk option if needed.</p>
+
+
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn secondary" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn secondary" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <!-- Card 2 -->
+      <article class="card senior-card"
+        data-tags="monthly pickup church box pantry staples"
+        data-name="St. Evergreen Church - Senior Box Pickup"
+        data-address="22 Pine Ave, Oak Pine">
+        <div class="card-top">
+          <h3>St. Evergreen Church</h3>
+          <span class="badge">Pickup</span>
+        </div>
+
+
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Pickup:</strong> Second Wednesday</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 1:00 PM – 3:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 22 Pine Ave, Oak Pine</span></div>
+        </div>
+
+
+        <p class="notes">Walk-up pickup inside the main hall. Calm environment, seating available while you wait.</p>
+
+
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn secondary" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn secondary" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <!-- Card 3 -->
+      <article class="card senior-card"
+        data-tags="monthly pickup senior center box groceries"
+        data-name="Garden Way Senior Center - Senior Box Pickup"
+        data-address="44 Garden Way, Oak Pine">
+        <div class="card-top">
+          <h3>Garden Way Senior Center</h3>
+          <span class="badge">Pickup</span>
+        </div>
+
+
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Pickup:</strong> Third Friday</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 9:30 AM – 11:30 AM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> 44 Garden Way, Oak Pine</span></div>
+        </div>
+
+
+        <p class="notes">Front-desk check-in then pickup in the back room. Staff can assist with carrying boxes to your car.</p>
+
+
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn secondary" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn secondary" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+      <!-- Card 4 -->
+      <article class="card senior-card"
+        data-tags="popup monthly pickup park box groceries"
+        data-name="North Park Pavilion - Senior Box Pop-Up"
+        data-address="North Park Pavilion, Oak Pine">
+        <div class="card-top">
+          <h3>North Park Pavilion</h3>
+          <span class="badge">Pop-Up</span>
+        </div>
+
+
+        <div class="meta">
+          <div class="meta-row"><i class="fa-solid fa-calendar-days"></i><span><strong>Pickup:</strong> Last Saturday</span></div>
+          <div class="meta-row"><i class="fa-solid fa-clock"></i><span><strong>Time:</strong> 11:00 AM – 1:00 PM</span></div>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i><span><strong>Location:</strong> North Park Pavilion, Oak Pine</span></div>
+        </div>
+
+
+        <p class="notes">Outdoor pop-up pickup under the pavilion. Volunteers guide traffic and help seniors load boxes.</p>
+
+
+        <div class="actions">
+          <a class="btn primary" href="contact-case-worker.html"><i class="fa-solid fa-comments"></i> Ask a Case Worker</a>
+          <button class="btn secondary" data-action="directions"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+          <button class="btn secondary" data-action="save"><i class="fa-solid fa-bookmark"></i> <span class="label">Save</span></button>
+        </div>
+      </article>
+
+
+    </div>
+
+
+    <!-- What’s inside section -->
+    <section class="inside-wrap" aria-label="What's inside the senior box">
+      <div class="inside-head">
+        <h3>What’s inside a Senior Box (Example)</h3>
+        <div class="inside-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Program Preview</div>
+      </div>
+
+
+      <div class="inside-grid">
+        <div class="inside-item">
+          <i class="fa-solid fa-wheat-awn"></i>
+          <div>
+            <div class="t">Pantry staples</div>
+            <div class="d">Shelf-stable basics to help build real meals at home.</div>
+          </div>
+        </div>
+
+
+        <div class="inside-item">
+          <i class="fa-solid fa-blender"></i>
+          <div>
+            <div class="t">Easy-prep items</div>
+            <div class="d">Options that don’t require complex cooking or lots of equipment.</div>
+          </div>
+        </div>
+
+
+        <div class="inside-item">
+          <i class="fa-solid fa-mug-hot"></i>
+          <div>
+            <div class="t">Comfort essentials</div>
+            <div class="d">Small add-ons that make meals feel more normal and complete.</div>
+          </div>
+        </div>
+
+
+        <div class="inside-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>
+            <div class="t">Simple guide</div>
+            <div class="d">A short “how to use this box” card (ideas + storage tips).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>Oak Pine Community Hub</h4>
+        <p style="color:#666; font-size:.9rem; line-height:1.5;">
+          Created using HTML5, CSS3, JavaScript.
+        </p>
+      </div>
+
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html#resources">Food & Basic Needs</a>
+        <a href="food-pantries.html">Food Pantries</a>
+        <a href="free-meals.html">Free Meals</a>
+        <a href="snap-benefits.html">SNAP / Benefits Help</a>
+        <a href="senior-box-program.html">Senior Box Program</a>
+      </div>
+
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact-case-worker.html">Contact a Case Worker</a>
+        <a href="index.html#about">About the Hub</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <div>
+      <div class="t-title" id="toastTitle">Saved</div>
+      <div class="t-msg" id="toastMsg">Saved successfully.</div>
+    </div>
+  </div>
+
+
+  <script>
+    // ===== SEARCH FILTER =====
+    const input = document.getElementById('seniorSearch');
+    const cards = Array.from(document.querySelectorAll('.senior-card'));
+
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+        const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+        const visible = !q || tags.includes(q) || title.includes(q);
+        card.style.display = visible ? '' : 'none';
+      });
+    });
+
+
+    // ===== TOAST =====
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMsg = document.getElementById('toastMsg');
+    let toastTimer = null;
+
+
+    function showToast(title, msg){
+      toastTitle.textContent = title;
+      toastMsg.textContent = msg;
+      toast.style.display = 'flex';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.style.display = 'none', 2600);
+    }
+
+
+    document.getElementById('btnShowAll').addEventListener('click', () => {
+      input.value = '';
+      cards.forEach(c => c.style.display = '');
+      showToast('Showing all', 'All pickup locations are visible.');
+    });
+
+
+    // ===== DIRECTIONS =====
+    function openGoogleMapsDirections(destinationAddress){
+      const encodedDest = encodeURIComponent(destinationAddress);
+
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const origin = `${pos.coords.latitude},${pos.coords.longitude}`;
+            const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodedDest}&travelmode=driving`;
+            window.open(url, '_blank', 'noopener');
+          },
+          () => {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${encodedDest}`;
+            window.open(url, '_blank', 'noopener');
+          },
+          { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+        );
+      } else {
+        const url = `https://www.google.com/maps/dir/?api=1&destination=${encodedDest}`;
+        window.open(url, '_blank', 'noopener');
+      }
+    }
+
+
+    // ===== FIND PICKUP NEAR ME =====
+    // open a Google Maps search based on user's location
+    document.getElementById('btnFindPickup').addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        showToast('Location not supported', 'Your browser does not support location services.');
+        return;
+      }
+
+
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const userLat = pos.coords.latitude;
+        const userLng = pos.coords.longitude;
+
+
+        const url = `https://www.google.com/maps/search/senior+food+box+program/@${userLat},${userLng},14z`;
+        window.open(url, '_blank', 'noopener');
+
+
+        showToast('Opened Maps', 'Showing senior box pickup options near you in Google Maps.');
+      }, (err) => {
+        const msg = err.code === 1
+          ? 'Please allow location access to use this feature.'
+          : 'Could not get your location. Try again.';
+        showToast('Location needed', msg);
+      }, { enableHighAccuracy:true, timeout: 9000, maximumAge: 60000 });
+    });
+
+
+    // ===== SAVE TOGGLE 
+    const STORAGE_KEY = 'oakpine_saved_senior_boxes_v1';
+
+
+    function loadSaved(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+      catch { return []; }
+    }
+    function storeSaved(arr){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    }
+    function getCardId(card){
+      const name = (card.dataset.name || '').trim();
+      const addr = (card.dataset.address || '').trim();
+      return (name + '|' + addr).toLowerCase();
+    }
+
+
+    function applySavedState(){
+      const saved = new Set(loadSaved());
+      cards.forEach(card => {
+        const id = getCardId(card);
+        const saveBtn = card.querySelector('button[data-action="save"]');
+        const label = saveBtn?.querySelector('.label');
+        if(!saveBtn || !label) return;
+
+
+        if(saved.has(id)){
+          saveBtn.classList.add('saved');
+          label.textContent = 'Saved';
+        } else {
+          saveBtn.classList.remove('saved');
+          label.textContent = 'Save';
+        }
+      });
+    }
+
+
+    applySavedState();
+
+
+    // ===== GLOBAL CLICK HANDLER =====
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if(!btn) return;
+
+
+      const action = btn.getAttribute('data-action');
+      const card = btn.closest('.senior-card');
+
+
+      if(action === 'directions'){
+        const addr = card?.dataset.address || '';
+        if(!addr){
+          showToast('Missing address', 'This location does not have an address set.');
+          return;
+        }
+        openGoogleMapsDirections(addr);
+        return;
+      }
+
+
+      if(action === 'save'){
+        const id = getCardId(card);
+        const savedArr = loadSaved();
+        const savedSet = new Set(savedArr);
+
+
+        if(savedSet.has(id)){
+          savedSet.delete(id);
+          showToast('Removed', 'Removed from saved.');
+        } else {
+          savedSet.add(id);
+          showToast('Saved', 'Saved successfully.');
+        }
+
+
+        storeSaved(Array.from(savedSet));
+        applySavedState();
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

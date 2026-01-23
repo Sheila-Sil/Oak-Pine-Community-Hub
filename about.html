@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Oak Pine Community Hub</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="about-style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-tree"></i> Oak Pine Hub
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="resources.html">References</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="reveal">Our Mission</h1>
+            <p class="reveal delay-1">Connecting neighbors, Powered by neighbors.</p>
+        </div>
+    </section>
+
+    <section class="mission-section section-pad">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-text reveal">
+                    <h2 style="color: var(--accent);">Our Mission</h2>
+                    <p>At Oak Pine Community Hub, we believe that a stronger community starts with a simple connection. Our mission is to bridge the gap between local resources and the people who need them most.</p>
+                    <p>We aren't just a directory, we're a digital hub designed to foster support, and mutual growth within our neighborhood.</p>
+                </div>
+                <div class="mission-image reveal">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?fm=jpg&q=60&w=3000" alt="Neighbors helping neighbors">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section section-pad">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;" class="reveal">Why We Exist</h2>
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    
+                    <h3>Connecting Neighbors</h3>
+                    <p>Finding help shouldn't be hard. We centralize everything from food pantries to housing support in one easy-to-access hub.</p>
+                </div>
+                <div class="value-card reveal delay-1">
+                    
+                    <h3>Powered by Neighbors</h3>
+                    <p>Our data is driven by the community. Local residents submit updates, events, and resources to keep the hub alive and accurate.</p>
+                </div>
+                <div class="value-card reveal delay-2">
+                   
+                    <h3>Sustainable Growth</h3>
+                    <p>By supporting local initiatives, we ensure Oak Pine remains a vibrant place for future generations to thrive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="impact-section section-pad reveal">
+    <div class="container" style="text-align: center;">
+        <h2 style="color: var(--accent-gold); margin-bottom: 10px;">Our Growing Community</h2>
+        <p style="margin-bottom: 40px;">Total neighbor connections facilitated this year:</p>
+        
+        <div class='numCounter' data-value='1234567'></div>
+        
+        <p style="margin-top: 30px; font-style: italic; color: var(--text-muted);">*Real-time updates powered by community engagement</p>
+    </div>
+</section>
+    <footer class="section-pad">
+        <div class="container" style="text-align: center;">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fa-solid fa-tree"></i> Oak Pine Hub
+            </div>
+            <p style="color: var(--text-muted);">© 2026 Oak Pine Community Hub. Built for the community, by the community.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Reveal Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>

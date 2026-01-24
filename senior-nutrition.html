@@ -484,6 +484,16 @@
       nav ul{gap: 14px;}
       .hero-title{font-size: 2rem;}
     }
+    .back-link{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color: var(--accent-gold);
+      text-decoration:none;
+      font-weight:700;
+      margin-bottom: 14px;
+    }
+    .back-link:hover{ color: var(--accent); }
   </style>
 </head>
 <body>
@@ -570,10 +580,10 @@
       <div class="hero-right">
         <div class="quick-tips">
           <h3>Quick checklist</h3>
-          <div class="tip"><i class="fa-solid fa-clock"></i><span>  Arrive during the posted pickup window.</span></div>
-          <div class="tip"><i class="fa-solid fa-car"></i><span>  Some sites are drive-thru; some are walk-up.</span></div>
-          <div class="tip"><i class="fa-solid fa-phone"></i><span>  If you’re unsure, contact a case worker first.</span></div>
-          <div class="tip"><i class="fa-solid fa-location-dot"></i><span>  Directions buttons open Google Maps.</span></div>
+          <div class="tip"><i class="fa-solid fa-clock"></i><span>Arrive during the posted pickup window.</span></div>
+          <div class="tip"><i class="fa-solid fa-car"></i><span>Some sites are drive-thru; some are walk-up.</span></div>
+          <div class="tip"><i class="fa-solid fa-phone"></i><span>If you’re unsure, contact a case worker first.</span></div>
+          <div class="tip"><i class="fa-solid fa-location-dot"></i><span>Directions buttons open Google Maps.</span></div>
         </div>
       </div>
     </div>
@@ -581,7 +591,12 @@
 
 
   <main class="container section-pad">
-    <h2 class="section-title">Pickup Locations</h2>
+
+  <a class="back-link" href="index.html">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+
+  <h2 class="section-title">Pickup Locations</h2>
 
 
     <div class="grid" id="seniorGrid">

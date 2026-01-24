@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Education & Workshops | Oak Pine Community Hub</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <style>
+    :root{
+      --bg-dark:#1b261b;
+      --bg-card:#283628;
+      --bg-lighter:#354a35;
+      --text-main:#f1f8f1;
+      --text-muted:#a8c5a8;
+      --accent:#5cb85c;
+      --accent-gold:#d4af37;
+      --line: rgba(255,255,255,0.10);
+      --shadow: 0 18px 45px rgba(0,0,0,0.35);
+      --r: 16px;
+      --font-head:'Montserrat',sans-serif;
+      --font-body:'Poppins',sans-serif;
+    }
+
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background:
+        radial-gradient(900px 520px at 12% 12%, rgba(92,184,92,0.18), transparent 58%),
+        radial-gradient(900px 520px at 88% 22%, rgba(212,175,55,0.14), transparent 60%),
+        var(--bg-dark);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1120px, 92vw); margin:0 auto;}
+
+
+    /* ===== Topbar ===== */
+    .topbar{
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(27, 38, 27, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between; gap: 14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:inline-flex; align-items:center; gap: 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .brand i{
+      width: 40px; height: 40px;
+      display:grid; place-items:center;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--accent-gold);
+    }
+
+
+    .nav{
+      display:flex; gap: 10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav a{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .nav a:hover{
+      color: var(--text-main);
+      background: rgba(0,0,0,0.22);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+
+    .back-link{
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .back-link:hover{
+      color: var(--accent);
+    }
+
+
+
+    /* Only Message button (no call) */
+    .msg-btn{
+      display:inline-flex; align-items:center; justify-content:center; gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      color: var(--text-main);
+      font-weight: 900;
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    .msg-btn i{ color: var(--accent-gold); }
+    .msg-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+
+
+    /* ===== Hero ===== */
+    .hero{ padding: 22px 0 16px; }
+    .hero-wrap{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.12));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .hero-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-140px auto auto -160px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 45%, rgba(92,184,92,0.28), transparent 68%);
+    }
+    .hero-inner{ position:relative; z-index:1; display:grid; grid-template-columns: 1fr 340px; gap: 14px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text-muted);
+      font-weight: 800;
+      width: fit-content;
+      font-size: .9rem;
+    }
+    .kicker i{ color: var(--accent-gold); }
+    h1{
+      font-family: var(--font-head);
+      margin: 12px 0 6px;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+
+    .quick-box{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 14px;
+    }
+    .quick-box h3{
+      margin:0 0 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent-gold);
+    }
+    .mini{
+      display:flex; gap:10px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.16);
+      margin-top: 10px;
+    }
+    .mini i{ color: var(--accent); margin-top: 2px; }
+    .mini b{ display:block; font-weight: 900; }
+    .mini small{ display:block; color: rgba(241,248,241,0.78); margin-top: 3px; line-height: 1.35; }
+
+
+    /* ===== Main Layout ===== */
+    .main{ padding: 14px 0 40px; }
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 330px;
+      gap: 14px;
+      align-items:start;
+    }
+    .panel{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(40,54,40,0.78);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.14);
+    }
+    .tab{
+      flex: 1;
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.16);
+      color: var(--text-muted);
+      font-weight: 900;
+      border-radius: 12px;
+      padding: 10px;
+      transition: .2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      font-family: var(--font-head);
+    }
+    .tab i{ color: var(--accent-gold); }
+    .tab.active{
+      background: rgba(92,184,92,0.18);
+      color: var(--text-main);
+      border-color: rgba(92,184,92,0.40);
+    }
+    .tab.active i{ color: var(--accent); }
+
+
+    .tab-content{ padding: 16px; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+
+    /* Cards base */
+    .card{
+      grid-column: span 6;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 14px;
+      position: relative;
+      overflow:hidden;
+      transition: transform .2s ease, border-color .2s ease;
+      min-height: 168px;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(212,175,55,0.30); }
+
+
+    .top{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap: 10px; margin-bottom: 8px;
+    }
+    .title{
+      display:flex; gap: 10px; align-items:flex-start;
+    }
+    .icon{
+      width: 42px; height: 42px;
+      display:grid; place-items:center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      flex: 0 0 auto;
+      color: var(--accent-gold);
+    }
+    .card h4{
+      margin:0;
+      font-family: var(--font-head);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .badge{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.14);
+      color: var(--text-muted);
+      font-weight: 900;
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+    .card p{
+      margin: 8px 0 0;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+    .card ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(241,248,241,0.82);
+    }
+    .card li{ margin: 6px 0; }
+
+
+    /* Card variants (different designs) */
+    .card[data-variant="a"]::before{
+      content:"";
+      position:absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(92,184,92,0.65));
+      opacity: .95;
+    }
+    .card[data-variant="a"] .icon{
+      background: rgba(212,175,55,0.10);
+      border-color: rgba(212,175,55,0.22);
+    }
+
+
+    .card[data-variant="b"]::after{
+      content:"";
+      position:absolute;
+      right:-120px; top:-120px;
+      width: 260px; height: 260px;
+      transform: rotate(18deg);
+      background: radial-gradient(circle at 40% 40%, rgba(92,184,92,0.30), transparent 64%);
+    }
+    .card[data-variant="b"] .icon{
+      color: var(--accent);
+      border-color: rgba(92,184,92,0.26);
+      background: rgba(92,184,92,0.10);
+    }
+    .card[data-variant="b"] .badge{
+      border-color: rgba(92,184,92,0.26);
+      background: rgba(92,184,92,0.10);
+      color: rgba(241,248,241,0.86);
+    }
+
+
+    .card[data-variant="c"]{
+      background:
+        radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 14px 14px,
+        rgba(0,0,0,0.18);
+    }
+    .card[data-variant="c"] .badge{
+      background: linear-gradient(90deg, rgba(0,0,0,0.20), rgba(212,175,55,0.14));
+      border-color: rgba(212,175,55,0.22);
+      color: rgba(241,248,241,0.88);
+    }
+
+
+    .card[data-variant="d"]{
+      background:
+        linear-gradient(180deg, rgba(92,184,92,0.14), rgba(0,0,0,0.18) 48%),
+        rgba(0,0,0,0.18);
+    }
+    .card[data-variant="d"] .icon{
+      border-radius: 999px;
+      width: 44px; height: 44px;
+      background: rgba(0,0,0,0.22);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+
+    /* Sidebar */
+    .side{ padding: 16px; }
+    .side h3{
+      margin:0 0 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent-gold);
+    }
+    .side p{ margin:0; color: var(--text-muted); line-height: 1.55; }
+    .help-list{ display:grid; gap: 10px; margin-top: 12px; }
+    .help-item{
+      display:flex; gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .help-item i{ color: var(--accent); margin-top: 2px; }
+    .help-item b{ display:block; font-weight: 900; }
+    .help-item span{ display:block; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+
+
+    .msg-only{ margin-top: 12px; display:flex; }
+    .msg-only a{
+      width: 100%;
+      border-radius: 14px;
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      font-weight: 900;
+      transition: .2s ease;
+    }
+    .msg-only a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+    .msg-only i{ color: var(--accent-gold); }
+
+
+    /* FAQ */
+    .faq{
+      margin-top: 14px;
+      padding: 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(0,0,0,0.12);
+    }
+    details{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 12px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor:pointer;
+      font-family: var(--font-head);
+      font-weight: 900;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    summary .q{ display:flex; align-items:center; gap: 10px; }
+    summary i{ color: var(--accent-gold); }
+    details p{ margin: 10px 0 0; color: var(--text-muted); line-height: 1.55; }
+
+
+    footer{
+      margin-top: 18px;
+      padding: 22px 0 34px;
+      border-top: 1px solid var(--line);
+      color: rgba(241,248,241,0.72);
+    }
+
+
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .layout{ grid-template-columns: 1fr; }
+      .card{ grid-column: span 12; }
+    }
+
+    /* Kicker row (left title + right back button) */
+.kicker-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Back button next to kicker */
+.kicker-back{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(92,184,92,0.35);
+  background: rgba(92,184,92,0.14);
+
+  color: var(--text-main);
+  font-weight: 900;
+  transition: .2s ease;
+  white-space: nowrap;
+}
+
+.kicker-back i{
+  color: var(--accent);
+}
+
+.kicker-back:hover{
+  transform: translateY(-1px);
+  border-color: rgba(92,184,92,0.55);
+  background: rgba(92,184,92,0.22);
+}
+  </style>
+</head>
+
+
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <i class="fa-solid fa-tree"></i>
+        <span>Oak Pine Hub</span>
+      </a>
+
+
+
+<nav class="nav">
+  <a href="#programs">Programs</a>
+  <a href="#tips">Tips</a>
+  <a href="#faq">FAQ</a>
+
+  <!-- ONLY MESSAGE BUTTON -->
+  <a class="msg-btn" href="contact-case-worker.html" title="Message a case worker">
+    <i class="fa-solid fa-message"></i> Message
+  </a>
+</nav>
+
+    </div>
+  </header>
+
+
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div class="hero-inner">
+        <div>
+          <a class="back-link" href="index.html">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+          </a>
+          <div class="kicker-row">
+              <div class="kicker">
+                <i class="fa-solid fa-sparkles"></i>
+                Health Education & Workshops
+          </div>
+          </div>
+
+
+          <h1>Fun and practical classes to feel your best!</h1>
+          <p>
+            These are upbeat community sessions for everyday wellness skills, including: nutrition tips, movement classes,
+            and healthy habit workshops. No pressure, just helpful, friendly learning!
+          </p>
+        </div>
+
+
+        <aside class="quick-box" id="tips">
+          <h3>Quick tips</h3>
+
+
+          <div class="mini">
+            <i class="fa-solid fa-shirt"></i>
+            <div>
+              <b>Come comfy</b>
+              <small>Wear lightweight clothing for fitness sessions (sneakers recommended).</small>
+            </div>
+          </div>
+
+
+          <div class="mini">
+            <i class="fa-solid fa-bottle-water"></i>
+            <div>
+              <b>Bring basics</b>
+              <small>Water bottle + a notepad/phone notes for recipes and tips.</small>
+            </div>
+          </div>
+
+
+          <div class="mini">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <b>Arrive early</b>
+              <small>Some sessions fill up quick, so arrive 10 minutes early for sign-in.</small>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+
+  <main class="main" id="programs">
+    <div class="container layout">
+      <!-- LEFT PANEL -->
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab active" type="button" data-tab="workshops">
+            <i class="fa-solid fa-chalkboard-user"></i> Workshops
+          </button>
+          <button class="tab" type="button" data-tab="fitness">
+            <i class="fa-solid fa-person-walking"></i> Fitness Programs
+          </button>
+        </div>
+
+
+        <div class="tab-content">
+          <!-- Workshops -->
+          <div class="tab-pane" id="tab-workshops">
+            <div class="grid">
+              <article class="card" data-variant="a">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-utensils"></i></div>
+                    <div>
+                      <h4>Nutrition Basics (Easy Wins)</h4>
+                      <div class="badge">Food • Labels • Portions</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Simple habits you can actually stick to. No complicated meal plans around here!</p>
+                <ul>
+                  <li>How to build a balanced plate</li>
+                  <li>Reading nutrition labels fast</li>
+                  <li>Budget-friendly grocery tips</li>
+                </ul>
+              </article>
+
+
+              <article class="card" data-variant="b">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-bowl-rice"></i></div>
+                    <div>
+                      <h4>Meal Prep Party</h4>
+                      <div class="badge">Quick meals • Leftovers</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Learn “mix & match” meals that taste good and save time.</p>
+                <ul>
+                  <li>3 core ingredients → 6 meals</li>
+                  <li>Smart storage + reheat tips</li>
+                  <li>Easy grocery list templates</li>
+                </ul>
+              </article>
+
+
+              <article class="card" data-variant="c">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-seedling"></i></div>
+                    <div>
+                      <h4>Healthy Habits Challenge</h4>
+                      <div class="badge">Hydration • Sleep • Routine</div>
+                    </div>
+                  </div>
+                </div>
+                <p>A friendly group challenge with simple weekly goals.</p>
+                <ul>
+                  <li>Track your streaks (fun + easy)</li>
+                  <li>Ideas for staying consistent</li>
+                  <li>Celebrate wins together</li>
+                </ul>
+              </article>
+
+
+              <article class="card" data-variant="d">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-notes-medical"></i></div>
+                    <div>
+                      <h4>Chronic Care Skills (Practical)</h4>
+                      <div class="badge">Routines • Questions to ask</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Learn how to organize appointments, questions, and daily routines.</p>
+                <ul>
+                  <li>How to prepare for visits</li>
+                  <li>Tracking symptoms simply</li>
+                  <li>Medication list checklist</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+
+
+          <!-- Fitness -->
+          <div class="tab-pane" id="tab-fitness" style="display:none;">
+            <div class="grid">
+              <article class="card" data-variant="b">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-person-walking"></i></div>
+                    <div>
+                      <h4>Community Walking Club</h4>
+                      <div class="badge">All levels • Social</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Low-pressure walks with good conversation and friendly pacing.</p>
+                <ul>
+                  <li>Beginner-friendly routes</li>
+                  <li>Bring a friend or come solo</li>
+                  <li>Optional “step goals”</li>
+                </ul>
+              </article>
+
+
+              <article class="card" data-variant="a">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <div>
+                      <h4>Strength Basics (No Intimidation)</h4>
+                      <div class="badge">Form • Safety • Confidence</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Learn the fundamentals using simple movements and easy progressions.</p>
+                <ul>
+                  <li>Bodyweight + light equipment</li>
+                  <li>Form check + modifications</li>
+                  <li>Short workouts you’ll repeat</li>
+                </ul>
+              </article>
+
+
+              <article class="card" data-variant="d">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-spa"></i></div>
+                    <div>
+                      <h4>Yoga & Stretch Nights</h4>
+                      <div class="badge">Mobility • Relaxed pace</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Gentle classes focused on mobility, balance, and feeling good.</p>
+                <ul>
+                  <li>Beginner poses + options</li>
+                  <li>Bring a mat if you have one</li>
+                  <li>Great after long school/work days</li>
+                </ul>
+              </article>
+
+
+              <article class="card" data-variant="c">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-basketball"></i></div>
+                    <div>
+                      <h4>Recreation & Games</h4>
+                      <div class="badge">Pick-up • Fun</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Casual community sports and games! Zero pressure, lots of fun and laughter.</p>
+                <ul>
+                  <li>Pick-up volleyball/basketball</li>
+                  <li>Family-friendly rec time</li>
+                  <li>Seasonal events + tournaments</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="faq" id="faq">
+          <details>
+            <summary>
+              <span class="q"><i class="fa-solid fa-circle-question"></i> Do I need to sign up?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              Some sessions are drop-in, others require sign-up because space is limited.
+              If you’re unsure, hit Message and we’ll lead you on from there.
+            </p>
+          </details>
+
+
+          <details>
+            <summary>
+              <span class="q"><i class="fa-solid fa-circle-question"></i> What if I’m a beginner?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              PERFECT! These are designed to be beginner-friendly. Look for programs that have "All levels" on them.
+            </p>
+          </details>
+        </div>
+      </section>
+
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="panel side">
+        <h3>Want help picking a program?</h3>
+        <p>Tell us your goal (more energy, healthier meals, moving more), and we’ll point you to a good starting option.</p>
+
+
+        <div class="help-list">
+          <div class="help-item">
+            <i class="fa-solid fa-star"></i>
+            <div>
+              <b>Pick a vibe</b>
+              <span>Prefer social? Try walking club. Prefer quiet? Try yoga or meal prep.</span>
+            </div>
+          </div>
+
+
+          <div class="help-item">
+            <i class="fa-solid fa-list-check"></i>
+            <div>
+              <b>Start small</b>
+              <span>One class per week is a win. Build from there.</span>
+            </div>
+          </div>
+
+
+          <div class="help-item">
+            <i class="fa-solid fa-bolt"></i>
+            <div>
+              <b>Keep it easy</b>
+              <span>Choose something close and convenient so you actually go.</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ONLY MESSAGE BUTTON -->
+        <div class="msg-only">
+          <a href="contact-case-worker.html" title="Message a case worker">
+            <i class="fa-solid fa-message"></i> Message a Case Worker
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <span><b>Oak Pine Community Hub</b> • Health Education & Workshops</span>
+        <span style="color:rgba(241,248,241,0.65);">Built with HTML/CSS/JS • Icons: Font Awesome</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+    const workshopsPane = document.getElementById("tab-workshops");
+    const fitnessPane = document.getElementById("tab-fitness");
+
+
+    tabs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabs.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+
+        const which = btn.dataset.tab;
+        const showWorkshops = which === "workshops";
+
+
+        workshopsPane.style.display = showWorkshops ? "block" : "none";
+        fitnessPane.style.display = showWorkshops ? "none" : "block";
+      });
+    });
+  </script>
+</body>
+</html>

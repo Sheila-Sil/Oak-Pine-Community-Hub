@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Challenges & Goals | Oak Pine Community Hub</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <style>
+    :root{
+      --bg-dark:#1b261b;
+      --bg-card:#283628;
+      --bg-lighter:#354a35;
+      --text-main:#f1f8f1;
+      --text-muted:#a8c5a8;
+      --accent:#5cb85c;
+      --accent-gold:#d4af37;
+      --line: rgba(255,255,255,0.10);
+      --shadow: 0 18px 45px rgba(0,0,0,0.35);
+      --r: 18px;
+      --font-head:'Montserrat',sans-serif;
+      --font-body:'Poppins',sans-serif;
+    }
+
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background:
+        radial-gradient(900px 520px at 12% 12%, rgba(92,184,92,0.18), transparent 58%),
+        radial-gradient(900px 520px at 88% 22%, rgba(212,175,55,0.14), transparent 60%),
+        radial-gradient(800px 500px at 70% 90%, rgba(92,184,92,0.12), transparent 55%),
+        var(--bg-dark);
+      overflow-x:hidden;
+    }
+
+
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1160px, 92vw); margin:0 auto;}
+
+
+    /* ===== Topbar ===== */
+    header.topbar{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(27, 38, 27, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+
+
+    .brand i{
+      width: 40px;
+      height: 40px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--accent-gold);
+    }
+
+
+    .nav{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+
+    .nav a{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+
+    .nav a:hover{
+      color: var(--text-main);
+      background: rgba(0,0,0,0.22);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+
+    .msg-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      color: var(--text-main);
+      font-weight: 900;
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    .msg-btn i{ color: var(--accent-gold); }
+    .msg-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+
+
+    /* ===== Hero ===== */
+    .hero{
+      padding: 22px 0 10px;
+    }
+
+
+    .hero-wrap{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.12));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+
+
+    .hero-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-140px auto auto -160px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 45%, rgba(92,184,92,0.28), transparent 68%);
+    }
+
+
+    .hero-wrap::after{
+      content:"";
+      position:absolute;
+      right:-170px;
+      bottom:-170px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.18), transparent 66%);
+    }
+
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+
+    .kicker-row{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text-muted);
+      font-weight: 800;
+      width: fit-content;
+      font-size: .92rem;
+    }
+    .kicker i{ color: var(--accent-gold); }
+
+
+    .back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:.85rem;
+  color: var(--accent-gold);
+  margin-bottom:14px;
+}
+
+.back-link i{
+  color:var(--accent-gold);
+}
+
+.back-link:hover{ color: var(--accent); }
+
+.back-link:hover i{
+  color: var(--accent); /* green */
+}
+
+
+    h1{
+      font-family: var(--font-head);
+      margin: 12px 0 6px;
+      font-size: clamp(2.1rem, 3.2vw, 2.85rem);
+      line-height: 1.05;
+      letter-spacing: -0.7px;
+    }
+
+
+    .hero p{
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 70ch;
+      font-weight: 500;
+    }
+
+
+    /* Hero "Goal Meter" box */
+    .goal-meter{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+
+    .goal-meter h3{
+      margin:0;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent-gold);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+
+    .meter-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+    }
+
+
+    .meter-row b{
+      font-weight: 900;
+      display:block;
+    }
+    .meter-row small{
+      display:block;
+      color: rgba(241,248,241,0.78);
+      margin-top: 2px;
+    }
+
+
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      color: rgba(241,248,241,0.92);
+      font-weight: 900;
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+
+
+    .progress{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .bar{
+      height: 100%;
+      width: 62%;
+      background: linear-gradient(90deg, rgba(92,184,92,0.95), rgba(212,175,55,0.85));
+      border-radius: 999px;
+    }
+
+
+    /* ===== Main ===== */
+    main{
+      padding: 14px 0 42px;
+    }
+
+
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 14px;
+      align-items:start;
+    }
+
+
+    .panel{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(40,54,40,0.78);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+
+    /* Filter row */
+    .filters{
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.14);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+
+    .filters-left{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+
+    .chip{
+      cursor:pointer;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.16);
+      color: var(--text-muted);
+      font-weight: 900;
+      transition: .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-family: var(--font-head);
+      user-select:none;
+    }
+
+
+    .chip i{ color: var(--accent-gold); }
+    .chip.active{
+      background: rgba(92,184,92,0.18);
+      border-color: rgba(92,184,92,0.40);
+      color: var(--text-main);
+    }
+    .chip.active i{ color: var(--accent); }
+
+
+    .filters-right{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+
+    .search{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.16);
+      min-width: 240px;
+    }
+
+
+    .search i{ color: var(--accent-gold); }
+    .search input{
+      width: 100%;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--text-main);
+      font-weight: 700;
+      font-family: var(--font-body);
+    }
+    .search input::placeholder{ color: rgba(241,248,241,0.55); }
+
+
+    /* Challenge Grid */
+    .grid{
+      padding: 16px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+
+    .challenge{
+      grid-column: span 6;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 14px;
+      position: relative;
+      overflow:hidden;
+      transition: transform .2s ease, border-color .2s ease;
+      min-height: 200px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+
+    .challenge:hover{
+      transform: translateY(-2px);
+      border-color: rgba(212,175,55,0.30);
+    }
+
+
+    /* Unique card looks */
+    .challenge[data-style="stripe"]::before{
+      content:"";
+      position:absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(92,184,92,0.65));
+      opacity: .95;
+    }
+
+
+    .challenge[data-style="orbit"]::after{
+      content:"";
+      position:absolute;
+      right:-130px;
+      top:-130px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle at 40% 40%, rgba(92,184,92,0.30), transparent 64%);
+      transform: rotate(18deg);
+    }
+
+
+    .challenge[data-style="dots"]{
+      background:
+        radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 14px 14px,
+        rgba(0,0,0,0.18);
+    }
+
+
+    .challenge[data-style="gradient"]{
+      background:
+        linear-gradient(180deg, rgba(92,184,92,0.14), rgba(0,0,0,0.18) 48%),
+        rgba(0,0,0,0.18);
+    }
+
+
+    .challenge-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .left{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+
+
+    .icon{
+      width: 44px;
+      height: 44px;
+      display:grid;
+      place-items:center;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      flex: 0 0 auto;
+      color: var(--accent-gold);
+    }
+
+
+    .challenge h3{
+      margin:0;
+      font-family: var(--font-head);
+      font-weight: 900;
+      letter-spacing: .2px;
+      line-height: 1.15;
+    }
+
+
+    .meta{
+      margin-top: 4px;
+      color: rgba(241,248,241,0.70);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+
+    .tag{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.14);
+      color: var(--text-muted);
+      font-weight: 900;
+      font-size: .82rem;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .challenge p{
+      margin:0;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .challenge-actions{
+      margin-top:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .join{
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(92,184,92,0.30);
+      background: rgba(92,184,92,0.14);
+      color: rgba(241,248,241,0.92);
+      font-weight: 900;
+      transition: .2s ease;
+      flex: 1;
+    }
+    .join:hover{
+      transform: translateY(-1px);
+      border-color: rgba(92,184,92,0.45);
+      background: rgba(92,184,92,0.18);
+    }
+
+
+    .leaderboard-btn{
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      color: rgba(241,248,241,0.92);
+      font-weight: 900;
+      transition: .2s ease;
+      flex: 1;
+    }
+    .leaderboard-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+
+
+    /* Expandable leaderboard */
+    .leaderboard{
+      display:none;
+      margin-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .leaderboard.show{
+      display:block;
+      animation: pop .18s ease;
+    }
+
+
+    @keyframes pop{
+      from{ transform: translateY(-4px); opacity: 0; }
+      to{ transform: translateY(0); opacity: 1; }
+    }
+
+
+    .lb-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      margin-top: 8px;
+    }
+
+
+    .rank{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      font-weight: 900;
+      color: var(--accent-gold);
+      flex: 0 0 auto;
+    }
+
+
+    .lb-name{
+      flex: 1;
+      min-width: 0;
+    }
+
+
+    .lb-name b{
+      display:block;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .lb-name small{
+      display:block;
+      color: rgba(241,248,241,0.72);
+      margin-top: 2px;
+    }
+
+
+    .lb-score{
+      font-weight: 900;
+      color: rgba(241,248,241,0.92);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(92,184,92,0.30);
+      background: rgba(92,184,92,0.12);
+      white-space: nowrap;
+    }
+
+
+    /* Sidebar */
+    aside.side{
+      padding: 16px;
+    }
+
+
+    .side h2{
+      margin:0 0 8px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent-gold);
+      letter-spacing: .2px;
+      font-size: 1.25rem;
+    }
+
+
+    .side p{
+      margin:0;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+
+    .side-card{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+    }
+
+
+    .side-card h3{
+      margin:0 0 8px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: rgba(241,248,241,0.92);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .side-card h3 i{ color: var(--accent); }
+
+
+    .goal-list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(241,248,241,0.84);
+    }
+    .goal-list li{ margin: 6px 0; }
+
+
+    .msg-only{
+      margin-top: 12px;
+      display:flex;
+    }
+
+
+    .msg-only a{
+      width: 100%;
+      border-radius: 16px;
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      font-weight: 900;
+      transition: .2s ease;
+    }
+    .msg-only a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+    .msg-only i{ color: var(--accent-gold); }
+
+
+    footer{
+      margin-top: 18px;
+      padding: 22px 0 34px;
+      border-top: 1px solid var(--line);
+      color: rgba(241,248,241,0.72);
+    }
+
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .layout{ grid-template-columns: 1fr; }
+      .challenge{ grid-column: span 12; }
+      .search{ min-width: 180px; }
+    }
+  </style>
+</head>
+
+
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <i class="fa-solid fa-tree"></i>
+        <span>Oak Pine Hub</span>
+      </a>
+
+
+      <nav class="nav">
+        <a href="#challenges">Challenges</a>
+        <a href="#goals">Goals</a>
+        <a href="#faq">FAQ</a>
+
+
+        <a class="msg-btn" href="contact-case-worker.html" title="Message a case worker">
+          <i class="fa-solid fa-message"></i> Message
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <section class="hero" id="goals">
+    <div class="container hero-wrap">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker-row">
+            <div class="kicker">
+              <i class="fa-solid fa-trophy"></i>
+              Community Challenges & Goals
+            </div>
+
+
+            <!-- Back to Home RIGHT of the title -->
+            <a class="back-link" href="index.html">
+              <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+          </div>
+
+
+          <h1>Healthy + fun challenges you can actually finish</h1>
+          <p>
+            Join mini-challenges, earn points, and climb the leaderboard.
+            These are purposely designed to feel like a game, not a chore.
+          </p>
+        </div>
+
+
+        <aside class="goal-meter">
+          <h3><i class="fa-solid fa-flag-checkered"></i> Community progress</h3>
+
+
+          <div class="meter-row">
+            <div>
+              <b>Weekly Goal</b>
+              <small>Try 2 challenges this week</small>
+            </div>
+            <span class="pill">2 / 2</span>
+          </div>
+
+
+          <div class="progress" aria-label="Weekly progress bar">
+            <div class="bar"></div>
+          </div>
+
+
+          <div class="meter-row">
+            <div>
+              <b>Streak Bonus</b>
+              <small>Complete any challenge 3 weeks in a row</small>
+            </div>
+            <span class="pill">+50 pts</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+
+  <main id="challenges">
+    <div class="container layout">
+      <!-- LEFT -->
+      <section class="panel">
+        <div class="filters">
+          <div class="filters-left">
+            <div class="chip active" data-filter="all">
+              <i class="fa-solid fa-layer-group"></i> All
+            </div>
+            <div class="chip" data-filter="healthy">
+              <i class="fa-solid fa-leaf"></i> Healthy
+            </div>
+            <div class="chip" data-filter="fun">
+              <i class="fa-solid fa-face-laugh"></i> Fun
+            </div>
+            <div class="chip" data-filter="family">
+              <i class="fa-solid fa-people-group"></i> Family
+            </div>
+          </div>
+
+
+          <div class="filters-right">
+            <div class="search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input id="searchInput" type="text" placeholder="Search challenges..." />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="grid" id="challengeGrid">
+          <!-- Challenge 1 -->
+          <article class="challenge" data-type="healthy" data-style="stripe">
+            <div class="challenge-head">
+              <div class="left">
+                <div class="icon"><i class="fa-solid fa-bottle-water"></i></div>
+                <div>
+                  <h3>Hydration Sprint</h3>
+                  <div class="meta">Drink water • 5 days</div>
+                </div>
+              </div>
+              <span class="tag">+25 pts</span>
+            </div>
+
+
+            <p>Bring a water bottle and hit your hydration goal 5 days this week.</p>
+
+
+            <div class="challenge-actions">
+              <button class="join" type="button">
+                <i class="fa-solid fa-circle-play"></i> Join
+              </button>
+              <button class="leaderboard-btn" type="button" data-lb="lb1">
+                <i class="fa-solid fa-ranking-star"></i> Leaderboard
+              </button>
+            </div>
+
+
+            <div class="leaderboard" id="lb1">
+              <div class="lb-row">
+                <div class="rank">1</div>
+                <div class="lb-name"><b>Jasmine</b><small>Hydration streak: 5</small></div>
+                <div class="lb-score">98 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">2</div>
+                <div class="lb-name"><b>Leo</b><small>Hydration streak: 4</small></div>
+                <div class="lb-score">84 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">3</div>
+                <div class="lb-name"><b>Sam</b><small>Hydration streak: 4</small></div>
+                <div class="lb-score">80 pts</div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Challenge 2 -->
+          <article class="challenge" data-type="fun" data-style="orbit">
+            <div class="challenge-head">
+              <div class="left">
+                <div class="icon"><i class="fa-solid fa-music"></i></div>
+                <div>
+                  <h3>Dance Break Bingo</h3>
+                  <div class="meta">Move • Music • 10 minutes</div>
+                </div>
+              </div>
+              <span class="tag">+20 pts</span>
+            </div>
+
+
+            <p>Do a 10-minute dance break 3 times this week. Any music counts.</p>
+
+
+            <div class="challenge-actions">
+              <button class="join" type="button">
+                <i class="fa-solid fa-circle-play"></i> Join
+              </button>
+              <button class="leaderboard-btn" type="button" data-lb="lb2">
+                <i class="fa-solid fa-ranking-star"></i> Leaderboard
+              </button>
+            </div>
+
+
+            <div class="leaderboard" id="lb2">
+              <div class="lb-row">
+                <div class="rank">1</div>
+                <div class="lb-name"><b>Chris</b><small>Dance sessions: 6</small></div>
+                <div class="lb-score">92 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">2</div>
+                <div class="lb-name"><b>Maria</b><small>Dance sessions: 5</small></div>
+                <div class="lb-score">86 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">3</div>
+                <div class="lb-name"><b>Nina</b><small>Dance sessions: 4</small></div>
+                <div class="lb-score">78 pts</div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Challenge 3 -->
+          <article class="challenge" data-type="family" data-style="dots">
+            <div class="challenge-head">
+              <div class="left">
+                <div class="icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <div>
+                  <h3>Family Game Night</h3>
+                  <div class="meta">Connect • Laugh • 1 night</div>
+                </div>
+              </div>
+              <span class="tag">+30 pts</span>
+            </div>
+
+
+            <p>Play any game together (cards, board games, video games, anything!).</p>
+
+
+            <div class="challenge-actions">
+              <button class="join" type="button">
+                <i class="fa-solid fa-circle-play"></i> Join
+              </button>
+              <button class="leaderboard-btn" type="button" data-lb="lb3">
+                <i class="fa-solid fa-ranking-star"></i> Leaderboard
+              </button>
+            </div>
+
+
+            <div class="leaderboard" id="lb3">
+              <div class="lb-row">
+                <div class="rank">1</div>
+                <div class="lb-name"><b>The Parkers</b><small>Game nights: 3</small></div>
+                <div class="lb-score">110 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">2</div>
+                <div class="lb-name"><b>Team Nguyen</b><small>Game nights: 2</small></div>
+                <div class="lb-score">92 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">3</div>
+                <div class="lb-name"><b>Team Lee</b><small>Game nights: 2</small></div>
+                <div class="lb-score">88 pts</div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Challenge 4 -->
+          <article class="challenge" data-type="healthy" data-style="gradient">
+            <div class="challenge-head">
+              <div class="left">
+                <div class="icon"><i class="fa-solid fa-apple-whole"></i></div>
+                <div>
+                  <h3>Fruit & Veg Rainbow</h3>
+                  <div class="meta">Eat color • 5 colors</div>
+                </div>
+              </div>
+              <span class="tag">+35 pts</span>
+            </div>
+
+
+            <p>Try 5 different fruit/veg colors this week (red, green, yellow, etc.).</p>
+
+
+            <div class="challenge-actions">
+              <button class="join" type="button">
+                <i class="fa-solid fa-circle-play"></i> Join
+              </button>
+              <button class="leaderboard-btn" type="button" data-lb="lb4">
+                <i class="fa-solid fa-ranking-star"></i> Leaderboard
+              </button>
+            </div>
+
+
+            <div class="leaderboard" id="lb4">
+              <div class="lb-row">
+                <div class="rank">1</div>
+                <div class="lb-name"><b>Riley</b><small>Colors tried: 9</small></div>
+                <div class="lb-score">104 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">2</div>
+                <div class="lb-name"><b>Amir</b><small>Colors tried: 7</small></div>
+                <div class="lb-score">92 pts</div>
+              </div>
+              <div class="lb-row">
+                <div class="rank">3</div>
+                <div class="lb-name"><b>Olivia</b><small>Colors tried: 6</small></div>
+                <div class="lb-score">85 pts</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+
+        <!-- FAQ -->
+        <div class="panel" style="border:none; border-top:1px solid var(--line); background: rgba(0,0,0,0.12);" id="faq">
+          <div style="padding:16px;">
+            <details style="border-radius: 16px; border:1px solid rgba(255,255,255,0.10); background: rgba(0,0,0,0.18); padding: 12px;">
+              <summary style="cursor:pointer; font-family: var(--font-head); font-weight: 900; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                <span style="display:flex; align-items:center; gap:10px;">
+                  <i class="fa-solid fa-circle-question" style="color: var(--accent-gold);"></i>
+                  How do points work?
+                </span>
+                <i class="fa-solid fa-chevron-down" style="color: rgba(241,248,241,0.65);"></i>
+              </summary>
+              <p style="margin: 10px 0 0; color: var(--text-muted); line-height: 1.55;">
+                Each challenge gives points when you complete it. Try multiple challenges for bigger totals.
+              </p>
+            </details>
+
+
+            <details style="margin-top:10px; border-radius: 16px; border:1px solid rgba(255,255,255,0.10); background: rgba(0,0,0,0.18); padding: 12px;">
+              <summary style="cursor:pointer; font-family: var(--font-head); font-weight: 900; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                <span style="display:flex; align-items:center; gap:10px;">
+                  <i class="fa-solid fa-circle-question" style="color: var(--accent-gold);"></i>
+                  Do I need to sign up?
+                </span>
+                <i class="fa-solid fa-chevron-down" style="color: rgba(241,248,241,0.65);"></i>
+              </summary>
+              <p style="margin: 10px 0 0; color: var(--text-muted); line-height: 1.55;">
+                Nope! You can join anytime. If you want help choosing a challenge, click Message.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- RIGHT -->
+      <aside class="panel side">
+        <h2>Pick your “starter pack”</h2>
+        <p>Not sure where to begin? Here are easy combos that feel fun and doable.</p>
+
+
+        <div class="side-card">
+          <h3><i class="fa-solid fa-fire"></i> Energy Boost</h3>
+          <ul class="goal-list">
+            <li>Hydration Sprint</li>
+            <li>Dance Break Bingo</li>
+            <li>Fruit & Veg Rainbow</li>
+          </ul>
+        </div>
+
+
+        <div class="side-card">
+          <h3><i class="fa-solid fa-heart"></i> Feel-Good Week</h3>
+          <ul class="goal-list">
+            <li>Walking club (optional)</li>
+            <li>Family Game Night</li>
+            <li>Early bedtime goal (simple)</li>
+          </ul>
+        </div>
+
+
+        <div class="msg-only">
+          <a href="contact-case-worker.html" title="Message a case worker">
+            <i class="fa-solid fa-message"></i> Message a Case Worker
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <span><b>Oak Pine Community Hub</b> • Community Challenges & Goals</span>
+        <span style="color:rgba(241,248,241,0.65);">Built with HTML/CSS/JS • Icons: Font Awesome</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // ===== Leaderboard expand per card =====
+    document.querySelectorAll(".leaderboard-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.lb;
+        const panel = document.getElementById(id);
+        if(!panel) return;
+
+
+        // close other leaderboards
+        document.querySelectorAll(".leaderboard").forEach(lb => {
+          if(lb !== panel) lb.classList.remove("show");
+        });
+
+
+        panel.classList.toggle("show");
+      });
+    });
+
+
+    // ===== Filter chips =====
+    const chips = document.querySelectorAll(".chip");
+    const cards = document.querySelectorAll(".challenge");
+    const searchInput = document.getElementById("searchInput");
+
+
+    let activeFilter = "all";
+
+
+    function applyFilters(){
+      const q = (searchInput.value || "").toLowerCase().trim();
+
+
+      cards.forEach(card => {
+        const type = card.dataset.type;
+        const text = card.innerText.toLowerCase();
+
+
+        const matchesFilter = (activeFilter === "all") ? true : (type === activeFilter);
+        const matchesSearch = q ? text.includes(q) : true;
+
+
+        card.style.display = (matchesFilter && matchesSearch) ? "" : "none";
+      });
+    }
+
+
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        activeFilter = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+
+    searchInput.addEventListener("input", applyFilters);
+
+
+    // ===== Join buttons (fake demo feedback) =====
+    document.querySelectorAll(".join").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.innerHTML = `<i class="fa-solid fa-check"></i> Joined`;
+        btn.style.borderColor = "rgba(212,175,55,0.40)";
+        btn.style.background = "rgba(212,175,55,0.14)";
+      });
+    });
+  </script>
+</body>
+</html>

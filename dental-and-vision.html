@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental & Vision Care | Oak Pine Community Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ===== SAME OAK PINE THEME COLORS ===== */
+    :root {
+      --bg-dark: #1b261b;
+      --bg-card: #283628;
+      --bg-lighter: #354a35;
+      --text-main: #f1f8f1;
+      --text-muted: #a8c5a8;
+      --accent: #5cb85c;
+      --accent-gold: #d4af37;
+      --error: #ee6352;
+
+      --font-head: 'Montserrat', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+
+      --line: rgba(255,255,255,0.10);
+      --shadow: 0 18px 45px rgba(0,0,0,0.35);
+      --r: 16px;
+    }
+
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background:
+        radial-gradient(900px 520px at 12% 12%, rgba(92,184,92,0.18), transparent 58%),
+        radial-gradient(900px 520px at 88% 22%, rgba(212,175,55,0.14), transparent 60%),
+        var(--bg-dark);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(1120px, 92vw); margin:0 auto; }
+
+    /* ===== Topbar ===== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(27, 38, 27, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      letter-spacing: .2px;
+      color: var(--accent);
+    }
+    .brand i{
+      width: 40px; height: 40px;
+      display:grid; place-items:center;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--accent-gold);
+    }
+
+    .nav{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .nav a:hover{
+      color: var(--text-main);
+      background: rgba(0,0,0,0.22);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    /* ONLY MESSAGE BUTTON */
+    .msg-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      color: var(--text-main);
+      font-weight: 900;
+      transition: .2s ease;
+    }
+    .msg-btn i{ color: var(--accent-gold); }
+    .msg-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+
+    /* ===== Hero ===== */
+    .hero{ padding: 26px 0 16px; }
+    .hero-wrap{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.12));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .hero-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-140px auto auto -160px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 45%, rgba(92,184,92,0.28), transparent 68%);
+    }
+    .hero-inner{ position:relative; z-index:1; display:grid; grid-template-columns: 1fr 340px; gap: 14px; }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text-muted);
+      font-weight: 800;
+      width: fit-content;
+      font-size: .9rem;
+    }
+    .kicker i{ color: var(--accent-gold); }
+    h1{
+      font-family: var(--font-head);
+      margin: 12px 0 6px;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .quick-box{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 14px;
+    }
+    .quick-box h3{
+      margin:0 0 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent-gold);
+    }
+    .mini{
+      display:flex; gap:10px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.16);
+      margin-top: 10px;
+    }
+    .mini i{ color: var(--accent); margin-top: 2px; }
+    .mini b{ display:block; font-weight: 900; }
+    .mini small{ display:block; color: rgba(241,248,241,0.78); margin-top: 3px; line-height: 1.35; }
+
+    /* ===== Layout ===== */
+    .main{ padding: 14px 0 40px; }
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 330px;
+      gap: 14px;
+      align-items:start;
+    }
+    .panel{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(40,54,40,0.78);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.14);
+    }
+    .tab{
+      flex: 1;
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.16);
+      color: var(--text-muted);
+      font-weight: 900;
+      border-radius: 12px;
+      padding: 10px;
+      transition: .2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      font-family: var(--font-head);
+    }
+    .tab i{ color: var(--accent-gold); }
+    .tab.active{
+      background: rgba(92,184,92,0.18);
+      color: var(--text-main);
+      border-color: rgba(92,184,92,0.40);
+    }
+    .tab.active i{ color: var(--accent); }
+
+    .tab-content{ padding: 16px; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    /* ===== Cards (base) ===== */
+    .card{
+      grid-column: span 6;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 14px;
+      position: relative;
+      overflow:hidden;
+      transition: transform .2s ease, border-color .2s ease;
+      min-height: 168px;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(212,175,55,0.30); }
+
+    .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .title{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+    .icon{
+      width: 42px; height: 42px;
+      display:grid; place-items:center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      flex: 0 0 auto;
+      color: var(--accent-gold);
+    }
+    .card h4{
+      margin:0;
+      font-family: var(--font-head);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .badge{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.14);
+      color: var(--text-muted);
+      font-weight: 900;
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+    .card p{
+      margin: 8px 0 0;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+    .card ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(241,248,241,0.82);
+    }
+    .card li{ margin: 6px 0; }
+
+    
+    .card[data-variant="a"]::before{
+      content:"";
+      position:absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(92,184,92,0.65));
+      opacity: .95;
+    }
+    .card[data-variant="a"] .icon{
+      background: rgba(212,175,55,0.10);
+      border-color: rgba(212,175,55,0.22);
+    }
+
+
+    .card[data-variant="b"]::after{
+      content:"";
+      position:absolute;
+      right:-120px; top:-120px;
+      width: 260px; height: 260px;
+      transform: rotate(18deg);
+      background: radial-gradient(circle at 40% 40%, rgba(92,184,92,0.30), transparent 64%);
+    }
+    .card[data-variant="b"] .icon{
+      color: var(--accent);
+      border-color: rgba(92,184,92,0.26);
+      background: rgba(92,184,92,0.10);
+    }
+    .card[data-variant="b"] .badge{
+      border-color: rgba(92,184,92,0.26);
+      background: rgba(92,184,92,0.10);
+      color: rgba(241,248,241,0.86);
+    }
+
+  
+    .card[data-variant="c"]{
+      background:
+        radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 14px 14px,
+        rgba(0,0,0,0.18);
+    }
+    .card[data-variant="c"] .badge{
+      background: linear-gradient(90deg, rgba(0,0,0,0.20), rgba(212,175,55,0.14));
+      border-color: rgba(212,175,55,0.22);
+      color: rgba(241,248,241,0.88);
+    }
+
+    .card[data-variant="d"]{
+      background:
+        linear-gradient(180deg, rgba(92,184,92,0.14), rgba(0,0,0,0.18) 48%),
+        rgba(0,0,0,0.18);
+    }
+    .card[data-variant="d"] .icon{
+      border-radius: 999px;
+      width: 44px; height: 44px;
+      background: rgba(0,0,0,0.22);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    /* Sidebar */
+    .side{ padding: 16px; }
+    .side h3{
+      margin:0 0 10px;
+      font-family: var(--font-head);
+      font-weight: 900;
+      color: var(--accent-gold);
+    }
+    .side p{ margin:0; color: var(--text-muted); line-height: 1.55; }
+    .help-list{ display:grid; gap: 10px; margin-top: 12px; }
+    .help-item{
+      display:flex;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .help-item i{ color: var(--accent); margin-top: 2px; }
+    .help-item b{ display:block; font-weight: 900; }
+    .help-item span{ display:block; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+
+    .side .msg-only{
+      margin-top: 12px;
+      display:flex;
+      justify-content:stretch;
+    }
+    .side .msg-only a{
+      width: 100%;
+      border-radius: 14px;
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border: 1px solid rgba(212,175,55,0.28);
+      background: rgba(212,175,55,0.12);
+      font-weight: 900;
+      transition: .2s ease;
+    }
+    .side .msg-only a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(212,175,55,0.40);
+      background: rgba(212,175,55,0.16);
+    }
+    .side .msg-only i{ color: var(--accent-gold); }
+
+    /* FAQ */
+    .faq{
+      margin-top: 14px;
+      padding: 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(0,0,0,0.12);
+    }
+    details{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 12px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor:pointer;
+      font-family: var(--font-head);
+      font-weight: 900;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    summary .q{ display:flex; align-items:center; gap: 10px; }
+    summary i{ color: var(--accent-gold); }
+    details p{ margin: 10px 0 0; color: var(--text-muted); line-height: 1.55; }
+
+    footer{
+      margin-top: 18px;
+      padding: 22px 0 34px;
+      border-top: 1px solid var(--line);
+      color: rgba(241,248,241,0.72);
+    }
+
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .layout{ grid-template-columns: 1fr; }
+      .card{ grid-column: span 12; }
+    }
+    .back-link{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color: var(--accent-gold);
+      text-decoration:none;
+      font-weight:700;
+      margin-bottom: 14px;
+    }
+    .back-link:hover{ color: var(--accent); }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <i class="fa-solid fa-tree"></i>
+        <span>Oak Pine Hub</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#steps">Steps</a>
+        <a href="#faq">FAQ</a>
+
+        <a class="msg-btn" href="contact-case-worker.html" title="Message a case worker">
+          <i class="fa-solid fa-message"></i> Message
+        </a>
+      </nav>
+    </div>
+  </header>
+    <div class="container" style="padding: 14px 0 0;">
+      <a class="back-link" href="index.html">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+</div>
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker">
+            <i class="fa-solid fa-heart-pulse"></i>
+            Dental & Vision Care
+          </div>
+
+          <h1>Find care FAST! Dental, vision, and cost assistance.</h1>
+          <p>
+            Use the tabs below to browse services. Each card explains what it’s for,
+            who it helps, and what to bring so you don’t waste a trip.
+          </p>
+        </div>
+
+        <aside class="quick-box" id="steps">
+          <h3>Quick steps</h3>
+
+          <div class="mini">
+            <i class="fa-solid fa-id-card"></i>
+            <div>
+              <b>Bring basics</b>
+              <small>ID + any insurance/Medicaid card + a phone number where clinics can reach you.</small>
+            </div>
+          </div>
+
+          <div class="mini">
+            <i class="fa-solid fa-file-lines"></i>
+            <div>
+              <b>Know your need</b>
+              <small>Emergency pain? Check “Urgent visits.” Routine cleaning? Start at “Preventive care.”</small>
+            </div>
+          </div>
+
+          <div class="mini">
+            <i class="fa-solid fa-calendar-check"></i>
+            <div>
+              <b>Book smart</b>
+              <small>Ask about sliding scale, discount days, and what fees are due upfront.</small>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <main class="main" id="services">
+    <div class="container layout">
+      <!-- LEFT PANEL (tabs + cards) -->
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab active" type="button" data-tab="dental">
+            <i class="fa-solid fa-tooth"></i> Dental
+          </button>
+          <button class="tab" type="button" data-tab="vision">
+            <i class="fa-solid fa-eye"></i> Vision
+          </button>
+        </div>
+
+        <div class="tab-content">
+          <!-- DENTAL -->
+          <div class="tab-pane" id="tab-dental">
+            <div class="grid">
+              <article class="card" data-variant="a">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                      <h4>Urgent Dental Visits</h4>
+                      <div class="badge">Pain • Infection • Swelling</div>
+                    </div>
+                  </div>
+                </div>
+                <p>For sudden tooth pain, suspected infection, broken tooth, or swelling.</p>
+                <ul>
+                  <li>Ask about same-day or walk-in hours</li>
+                  <li>Bring a list of allergies + medications</li>
+                  <li>If fever + facial swelling, seek urgent medical care</li>
+                </ul>
+              </article>
+
+              <article class="card" data-variant="b">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <div>
+                      <h4>Preventive Care</h4>
+                      <div class="badge">Cleanings • Exams • X-rays</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Routine dental checkups help prevent costly issues later.</p>
+                <ul>
+                  <li>Ask if new-patient exams include X-rays</li>
+                  <li>Schedule every 6 months if possible</li>
+                  <li>Kids may qualify for school-based programs</li>
+                </ul>
+              </article>
+
+              <article class="card" data-variant="c">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <div>
+                      <h4>Fillings & Repairs</h4>
+                      <div class="badge">Cavities • Chips • Sensitivity</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Fix cavities early to avoid root canals and extractions.</p>
+                <ul>
+                  <li>Ask for an estimate before treatment</li>
+                  <li>See if payment plans are available</li>
+                  <li>Request numbness + aftercare instructions</li>
+                </ul>
+              </article>
+
+              <article class="card" data-variant="d">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <div>
+                      <h4>Low-Cost Options</h4>
+                      <div class="badge">Sliding scale • Discounts</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Programs that reduce cost based on income or special eligibility.</p>
+                <ul>
+                  <li>Bring proof of income (if required)</li>
+                  <li>Ask about student dental clinics (lower cost)</li>
+                  <li>Check if you qualify for local assistance</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+
+          <!-- VISION -->
+          <div class="tab-pane" id="tab-vision" style="display:none;">
+            <div class="grid">
+              <article class="card" data-variant="b">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-glasses"></i></div>
+                    <div>
+                      <h4>Eye Exams</h4>
+                      <div class="badge">Routine • Vision changes</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Find prescription updates, screen-related strain help, and eye health checks.</p>
+                <ul>
+                  <li>Bring your current glasses/contacts</li>
+                  <li>Ask if dilation is included</li>
+                  <li>Request your PD (pupillary distance) for online glasses</li>
+                </ul>
+              </article>
+
+              <article class="card" data-variant="a">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-eye-dropper"></i></div>
+                    <div>
+                      <h4>Urgent Eye Concerns</h4>
+                      <div class="badge">Injury • Sudden vision loss</div>
+                    </div>
+                  </div>
+                </div>
+                <p>For eye injuries, chemical exposure, or sudden severe symptoms.</p>
+                <ul>
+                  <li>If chemical exposure: rinse immediately</li>
+                  <li>Sudden vision loss needs urgent care</li>
+                  <li>Bring a list of medications + allergies</li>
+                </ul>
+              </article>
+
+              <article class="card" data-variant="d">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-tag"></i></div>
+                    <div>
+                      <h4>Low-Cost Glasses</h4>
+                      <div class="badge">Vouchers • Discount frames</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Programs and options for reduced-cost frames and lenses.</p>
+                <ul>
+                  <li>Ask about voucher programs</li>
+                  <li>Bring your prescription + PD</li>
+                  <li>Check if the clinic has a basic frame wall</li>
+                </ul>
+              </article>
+
+              <article class="card" data-variant="c">
+                <div class="top">
+                  <div class="title">
+                    <div class="icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                      <h4>Contacts Support</h4>
+                      <div class="badge">Fittings • Education</div>
+                    </div>
+                  </div>
+                </div>
+                <p>Help with contact lens fittings, comfort issues, and safe wear habits.</p>
+                <ul>
+                  <li>Ask about fitting fees (separate from exam)</li>
+                  <li>Bring your current brand + prescription if known</li>
+                  <li>Get a refresher on cleaning and wear time</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq" id="faq">
+          <details>
+            <summary>
+              <span class="q"><i class="fa-solid fa-circle-question"></i> What should I bring?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              Bring an ID, your insurance/benefits card (if any), and a list of medications/allergies.
+              If you’re using a low-cost program, you may need proof of income.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              <span class="q"><i class="fa-solid fa-circle-question"></i> Can I get help if I don’t have insurance?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              Yes! Look for sliding-scale clinics, discount days, student clinics, and local assistance programs.
+              Use the Message button if you want help finding the best option.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="panel side" id="help">
+        <h3>Need help finding a place?</h3>
+        <p>If you’re not sure what you qualify for, message a case worker and we’ll help you pick the best next step.</p>
+
+        <div class="help-list">
+          <div class="help-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <b>Pick nearby</b>
+              <span>Choose a clinic close to home/work so you can follow up easily.</span>
+            </div>
+          </div>
+
+          <div class="help-item">
+            <i class="fa-solid fa-receipt"></i>
+            <div>
+              <b>Ask about costs</b>
+              <span>Before you go, ask what’s due upfront and if payment plans exist.</span>
+            </div>
+          </div>
+
+          <div class="help-item">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <b>Check hours</b>
+              <span>Some clinics have limited walk-in times—confirm first.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ONLY MESSAGE BUTTON (no call button) -->
+        <div class="msg-only">
+          <a href="contact-case-worker.html" title="Message a case worker">
+            <i class="fa-solid fa-message"></i> Message a Case Worker
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <span><b>Oak Pine Community Hub</b> • Dental & Vision Care</span>
+        <span style="color:rgba(241,248,241,0.65);">Built with HTML/CSS/JS • Icons: Font Awesome</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tabs logic
+    const tabs = document.querySelectorAll(".tab");
+    const dentalPane = document.getElementById("tab-dental");
+    const visionPane = document.getElementById("tab-vision");
+
+    tabs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabs.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const which = btn.dataset.tab;
+        const showDental = which === "dental";
+
+        dentalPane.style.display = showDental ? "block" : "none";
+        visionPane.style.display = showDental ? "none" : "block";
+      });
+    });
+  </script>
+</body>
+</html>

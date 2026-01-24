@@ -363,6 +363,25 @@
       nav ul{gap: 14px;}
       .hero-title{font-size: 2rem;}
     }
+    .back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:.85rem;
+  color: var(--accent-gold);
+  margin-bottom:14px;
+}
+
+.back-link i{
+  color:var(--accent-gold);
+}
+
+.back-link:hover{ color: var(--accent); }
+
+.back-link:hover i{
+  color: var(--accent); /* green */
+}
   </style>
 </head>
 <body>
@@ -386,7 +405,16 @@
   <section class="page-hero">
     <div class="container hero-inner">
       <div class="hero-left">
-        <div class="hero-kicker"><i class="fa-solid fa-utensils"></i> Food Assistance</div>
+        <div class="hero-kicker-row">
+          <div class="hero-kicker">
+        <i class="fa-solid fa-utensils"></i> Food Assistance
+    </div>
+
+  <a class="back-link" href="index.html">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+</div>
+
         <h1 class="hero-title">Free Meals</h1>
         <p class="hero-desc">
           Find places serving prepared meals you can eat right away. Use the search to quickly filter options.
@@ -772,4 +800,3 @@ document.getElementById('btnShowSaved').addEventListener('click', () => {
   </script>
 </body>
 </html>
-

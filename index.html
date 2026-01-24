@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oak Pine Community Hub</title>
-    
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@300;400;600&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -15,6 +15,7 @@
   <span></span>
   <span></span>
 </button>
+
 
     <style>
         /* =========================================
@@ -33,6 +34,7 @@
             --font-body: 'Poppins', sans-serif;
         }
 
+
         body {
             margin: 0;
             padding: 0;
@@ -43,12 +45,13 @@
             scroll-behavior: smooth;
         }
 
+
         h1, h2, h3, h4 { font-family: var(--font-head); margin-bottom: 1rem; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; padding: 0; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section-pad { padding: 80px 0; }
-        
+       
         /* Accessibility Toggle Class */
         body.high-contrast {
             --bg-dark: #000000;
@@ -58,6 +61,7 @@
             --accent: #ffff00;
             --accent-gold: #00ffff;
         }
+
 
         /* =========================================
            HEADER & NAVIGATION
@@ -75,23 +79,25 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
+
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 10px; }
-        
+       
         nav ul { display: flex; gap: 20px; align-items: center; margin: 0; }
         nav a { font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; }
         nav a:hover { color: var(--accent-gold); }
 
+
         /* Search Bar Integration */
         .search-wrapper { margin-left: 20px; }
         .search-bar {
-            --size: 45px; 
+            --size: 45px;
             border: 2px solid var(--accent-gold);
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 9999px;
             height: var(--size);
-            width: var(--size); 
+            width: var(--size);
             padding: 3px;
             position: relative;
             transition: width 300ms ease-in-out;
@@ -109,7 +115,7 @@
             opacity: 0;
             cursor: pointer;
             width: calc(100% - var(--size));
-            color: #fff; 
+            color: #fff;
             font-family: var(--font-body);
         }
         .search-bar__input:focus { outline: 0; }
@@ -130,16 +136,18 @@
         .search-bar:focus-within .search-bar__submit { background-color: var(--accent-gold); color: #000; margin-left: auto; }
         .search-bar:focus-within .search-bar__input { opacity: 1; cursor: text; position: relative; }
 
+
         /* =========================================
            HERO CAROUSEL
            ======================================== */
         .hero-section {
             width: 100%;
-            height: 70vh; 
+            height: 70vh;
             position: relative;
             overflow: hidden;
             margin-bottom: 0;
         }
+
 
         /* Slider Wrapper */
         .slider {
@@ -152,11 +160,13 @@
             border: none;
         }
 
+
         .slider-content {
             position: relative;
             width: 100%;
             height: 100%;
         }
+
 
         .slider-content figure {
             position: absolute;
@@ -166,6 +176,7 @@
             display: flex;
             overflow: hidden;
         }
+
 
         .slider-content img {
             width: 100%;
@@ -178,10 +189,12 @@
             filter: brightness(0.5); /* Darken images for text readability */
         }
 
+
         .slider-content figure.show img {
             transform: scale(1);
             opacity: 1;
         }
+
 
         .slider-navigation {
             position: absolute;
@@ -190,9 +203,10 @@
             justify-content: space-between;
             top: 50%; width: 95%; left: 2.5%;
             transform: translateY(-50%);
-            pointer-events: none; 
+            pointer-events: none;
             z-index: 10;
         }
+
 
         .slider-navigation button {
             pointer-events: auto;
@@ -206,12 +220,14 @@
         }
         .slider-navigation button:hover { background: var(--accent); border-color: var(--accent); }
 
+
         .hero-text-overlay {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             z-index: 5; text-align: center; width: 80%; pointer-events: none;
         }
         .hero-text-overlay h1 { font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; color: #fff; }
         .hero-text-overlay p { font-size: 1.2rem; color: #ddd; margin-top: 10px; }
+
 
         /* =========================================
            RESOURCES GRID (Things To Do)
@@ -221,6 +237,7 @@
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
         }
+
 
         .card {
             background: var(--bg-card);
@@ -235,54 +252,268 @@
         .card ul li { margin-bottom: 8px; color: var(--text-muted); font-size: 0.95rem; }
         .card i { color: var(--accent); }
 
+
         /* =========================================
            EVENT CALENDAR (Integrated Code)
            ========================================= */
-        .cal-section { background: rgba(0,0,0,0.2); }
-        
-        .cal-modal-container {
-            display: flex; align-items: center; justify-content: center;
-            width: 100%;
+        /* ===== Community Calendar (12-month, read-only) ===== */
+        .community-cal-shell{
+          display:grid;
+          grid-template-columns: 340px 1fr;
+          gap: 18px;
+          align-items: stretch;
         }
 
-        .cal-modal {
-            background: var(--bg-card);
-            color: #fff;
-            padding: 40px;
-            text-align: center;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 900px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+        .community-cal-left{
+          border-radius: 16px;
+          background: linear-gradient(145deg, rgba(92,184,92,.20), rgba(40,54,40,.95));
+          border: 1px solid rgba(255,255,255,0.08);
+          padding: 18px;
+          overflow:hidden;
         }
 
-        /* Flattened Flatpickr Styles from nested CSS */
-        .flatpickr-calendar { background: transparent !important; border: 0 !important; box-shadow: none !important; width: 100% !important; }
-        .flatpickr-months .flatpickr-month { color: #fff !important; fill: #fff !important; }
-        .flatpickr-current-month { font-size: 1.2rem; }
-        .flatpickr-current-month .numInputWrapper { display: none; } 
-        
-        .flatpickr-weekday { color: var(--accent-gold) !important; font-weight: 700 !important; }
-        
-        .flatpickr-day {
-            color: #fff !important; border: none !important; background: transparent !important;
-            font-weight: 500; font-size: 1rem; height: 40px; line-height: 40px;
-        }
-        .flatpickr-day.today { border: 1px solid var(--accent-gold) !important; }
-        .flatpickr-day:hover, .flatpickr-day.selected { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important;}
-        
-        .flatpickr-prev-month svg, .flatpickr-next-month svg { fill: var(--accent) !important; }
 
-        .calendar-events {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
-            margin-top: 30px; min-height: 50px;
+        .community-cal-top{
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:12px;
+          margin-bottom: 10px;
         }
-        .event-item {
-            background: rgba(255,255,255,0.05); padding: 15px 20px; border-radius: 8px;
-            text-align: left; border-left: 3px solid var(--accent);
+
+
+        .cal-arrow{
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.12);
+          background: rgba(0,0,0,0.20);
+          color: var(--text-main);
+          cursor:pointer;
+          transition:.2s;
         }
-        .event-item .date { color: var(--accent-gold); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;}
-        .event-item .loc { font-size: 1.1rem; font-weight: 600; }
+        .cal-arrow:hover{
+          border-color: rgba(212,175,55,.45);
+          transform: translateY(-1px);
+        }
+        .cal-arrow i{ color: var(--accent-gold); }
+
+
+        .cal-monthtitle{
+          font-family: var(--font-head);
+          font-weight: 900;
+          letter-spacing: .3px;
+          color: var(--text-main);
+          text-align:center;
+          flex: 1;
+        }
+
+
+        .cal-monthchips{
+          display:flex;
+          flex-wrap:wrap;
+          gap:8px;
+          margin: 10px 0 14px;
+        }
+
+
+        .cal-chip{
+          padding: 8px 10px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,0.10);
+          background: rgba(0,0,0,0.16);
+          color: var(--text-muted);
+          font-weight: 800;
+          font-size: .85rem;
+          cursor:pointer;
+          transition:.2s;
+          user-select:none;
+        }
+        .cal-chip:hover{ border-color: rgba(212,175,55,.35); color: var(--text-main); }
+        .cal-chip.active{
+          background: rgba(212,175,55,.14);
+          border-color: rgba(212,175,55,.40);
+          color: var(--accent-gold);
+        }
+
+
+        .cal-bigdate{
+          padding: 14px;
+          border-radius: 14px;
+          background: rgba(0,0,0,0.18);
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+
+
+        .cal-num{
+          font-size: 84px;
+          line-height: 0.95;
+          font-family: var(--font-head);
+          font-weight: 900;
+          color: var(--text-main);
+        }
+        .cal-day{
+          margin-top: 2px;
+          font-family: var(--font-head);
+          font-size: 18px;
+          font-weight: 900;
+          color: var(--accent-gold);
+          letter-spacing: .5px;
+        }
+        .cal-sub{
+          margin-top: 6px;
+          color: var(--text-muted);
+          font-size: .92rem;
+          line-height: 1.35;
+        }
+
+
+        .cal-events{
+          margin-top: 14px;
+          padding: 14px;
+          border-radius: 14px;
+          background: rgba(0,0,0,0.16);
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+        .cal-events-title{
+          font-family: var(--font-head);
+          font-weight: 900;
+          color: var(--text-main);
+          margin-bottom: 10px;
+        }
+        .cal-events-list{ display:flex; flex-direction:column; gap:10px; }
+
+
+        .community-event{
+          display:flex;
+          gap:10px;
+          align-items:flex-start;
+          padding: 10px 10px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(255,255,255,0.05);
+        }
+        .community-dot{
+          width:10px; height:10px;
+          border-radius:50%;
+          background: #2980B9;
+          margin-top: 6px;
+        }
+        .community-event b{ display:block; color: var(--text-main); }
+        .community-event small{ color: var(--text-muted); display:block; margin-top: 2px; line-height: 1.35; }
+
+
+        .community-cal-right{
+          border-radius: 16px;
+          background: rgba(40,54,40,.70);
+          border: 1px solid rgba(255,255,255,0.08);
+          padding: 18px;
+        }
+
+
+        .cal-grid-head{
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          margin-bottom: 10px;
+        }
+        .cal-detail{
+          color: #d7e6d7;
+          font-weight: 700;
+        }
+
+
+        .cal-weekdays{
+          display:grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 8px;
+          margin: 10px 0 10px;
+          color: var(--accent-gold);
+          font-weight: 900;
+          font-size: .85rem;
+          text-align:center;
+        }
+
+
+        .community-grid{
+          display:grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 10px;
+        }
+
+
+        .community-daycell{
+          height: 48px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.08);
+          background: rgba(0,0,0,0.16);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-weight: 800;
+          color: var(--text-main);
+          cursor:pointer;
+          user-select:none;
+          position: relative;
+          transition: .18s ease;
+        }
+        .community-daycell:hover{
+          transform: translateY(-1px);
+          border-color: rgba(212,175,55,.35);
+        }
+
+
+        .community-muted{
+          opacity: .35;
+          cursor: default;
+        }
+
+
+        .community-hasevent::after{
+          content:"";
+          position:absolute;
+          bottom: 8px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #2980B9;
+        }
+
+
+        .community-selected{
+          background: rgba(92,184,92,.22);
+          border-color: rgba(92,184,92,.50);
+        }
+
+
+        .community-todaydot{
+          outline: 2px solid rgba(212,175,55,.35);
+        }
+
+
+        .cal-note{
+          margin-top: 12px;
+          padding: 12px 12px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.08);
+          background: rgba(0,0,0,0.14);
+          color: var(--text-muted);
+          display:flex;
+          gap:10px;
+          align-items:flex-start;
+          line-height: 1.45;
+          font-size: .92rem;
+        }
+        .cal-note i{ color: var(--accent-gold); margin-top: 2px; }
+
+
+        @media (max-width: 980px){
+          .community-cal-shell{ grid-template-columns: 1fr; }
+        }
+
+
+
 
         /* =========================================
            HIGHLIGHTS, SHELTER & FORM
@@ -290,16 +521,19 @@
         .split-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
         @media(max-width: 768px) { .split-grid { grid-template-columns: 1fr; } }
 
+
         .highlight-box {
             background: linear-gradient(145deg, var(--bg-card), #1e2b1e);
             padding: 20px; border-radius: 8px; margin-bottom: 20px;
             border-left: 5px solid var(--accent-gold);
         }
 
+
         .sponsor-badges { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
         .badge { font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; color: #fff; font-weight: bold; }
         .badge.petsmart { background: #c8102e; }
         .badge.petco { background: #005699; }
+
 
         /* Form Styling */
         .form-section { background: var(--bg-lighter); }
@@ -322,10 +556,12 @@
         }
         .btn-submit:hover { background: #4cae4c; }
 
+
         /* Partners */
         .partners-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; text-align: center; margin-top: 20px;}
         .partner { color: var(--text-muted); font-weight: 700; font-size: 1.1rem; transition: 0.3s; }
         .partner:hover { color: var(--accent); }
+
 
         /* Footer */
         footer { background: #111; padding: 60px 0; margin-top: 0; border-top: 1px solid #333; }
@@ -334,6 +570,7 @@
         .footer-col h4 { color: var(--accent-gold); margin-top: 0;}
         .footer-col a { display: block; margin-bottom: 10px; color: #888; font-size: 0.9rem;}
         .footer-col a:hover { color: #fff; }
+
 
         /* Accessibility Button */
         .a11y-toggle {
@@ -356,7 +593,9 @@
     font-size: 1.2rem;
 }
 
+
         .a11y-toggle:hover { transform: scale(1.1); }
+
 
         /* Not Found Modal */
         #notFoundModal {
@@ -373,6 +612,7 @@
             transition: 0.25s ease;
         }
 
+
             .sub-link:hover {
             color: var(--text-main);
             background: rgba(92, 184, 92, 0.18); /* green glow */
@@ -382,25 +622,31 @@
    MOBILE RESPONSIVE STUFF
 ===================================== */
 
+
 @media (max-width: 768px) {
+
 
   /* Hero section */
   .hero-section {
     height: 55vh;
   }
 
+
   .hero-text-overlay h1 {
     font-size: 2.2rem;
   }
+
 
   .hero-text-overlay p {
     font-size: 1rem;
   }
 
+
   /* Calendar modal */
   .cal-modal {
     padding: 20px;
   }
+
 
   /* Footer stacks vertically */
   .footer-content {
@@ -409,22 +655,27 @@
   }
 }
 
+
 @media (max-width: 480px) {
+
 
   /* Container padding */
   .container {
     padding: 0 14px;
   }
 
+
   /* Search bar width */
   .search-bar:focus-within {
     width: 180px;
   }
 
+
   /* Forms */
   .resource-form {
     padding: 24px;
   }
+
 
   /* Slider buttons */
   .slider-navigation button {
@@ -436,18 +687,22 @@
    HAMBURGER — MOBILE ONLY
 ================================ */
 
+
 /* DEFAULT (DESKTOP) */
 .hamburger {
   display: none; /* hidden on desktop */
 }
+
 
 /* DESKTOP NAV */
 nav ul {
   display: flex;
 }
 
+
 /* MOBILE ONLY */
 @media (max-width: 768px) {
+
 
   /* show hamburger */
   .hamburger {
@@ -463,12 +718,14 @@ nav ul {
     z-index: 1100;
   }
 
+
   .hamburger span {
     width: 26px;
     height: 3px;
     background: #fff;
     border-radius: 2px;
   }
+
 
   /* hide nav by default */
   nav ul {
@@ -483,10 +740,12 @@ nav ul {
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   }
 
+
   /* open menu */
   nav ul.show {
     display: flex;
   }
+
 
   /* smaller menu items */
   nav ul li {
@@ -494,13 +753,93 @@ nav ul {
     text-align: center;
   }
 
+
   nav ul li a {
     font-size: 1rem;
   }
 }
+/* =========================================
+       PARTNER LOGO SLIDER
+       ========================================= */
+    .logo-slider{
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 2.5rem 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin-top: 22px;
+
+
+
+
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+}
+
+
+
+
+.logo-track{
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+
+
+
+
+  width: max-content;
+  animation: partnerScroll 30s linear infinite;
+  will-change: transform;
+}
+
+
+
+
+.logo-track img{
+  height: 70px;
+  width: 160px;
+  object-fit: contain;
+  flex: 0 0 auto;
+
+
+
+
+  filter: brightness(0.95);
+  opacity: 0.92;
+  transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+}
+
+
+
+
+.logo-track img:hover{
+  transform: scale(1.12);
+  filter: brightness(1.1);
+  opacity: 1;
+}
+
+
+
+
+/* IMPORTANT: pause when hovering a logo (hovering img also hovers track) */
+.logo-track:hover{
+  animation-play-state: paused;
+}
+
+
+
+
+@keyframes partnerScroll{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
     </style>
 </head>
 <body>
+
 
     <header>
         <div class="logo">
@@ -510,7 +849,8 @@ nav ul {
             <nav>
                 <ul>
                     <li><a href="about.html">About</a></li>
-                
+               
+
 
                     <li><a href="#events">Events</a></li>
                     <li><a href="resources.html">References</a></li>
@@ -526,6 +866,7 @@ nav ul {
             </div>
         </div>
     </header>
+
 
     <section class="hero-section">
         <div class="slider">
@@ -544,6 +885,7 @@ nav ul {
                     <img src="https://plus.unsplash.com/premium_photo-1680185462024-449a2abaec28?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWVyaWFsJTIwbmVpZ2hib3Job29kfGVufDB8fDB8fHww" alt="Community Meeting">
                 </figure>
 
+
             </div>
             <div class="slider-navigation">
                 <button id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
@@ -552,9 +894,10 @@ nav ul {
         </div>
     </section>
 
+
     <div class="container section-pad" id="resources">
         <h2 style="text-align: center; color: var(--accent); margin-bottom: 40px;">Resources</h2>
-        
+       
         <div class="grid-4">
             <div class="card" id="food">
                 <h3><i class="fa-solid fa-utensils"></i> Food Assistance</h3>
@@ -597,23 +940,75 @@ nav ul {
         </div>
     </div>
 
+
     <section class="section-pad cal-section" id="events">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 30px;">Community Event Calendar</h2>
-            <div class="cal-modal-container">
-                <div class="cal-modal">
-                    <div id="calendar">
-                        <div class="placeholder"></div>
-                        <div class="calendar-events">
-                            <div class="event-item">
-                                <div class="loc">Select a highlighted date above to see details.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 30px;">Community Event Calendar</h2>
+
+
+    <div class="community-cal-shell">
+      <!-- Left panel -->
+      <aside class="community-cal-left">
+        <div class="community-cal-top">
+          <button class="cal-arrow" id="calPrev" aria-label="Previous month">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+
+          <div class="cal-monthtitle" id="monthTitle">Month YYYY</div>
+
+
+          <button class="cal-arrow" id="calNext" aria-label="Next month">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
-    </section>
+
+
+        <div class="cal-monthchips" id="monthChips" aria-label="Month selector"></div>
+
+
+        <div class="cal-bigdate">
+          <div class="cal-num" id="bigDate">—</div>
+          <div class="cal-day" id="bigDay">Select a date</div>
+          <div class="cal-sub" id="bigMonthYear">—</div>
+        </div>
+
+
+        <div class="cal-events">
+          <div class="cal-events-title">Scheduled Items</div>
+          <div id="sideEvents" class="cal-events-list">
+            <div class="community-event">
+              <div class="community-dot"></div>
+              <div>
+                <b>Select a highlighted date</b>
+                <small>Events will appear here.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+
+      <!-- Right panel -->
+      <section class="community-cal-right">
+        <div class="cal-grid-head">
+          <div class="cal-detail" id="detailText">Pick a day to view details</div>
+        </div>
+
+
+        <div class="cal-weekdays">
+          <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+        </div>
+
+
+        <div class="community-grid" id="communityGrid"></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+
 
     <div class="container section-pad">
         <div class="split-grid">
@@ -633,6 +1028,7 @@ nav ul {
                 </div>
             </div>
 
+
             <div id="shelter">
                 <h2>Animal Shelter</h2>
                 <div class="card" style="height: auto; border: 2px solid var(--accent);">
@@ -649,6 +1045,7 @@ nav ul {
             </div>
         </div>
     </div>
+
 
     <section class="section-pad form-section" id="form">
         <div class="container">
@@ -676,15 +1073,50 @@ nav ul {
         </div>
     </section>
 
+
     <div class="container section-pad" id="partners">
-        <h2 style="text-align: center; color: var(--accent-gold);">Our Partners</h2>
-        <div class="partners-row">
-            <div class="partner">Oak Pine Vision Center</div>
-            <div class="partner">ClearPath Eye Care</div>
-            <div class="partner">Community Sight Clinic</div>
-            <div class="partner">Evergreen Vision Services</div>
-        </div>
+  <h2 style="text-align: center; color: var(--accent-gold);">Our Partners</h2>
+
+
+
+
+  <div class="logo-slider">
+    <div class="logo-track">
+      <img src="https://cdn.brandfetch.io/idASWKPWjB/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667866125860" alt="HEB" />
+      <img src="https://cdn.brandfetch.io/idd7pwVwdr/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667580403199" alt="CVS" />
+      <img src="https://cdn.brandfetch.io/id5zUmVWsF/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667592246850" alt="Walgreens" />
+      <img src="https://cdn.brandfetch.io/id3elZ9Rhl/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1712075476329" alt="Xfinity" />
+      <img src="https://cdn.brandfetch.io/idXhrQrb5t/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1730824778003" alt="Verizon" />
+      <img src="https://cdn.brandfetch.io/idgIQbld-a/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667603898326" alt="Barnes & Noble" />
+      <img src="https://cdn.brandfetch.io/id3tVFklco/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667693543459" alt="Whole Foods" />
+      <img src="https://cdn.brandfetch.io/idqNSl1gVC/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1766889170804" alt="Memorial Hermann" />
+      <img src="https://cdn.brandfetch.io/idMCAfeYES/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668044078318" alt="Scholastic" />
+      <img src="https://cdn.brandfetch.io/idKZV-s_uo/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1676885442950" alt="National Geographic" />
+      <img src="https://cdn.brandfetch.io/idudVYts5w/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667568551288" alt="Chase" />
+
+
+
+
+      <!-- DUPLICATE THE SAME SET again for seamless loop -->
+      <img src="https://cdn.brandfetch.io/idASWKPWjB/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667866125860" alt="HEB" />
+      <img src="https://cdn.brandfetch.io/idd7pwVwdr/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667580403199" alt="CVS" />
+      <img src="https://cdn.brandfetch.io/id5zUmVWsF/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667592246850" alt="Walgreens" />
+      <img src="https://cdn.brandfetch.io/id3elZ9Rhl/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1712075476329" alt="Xfinity" />
+      <img src="https://cdn.brandfetch.io/idXhrQrb5t/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1730824778003" alt="Verizon" />
+      <img src="https://cdn.brandfetch.io/idgIQbld-a/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667603898326" alt="Barnes & Noble" />
+      <img src="https://cdn.brandfetch.io/id3tVFklco/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667693543459" alt="Whole Foods" />
+      <img src="https://cdn.brandfetch.io/idqNSl1gVC/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1766889170804" alt="Memorial Hermann" />
+      <img src="https://cdn.brandfetch.io/idMCAfeYES/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668044078318" alt="Scholastic" />
+      <img src="https://cdn.brandfetch.io/idKZV-s_uo/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1676885442950" alt="National Geographic" />
+      <img src="https://cdn.brandfetch.io/idudVYts5w/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667568551288" alt="Chase" />
     </div>
+  </div>
+</div>
+
+
+
+
+
 
     <footer id="about">
         <div class="container footer-content">
@@ -711,9 +1143,11 @@ nav ul {
         </div>
     </footer>
 
+
     <button class="a11y-toggle" onclick="toggleContrast()" aria-label="Toggle High Contrast">
         <i class="fa-solid fa-eye"></i>
     </button>
+
 
     <div id="notFoundModal">
         <div class="modal-content">
@@ -722,6 +1156,7 @@ nav ul {
             <button class="close-modal" onclick="closeModal()">Close</button>
         </div>
     </div>
+
 
     <script>
         // CAROUSEL LOGIC
@@ -733,6 +1168,7 @@ nav ul {
             const nextButton = document.getElementById("nextBtn");
             const sliders = document.querySelectorAll(".slider-content figure");
 
+
             function initCarousel() {
                 prevButton.addEventListener("click", () => navigate(DIRECTION.PREV));
                 nextButton.addEventListener("click", () => navigate(DIRECTION.NEXT));
@@ -741,20 +1177,23 @@ nav ul {
                 setInterval(() => { if(!isTransitioning) navigate(DIRECTION.NEXT); }, 5000);
             }
 
+
             function navigate(direction) {
                 if (isTransitioning) return;
                 isTransitioning = true;
                 const total = sliders.length;
                 const oldIndex = currentIndex;
-                
+               
                 if (direction === DIRECTION.NEXT) {
                     currentIndex = (currentIndex + 1) % total;
                 } else if (direction === DIRECTION.PREV) {
                     currentIndex = (currentIndex - 1 + total) % total;
                 }
 
+
                 const oldSlide = sliders[oldIndex];
                 const newSlide = sliders[currentIndex];
+
 
                 oldSlide.classList.remove("show");
                 setTimeout(() => {
@@ -765,67 +1204,310 @@ nav ul {
             initCarousel();
         });
 
+
         // CALENDAR LOGIC
-        $(document).ready(function() {
-            var eventDates = {};
-            // Generate some dummy dates
-            let today = new Date();
-            
-            // Format Function
-            function formatDateStr(date) {
-                let d = date.getDate();
-                let m = date.getMonth() + 1;
-                let y = date.getFullYear();
-                return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
-            }
+        // ===== Community Calendar (12 months, read-only, generated cells) =====
+(function(){
+  const monthNames = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
 
-            // Create Event 1 (Next week)
-            let date1 = new Date(); date1.setDate(today.getDate() + 7);
-            let str1 = formatDateStr(date1);
-            eventDates[str1] = ['Youth Workshop, Community Center', 'Job Training Session 1'];
 
-            // Create Event 2 (2 weeks out)
-            let date2 = new Date(); date2.setDate(today.getDate() + 14);
-            let str2 = formatDateStr(date2);
-            eventDates[str2] = ['Support Group Meeting', 'Mobile Food Pantry'];
+  // ---- EDIT THIS: events keyed by ISO date "YYYY-MM-DD"
+  // You can put events across multiple months/years.
+  const eventsByISO = {
+    "2026-02-07": [{ title: "Youth Workshop", meta: "10:00 AM • Community Center" }],
+    "2026-02-14": [{ title: "Mobile Food Program", meta: "11:30 AM • North Park Entrance" }],
+    "2026-03-03": [{ title: "Job Training Session", meta: "6:30 PM • Library Room B" }],
+    "2026-04-10": [{ title: "Health Screening", meta: "9:00 AM • Community Clinic" }],
+    "2026-04-27": [
+      { title: "Food Pantry Pickup", meta: "2:00 PM • Oak Pine Community Center" },
+      { title: "Support Group", meta: "6:00 PM • Wellness Room" }
+    ]
+  };
 
-            // Initialize Flatpickr
-            var flatpickrInst = $('#calendar .placeholder').flatpickr({
-                inline: true,
-                minDate: 'today',
-                showMonths: 1,
-                enable: Object.keys(eventDates),
-                disableMobile: "true",
-                onChange: function(date, str, inst) {
-                    var contents = '';
-                    if(date.length && eventDates[str]) {
-                        for(var i=0; i < eventDates[str].length; i++) {
-                            contents += '<div class="event-item"><div class="date">' + inst.formatDate(date[0], 'l J F') + '</div><div class="loc">' + eventDates[str][i] + '</div></div>';
-                        }
-                    } else {
-                        contents = '<div class="event-item"><div class="loc">No specific events listed for this date.</div></div>';
-                    }
-                    $('#calendar .calendar-events').html(contents);
-                }
-            });
 
-            // Resize logic from your prompt
-            $(window).on('resize', function() {
-                var width = $(window).width();
-                if(width >= 992 && flatpickrInst.config.showMonths !== 3) {
-                    flatpickrInst.set('showMonths', 3);
-                } else if(width < 992 && width >= 768 && flatpickrInst.config.showMonths !== 2) {
-                    flatpickrInst.set('showMonths', 2);
-                } else if(width < 768 && flatpickrInst.config.showMonths !== 1) {
-                    flatpickrInst.set('showMonths', 1);
-                }
-            });
-        });
+  const monthTitle = document.getElementById("monthTitle");
+  const monthChips = document.getElementById("monthChips");
+  const bigDate = document.getElementById("bigDate");
+  const bigDay = document.getElementById("bigDay");
+  const bigMonthYear = document.getElementById("bigMonthYear");
+  const detailText = document.getElementById("detailText");
+  const sideEvents = document.getElementById("sideEvents");
+  const grid = document.getElementById("communityGrid");
+  const prevBtn = document.getElementById("calPrev");
+  const nextBtn = document.getElementById("calNext");
+
+
+  if(!monthTitle || !monthChips || !bigDate || !bigDay || !bigMonthYear || !detailText || !sideEvents || !grid || !prevBtn || !nextBtn){
+    return;
+  }
+
+
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const toISO = (y,m,d) => `${y}-${pad2(m+1)}-${pad2(d)}`;
+  const weekdayName = (y,m,d) => new Date(y, m, d).toLocaleDateString(undefined, { weekday: "long" });
+
+
+  const daysInMonth = (y,m) => new Date(y, m+1, 0).getDate();
+  const firstDow = (y,m) => new Date(y, m, 1).getDay(); // 0=Sun
+  const prevMonthDays = (y,m) => daysInMonth(y, m-1);
+
+
+  // start at the real current month/year
+  const now = new Date();
+  let viewYear = now.getFullYear();
+  let viewMonth = now.getMonth(); // 0-11
+
+
+  let selectedISO = null;
+
+
+  function buildMonthChips(){
+    monthChips.innerHTML = "";
+    monthNames.forEach((name, idx) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "cal-chip" + (idx === viewMonth ? " active" : "");
+      chip.textContent = name.slice(0,3);
+      chip.addEventListener("click", () => {
+        viewMonth = idx;
+        render();
+      });
+      monthChips.appendChild(chip);
+    });
+  }
+
+
+  function setActiveChip(){
+    const chips = Array.from(monthChips.querySelectorAll(".cal-chip"));
+    chips.forEach((c, idx) => c.classList.toggle("active", idx === viewMonth));
+  }
+
+
+  function monthLabel(){
+    monthTitle.textContent = `${monthNames[viewMonth]} ${viewYear}`;
+  }
+
+
+  function renderGrid(){
+    grid.innerHTML = "";
+
+
+    const totalDays = daysInMonth(viewYear, viewMonth);
+    const startOffset = firstDow(viewYear, viewMonth);
+    const prevDays = prevMonthDays(viewYear, viewMonth);
+
+
+    // 6 rows * 7 cells = 42
+    for(let cell=0; cell<42; cell++){
+      const el = document.createElement("div");
+      el.className = "community-daycell";
+
+
+      const dayNum = cell - startOffset + 1;
+
+
+      // prev month filler
+      if(dayNum <= 0){
+        el.classList.add("community-muted");
+        el.textContent = String(prevDays + dayNum);
+        grid.appendChild(el);
+        continue;
+      }
+
+
+      // next month filler
+      if(dayNum > totalDays){
+        el.classList.add("community-muted");
+        el.textContent = String(dayNum - totalDays);
+        grid.appendChild(el);
+        continue;
+      }
+
+
+      // real month day
+      el.textContent = String(dayNum);
+
+
+      const iso = toISO(viewYear, viewMonth, dayNum);
+      el.dataset.iso = iso;
+
+
+      if(eventsByISO[iso]?.length){
+        el.classList.add("community-hasevent");
+      }
+
+
+      // subtle "today" highlight if we're on the current month/year
+      const isToday =
+        viewYear === now.getFullYear() &&
+        viewMonth === now.getMonth() &&
+        dayNum === now.getDate();
+
+
+      if(isToday){
+        el.classList.add("community-todaydot");
+      }
+
+
+      if(selectedISO === iso){
+        el.classList.add("community-selected");
+      }
+
+
+      grid.appendChild(el);
+    }
+  }
+
+
+  function renderEvents(iso){
+    const list = eventsByISO[iso] || [];
+    const d = new Date(iso + "T00:00:00");
+
+
+    const niceDate = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+
+
+    if(!list.length){
+      sideEvents.innerHTML = `
+        <div class="community-event">
+          <div class="community-dot"></div>
+          <div>
+            <b>No scheduled items</b>
+            <small>Check back soon for updates.</small>
+          </div>
+        </div>
+      `;
+      detailText.textContent = `${niceDate} • No events listed`;
+      return;
+    }
+
+
+    sideEvents.innerHTML = list.map(e => `
+      <div class="community-event">
+        <div class="community-dot"></div>
+        <div>
+          <b>${e.title}</b>
+          <small>${e.meta}</small>
+        </div>
+      </div>
+    `).join("");
+
+
+    detailText.textContent = `${niceDate} • ${list.length} event${list.length===1?"":"s"}`;
+  }
+
+
+  function setBigHeaderFromISO(iso){
+    const [y,m,d] = iso.split("-").map(Number);
+    bigDate.textContent = d;
+    bigDay.textContent = weekdayName(y, m-1, d);
+    bigMonthYear.textContent = `${monthNames[m-1]} ${y} • Community resources & events`;
+  }
+
+
+  function selectISO(iso){
+    selectedISO = iso;
+
+
+    // ensure the selection matches the visible month
+    const [y,m] = iso.split("-").map(Number);
+    viewYear = y;
+    viewMonth = m - 1;
+
+
+    render(); // rebuild UI for correct month
+    renderEvents(iso);
+    setBigHeaderFromISO(iso);
+  }
+
+
+  function handleGridClick(e){
+    const cell = e.target.closest(".community-daycell");
+    if(!cell || cell.classList.contains("community-muted")) return;
+
+
+    const iso = cell.dataset.iso;
+    if(!iso) return;
+
+
+    // update selected UI quickly without full rerender
+    grid.querySelectorAll(".community-daycell").forEach(c => c.classList.remove("community-selected"));
+    cell.classList.add("community-selected");
+    selectedISO = iso;
+
+
+    renderEvents(iso);
+    setBigHeaderFromISO(iso);
+  }
+
+
+  function stepMonth(dir){
+    // dir: -1 or +1
+    viewMonth += dir;
+    if(viewMonth < 0){ viewMonth = 11; viewYear -= 1; }
+    if(viewMonth > 11){ viewMonth = 0; viewYear += 1; }
+
+
+ 
+    selectedISO = null;
+    sideEvents.innerHTML = `
+      <div class="community-event">
+        <div class="community-dot"></div>
+        <div>
+          <b>Select a highlighted date</b>
+          <small>Events will appear here.</small>
+        </div>
+      </div>
+    `;
+    detailText.textContent = "Pick a day to view details";
+    bigDate.textContent = "—";
+    bigDay.textContent = "Select a date";
+    bigMonthYear.textContent = `${monthNames[viewMonth]} ${viewYear} • Community resources & events`;
+
+
+    render();
+  }
+
+
+  function render(){
+    monthLabel();
+    setActiveChip();
+    renderGrid();
+  }
+
+
+  // init
+  buildMonthChips();
+  render();
+
+
+  grid.addEventListener("click", handleGridClick);
+  prevBtn.addEventListener("click", () => stepMonth(-1));
+  nextBtn.addEventListener("click", () => stepMonth(1));
+
+
+  // Optional: auto-select first event in the current month if it exists
+  (function autoSelectFirstEventInView(){
+    const keys = Object.keys(eventsByISO).sort();
+    const firstInMonth = keys.find(k => {
+      const [y,m] = k.split("-").map(Number);
+      return y === viewYear && (m-1) === viewMonth;
+    });
+    if(firstInMonth) selectISO(firstInMonth);
+  })();
+})();
+
+
+
 
         // SEARCH BAR LOGIC
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         const notFoundModal = document.getElementById('notFoundModal');
+
 
         // Map keywords to Section IDs
         const siteMap = {
@@ -851,9 +1533,11 @@ nav ul {
             'graduation': 'highlights'
         };
 
+
         function performSearch() {
             const query = searchInput.value.toLowerCase().trim();
             if(!query) return;
+
 
             let found = false;
             // Check mapping
@@ -872,19 +1556,23 @@ nav ul {
                 }
             }
 
+
             if (!found) {
                 notFoundModal.style.display = 'flex';
             }
         }
+
 
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') performSearch();
         });
 
+
         function closeModal() {
             notFoundModal.style.display = 'none';
         }
+
 
         // ACCESSIBILITY TOGGLE
         function toggleContrast() {
@@ -903,18 +1591,21 @@ nav ul {
     </div>
 </div>
 <script>
-    // Show success popup 
+    // show success popup
     const submitBtn = document.querySelector('.btn-submit');
     const successModal = document.getElementById('successModal');
     const closeBtn = document.getElementById('closeSuccessModal');
+
 
     submitBtn.addEventListener('click', () => {
         successModal.style.display = 'flex';
     });
 
+
     closeBtn.addEventListener('click', () => {
         successModal.style.display = 'none';
     });
+
 
     // close modal when clicking outside the box
     successModal.addEventListener('click', (e) => {
@@ -927,10 +1618,13 @@ nav ul {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.querySelector("nav ul");
 
+
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("show");
   });
 </script>
 
+
 </body>
 </html>
+

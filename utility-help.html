@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utility Assistance | Oak Pine Community Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg-dark:#1b261b;
+  --bg-card:#283628;
+  --bg-soft:#223122;
+  --text-main:#f1f8f1;
+  --text-muted:#a8c5a8;
+  --accent:#5cb85c;
+  --accent-gold:#d4af37;
+  --line:rgba(255,255,255,0.1);
+  --shadow:0 18px 45px rgba(0,0,0,.35);
+  --r:16px;
+  --font-head:'Montserrat',sans-serif;
+  --font-body:'Poppins',sans-serif;
+}
+
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--text-main);
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(92,184,92,.18), transparent 55%),
+    var(--bg-dark);
+}
+
+a{color:inherit;text-decoration:none;}
+.container{width:min(1120px,92vw);margin:auto;}
+
+/* ===== Topbar ===== */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(27,38,27,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+}
+.brand{
+  display:flex;
+  gap:10px;
+  font-family:var(--font-head);
+  font-weight:900;
+  color:var(--accent);
+}
+.brand i{
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--accent-gold);
+}
+
+/* ===== Back ===== */
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:18px 0;
+  font-weight:700;
+  color:var(--accent-gold);
+}
+.back-link:hover{color:var(--accent);}
+
+/* ===== Hero ===== */
+.hero{
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.18));
+  border-radius:var(--r);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  padding:24px;
+}
+.hero h1{
+  font-family:var(--font-head);
+  font-size:clamp(2rem,3vw,2.6rem);
+}
+.hero p{
+  max-width:70ch;
+  color:var(--text-muted);
+}
+
+/* ===== Utility Grid ===== */
+.utility-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin-top:24px;
+}
+
+/* ===== Cards ===== */
+.utility-card{
+  background:var(--bg-card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);
+  padding:18px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  transition:.25s ease;
+  position:relative;
+  overflow:hidden;
+}
+.utility-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--accent);
+}
+
+/* Icon motion */
+.utility-card h3 i{
+  margin-right:8px;
+  transition:transform .25s ease, filter .25s ease;
+}
+.utility-card:hover h3 i{
+  transform:translateY(-3px) rotate(-6deg);
+  filter:drop-shadow(0 0 6px rgba(92,184,92,.6));
+}
+
+.utility-card p{
+  color:var(--text-muted);
+  line-height:1.55;
+  margin:8px 0 14px;
+}
+
+.utility-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.utility-tags span{
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:700;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text-muted);
+}
+
+/* Button */
+.utility-actions{
+  margin-top:auto;
+}
+.utility-actions button{
+  width:100%;
+  margin-top:16px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(212,175,55,.35);
+  background:rgba(212,175,55,.14);
+  font-weight:900;
+  color:var(--text-main);
+  cursor:pointer;
+  transition:.2s ease;
+}
+.utility-actions button:hover{
+  background:rgba(212,175,55,.22);
+  transform:translateY(-1px);
+}
+
+/* ===== Modal ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+.modal-content{
+  background:var(--bg-soft);
+  border-radius:var(--r);
+  padding:22px;
+  width:min(460px,90vw);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.modal h3{
+  font-family:var(--font-head);
+  margin-top:0;
+}
+.modal p{color:var(--text-muted);}
+.modal-actions{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+}
+.modal-actions a,
+.modal-actions button{
+  padding:10px 14px;
+  border-radius:12px;
+  border:none;
+  font-weight:800;
+  cursor:pointer;
+}
+.modal-actions a{
+  background:rgba(92,184,92,.18);
+  color:var(--text-main);
+}
+.modal-actions button{
+  background:rgba(0,0,0,.25);
+  color:var(--text-muted);
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <i class="fa-solid fa-tree"></i> Oak Pine Hub
+    </a>
+  </div>
+</header>
+
+<div class="container">
+  <a class="back-link" href="index.html">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+
+  <section class="hero">
+    <h1>Utility Assistance</h1>
+    <p>Help paying for electricity, water, gas, and preventing shutoffs.</p>
+  </section>
+
+  <section class="utility-grid">
+    <div class="utility-card">
+      <h3><i class="fa-solid fa-bolt"></i>Electric Bill Assistance</h3>
+      <p>Help with overdue or ongoing electricity bills.</p>
+      <div class="utility-tags"><span>Low Income</span><span>Emergency</span></div>
+      <div class="utility-actions">
+        <button onclick="openModal('Electric assistance can help cover past-due balances or monthly bills through local and federal programs.')">
+          View Options
+        </button>
+      </div>
+    </div>
+
+    <div class="utility-card">
+      <h3><i class="fa-solid fa-droplet"></i>Water & Sewer Support</h3>
+      <p>Programs to prevent water shutoffs and reduce balances.</p>
+      <div class="utility-tags"><span>Households</span><span>Prevention</span></div>
+      <div class="utility-actions">
+        <button onclick="openModal('Water assistance programs vary by city and may include payment plans or grants.')">
+          View Options
+        </button>
+      </div>
+    </div>
+
+    <div class="utility-card">
+      <h3><i class="fa-solid fa-fire"></i>Gas & Heating Aid</h3>
+      <p>Seasonal heating support and emergency gas assistance.</p>
+      <div class="utility-tags"><span>Winter</span><span>Emergency</span></div>
+      <div class="utility-actions">
+        <button onclick="openModal('Heating assistance is often seasonal and income-based.')">
+          View Options
+        </button>
+      </div>
+    </div>
+
+    <div class="utility-card">
+      <h3><i class="fa-solid fa-shield"></i>Shutoff Protection</h3>
+      <p>Urgent help if utilities are at risk of disconnection.</p>
+      <div class="utility-tags"><span>Urgent</span><span>Advocacy</span></div>
+      <div class="utility-actions">
+        <button onclick="openModal('Immediate intervention may be available if shutoff is pending.')">
+          Get Help
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Utility Assistance</h3>
+    <p id="modalText"></p>
+    <div class="modal-actions">
+      <button onclick="closeModal()">Close</button>
+      <a href="contact-case-worker.html">Message a Case Worker</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(text){
+  document.getElementById('modalText').textContent = text;
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

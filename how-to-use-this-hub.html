@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Use the Hub | Oak Pine Community Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg-dark:#1b261b;
+  --bg-card:#283628;
+  --bg-lighter:#354a35;
+  --text-main:#f1f8f1;
+  --text-muted:#a8c5a8;
+  --accent:#5cb85c;
+  --accent-gold:#d4af37;
+  --line:rgba(255,255,255,0.10);
+  --shadow:0 18px 45px rgba(0,0,0,0.35);
+  --r:16px;
+
+  --font-head:'Montserrat',sans-serif;
+  --font-body:'Poppins',sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:var(--font-body);
+  color:var(--text-main);
+  background:
+    radial-gradient(900px 520px at 12% 12%, rgba(92,184,92,0.18), transparent 58%),
+    radial-gradient(900px 520px at 88% 22%, rgba(212,175,55,0.14), transparent 60%),
+    var(--bg-dark);
+}
+
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92vw);margin:0 auto}
+
+/* ===== Topbar ===== */
+.topbar{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(27,38,27,.92);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);
+}
+.topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-head);font-weight:900;
+  color:var(--accent);
+}
+.brand i{
+  width:40px;height:40px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  background:rgba(0,0,0,.22);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--accent-gold);
+}
+
+.nav{display:flex;gap:10px;align-items:center}
+.nav a{
+  padding:9px 12px;border-radius:999px;
+  font-weight:700;color:var(--text-muted);
+  transition:.2s ease;
+}
+.nav a:hover{
+  background:rgba(0,0,0,.22);
+  color:var(--text-main);
+  transform:translateY(-1px);
+}
+
+.msg-btn{
+  padding:10px 14px;border-radius:999px;
+  border:1px solid rgba(212,175,55,.28);
+  background:rgba(212,175,55,.12);
+  font-weight:900;
+}
+.msg-btn i{color:var(--accent-gold)}
+
+/* ===== Back link ===== */
+.back-link{
+  display:inline-flex;gap:10px;align-items:center;
+  color:var(--accent-gold);font-weight:700;
+  margin:14px 0;
+}
+.back-link:hover{color:var(--accent)}
+
+/* ===== Hero ===== */
+.hero{padding:26px 0 16px}
+.hero-wrap{
+  border-radius:var(--r);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(0,0,0,.12));
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+.kicker{
+  display:inline-flex;gap:10px;align-items:center;
+  padding:8px 12px;border-radius:999px;
+  background:rgba(0,0,0,.22);
+  border:1px solid var(--line);
+  font-weight:800;color:var(--text-muted);
+}
+.kicker i{color:var(--accent-gold)}
+
+h1{
+  font-family:var(--font-head);
+  margin:14px 0 8px;
+  font-size:clamp(2rem,3vw,2.6rem);
+}
+.hero p{color:var(--text-muted);max-width:70ch}
+
+/* ===== Steps ===== */
+.steps{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;
+}
+
+.step{
+  background:rgba(0,0,0,.18);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  transition:.25s ease;
+}
+.step:hover{
+  transform:translateY(-4px);
+  border-color:rgba(212,175,55,.30);
+}
+.step i{
+  color:var(--accent);
+  font-size:1.4rem;
+}
+.step h3{
+  margin:10px 0 6px;
+  font-family:var(--font-head);
+}
+.step p{color:var(--text-muted);font-size:.95rem}
+
+/* ===== Accordion ===== */
+.main{padding:14px 0 40px}
+.panel{
+  border-radius:var(--r);
+  border:1px solid var(--line);
+  background:rgba(40,54,40,.78);
+  box-shadow:var(--shadow);
+}
+
+.accordion{
+  padding:16px;
+}
+details{
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:14px;
+}
+details+details{margin-top:10px}
+summary{
+  cursor:pointer;
+  font-family:var(--font-head);
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+summary::-webkit-details-marker{display:none}
+summary i{color:var(--accent-gold)}
+details p{
+  margin-top:10px;
+  color:var(--text-muted);
+  line-height:1.6;
+}
+
+/* ===== Footer ===== */
+footer{
+  border-top:1px solid var(--line);
+  padding:22px 0 30px;
+  color:rgba(241,248,241,.72);
+  margin-top:18px;
+}
+
+@media(max-width:900px){
+  .nav{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <i class="fa-solid fa-tree"></i> Oak Pine Hub
+    </a>
+    <nav class="nav">
+      <a href="#steps">Steps</a>
+      <a href="#guide">Guide</a>
+      <a href="#faq">FAQ</a>
+      <a class="msg-btn" href="contact-case-worker.html">
+        <i class="fa-solid fa-message"></i> Message
+      </a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <a class="back-link" href="index.html">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+</div>
+
+<section class="hero">
+  <div class="container hero-wrap">
+    <span class="kicker">
+      <i class="fa-solid fa-compass"></i> Getting Started
+    </span>
+    <h1>How to Use the Oak Pine Community Hub</h1>
+    <p>
+      This hub brings housing support, community services, and local help together in one place.
+      Follow the steps below to find what you need quickly and confidently.
+    </p>
+
+    <div class="steps" id="steps">
+      <div class="step">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h3>Explore Services</h3>
+        <p>Browse housing, health, and community resources using clear categories.</p>
+      </div>
+      <div class="step">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <h3>Check Eligibility</h3>
+        <p>Each page explains who qualifies and what documents may be required.</p>
+      </div>
+      <div class="step">
+        <i class="fa-solid fa-bullhorn"></i>
+        <h3>Take Action</h3>
+        <p>Apply for assistance, report issues, or message a case worker directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+  <div class="container panel accordion" id="guide">
+    <details open>
+      <summary>
+        <span><i class="fa-solid fa-house"></i> Finding Housing & Rental Help</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </summary>
+      <p>
+        Visit the Rental Assistance page to view programs, eligibility details,
+        and available properties shown on the map. Use tabs to switch between sections.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span><i class="fa-solid fa-wrench"></i> Reporting Community Issues</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </summary>
+      <p>
+        The Report an Issue page allows residents to submit maintenance or safety concerns.
+        After submitting, you’ll see a confirmation popup.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span><i class="fa-solid fa-circle-question"></i> Getting Help Fast</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </summary>
+      <p>
+        If you’re unsure where to start, use the Message button to contact a case worker
+        who can guide you to the best resources.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <b>Oak Pine Community Hub</b> • How to Use the Hub  
+    <div style="margin-top:6px;font-size:.85rem;">
+      For demo purposes only
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

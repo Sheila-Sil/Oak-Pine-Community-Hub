@@ -940,26 +940,6 @@ nav ul {
 /* =========================
   MORE CSS STUFF */
 
-/* Hero Text Glow */
-.hero-text-overlay h1 {
-    font-size: 3.5rem;
-    color: #fff;
-    text-shadow:
-        0 0 5px rgba(255,255,255,0.4),
-        0 0 10px rgba(255,255,255,0.3),
-        0 0 20px rgba(92,184,92,0.6),
-        0 0 30px rgba(92,184,92,0.4);
-    transition: 0.5s ease;
-}
-
-.hero-text-overlay h1:hover {
-    text-shadow:
-        0 0 10px #fff,
-        0 0 20px #5cb85c,
-        0 0 30px #5cb85c,
-        0 0 40px #d4af37;
-    transform: scale(1.03);
-}
 
 .card {
     background: rgba(40, 54, 40, 0.6);
@@ -1064,6 +1044,71 @@ nav ul {
     transform: scale(1.05);
     box-shadow: 0 0 10px #5cb85c;
 }
+.hero-text-overlay h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    transition: all 0.4s ease-in-out;
+}
+
+.hero-text-overlay h1:hover {
+    text-shadow: 
+        0 0 10px var(--accent-gold),
+        0 0 20px var(--accent),
+        0 0 30px rgba(255,255,255,0.4);
+    transform: scale(1.03);
+}
+.card {
+    background: rgba(40, 54, 40, 0.6); /* semi-transparent glass */
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px) saturate(180%);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    background: rgba(40, 54, 40, 0.8);
+}
+
+/* Shine effect */
+.card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+    transform: rotate(25deg) translateX(-100%);
+    transition: transform 0.7s ease;
+}
+
+.card:hover::after {
+    transform: rotate(25deg) translateX(100%);
+}
+.btn-submit {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit:hover {
+    background: #4cae4c;
+    box-shadow: 0 8px 20px rgba(92,184,92,0.5);
+    transform: translateY(-2px) scale(1.02);
+}
+
 
     </style>
 </head>

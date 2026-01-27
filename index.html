@@ -836,24 +836,8 @@ nav ul {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-/* ==============================
-   HERO TEXT GLOW ON HOVER
-============================== */
-.hero-text-overlay h1 {
-    transition: 0.4s ease-in-out, text-shadow 0.4s ease-in-out;
-    cursor: default;
-}
 
-.hero-text-overlay h1:hover {
-    text-shadow:
-        0 0 10px var(--accent),
-        0 0 20px var(--accent),
-        0 0 30px var(--accent-gold),
-        0 0 40px var(--accent-gold),
-        0 0 50px var(--accent),
-        0 0 60px var(--accent-gold);
-    color: #fff;
-}
+
 
 /* ==============================
    CARD GLASS SHINE EFFECT
@@ -1017,15 +1001,6 @@ nav ul {
     box-shadow: 0 5px 20px rgba(92,184,92,0.4), 0 0 10px rgba(212,175,55,0.2);
 }
 
-.hero-section::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top:0; left:0;
-    background: linear-gradient(180deg, rgba(92,184,92,0.25), rgba(0,0,0,0.5));
-    pointer-events: none;
-}
 
 .a11y-toggle:hover {
     transform: scale(1.15);
@@ -1828,4 +1803,3 @@ nav ul {
 
 </body>
 </html>
-

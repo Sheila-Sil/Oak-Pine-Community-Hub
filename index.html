@@ -937,6 +937,133 @@ nav ul {
     border-color: var(--accent-gold);
     box-shadow: 0 0 20px rgba(92,184,92,0.4);
 }
+/* =========================
+  MORE CSS STUFF */
+
+/* Hero Text Glow */
+.hero-text-overlay h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.4),
+        0 0 10px rgba(255,255,255,0.3),
+        0 0 20px rgba(92,184,92,0.6),
+        0 0 30px rgba(92,184,92,0.4);
+    transition: 0.5s ease;
+}
+
+.hero-text-overlay h1:hover {
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #5cb85c,
+        0 0 30px #5cb85c,
+        0 0 40px #d4af37;
+    transform: scale(1.03);
+}
+
+.card {
+    background: rgba(40, 54, 40, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(92,184,92,0.4), 0 5px 10px rgba(0,0,0,0.2);
+    border: 1px solid rgba(92,184,92,0.5);
+}
+
+.card .sub-link {
+    transition: 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card .sub-link:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #5cb85c;
+    background: rgba(92,184,92,0.1);
+    transform: translateX(4px);
+}
+
+.btn-submit {
+    background: linear-gradient(145deg, #5cb85c, #4cae4c);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    box-shadow: 0 4px 15px rgba(92,184,92,0.4);
+}
+
+.btn-submit:hover {
+    background: linear-gradient(145deg, #4cae4c, #5cb85c);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(92,184,92,0.5), 0 0 10px rgba(255,255,255,0.2);
+}
+
+.card img {
+    transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.card img:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+    box-shadow: 0 15px 30px rgba(92,184,92,0.4), 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.slider-navigation button {
+    border: 1px solid rgba(255,255,255,0.3);
+    background-color: rgba(0,0,0,0.3);
+    color: #fff;
+    transition: 0.35s ease, box-shadow 0.35s ease;
+}
+
+.slider-navigation button:hover {
+    border-color: #5cb85c;
+    background-color: rgba(92,184,92,0.2);
+    box-shadow: 0 0 15px #5cb85c, 0 0 30px #d4af37;
+    transform: scale(1.15);
+}
+
+.logo-track img:hover {
+    transform: scale(1.15);
+    filter: brightness(1.2);
+    box-shadow: 0 5px 20px rgba(92,184,92,0.4), 0 0 10px rgba(212,175,55,0.2);
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0; left:0;
+    background: linear-gradient(180deg, rgba(92,184,92,0.25), rgba(0,0,0,0.5));
+    pointer-events: none;
+}
+
+.a11y-toggle:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 12px #d4af37, 0 0 20px #5cb85c;
+}
+
+
+#notFoundModal .modal-content {
+    border: 1px solid rgba(92,184,92,0.5);
+    box-shadow: 0 10px 30px rgba(92,184,92,0.35);
+    transition: all 0.35s ease;
+}
+#notFoundModal .close-modal:hover {
+    background: #5cb85c;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #5cb85c;
+}
 
     </style>
 </head>
